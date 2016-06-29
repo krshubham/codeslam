@@ -5,6 +5,7 @@ body{
 	background: #000;
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
+	overflow: auto;
 }
 div.jumbotron{
 	text-align: center;
@@ -12,12 +13,30 @@ div.jumbotron{
 }
 div .signup{
 	text-align: center;
-	padding: 10px;
+	padding: 50px;
 }
 div .login{
 	text-align: center;
-	padding: 10px;
+	padding: 50px;
 }
 div.jumbotron .label{
 	padding: 10px;
+}
+hr{
+	border: 0;
+	clear:both;
+	display:block;
+	width: 100%;               
+	background-color:#FFFFFF;
+	height: 1px;
+}
+@media screen and (max-width: 680px){
+	div .signup{
+		text-align: center;
+		padding: 10px;
+	}
+	div .login{
+		text-align: center;
+		padding: 10px;
+	}
 }
