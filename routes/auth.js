@@ -15,8 +15,9 @@ function getSignupPage(req,res,next){
 	next();
 }
 
-function doSignup(req,res){
-	console.log(req);
+function doSignup(req,res,next){
+	//console.log(req);
+	next()
 }
 
 //Routes to do the authentication.

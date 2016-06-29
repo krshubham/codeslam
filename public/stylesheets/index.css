@@ -1,0 +1,26 @@
+@import url('/stylesheets/bootstrap.css');
+
+html{
+	background: ;
+}
+div.jumbotron{
+	text-align: center;
+	background-color: transparent;
+}
+div .signup{
+	text-align: center;
+	border-top: 1px solid #9f9f9f;
+	padding: 10px;
+	border-right: 3px solid #f9f9f9;
+	border-bottom: 5px solid #f9f9f9;
+}
+div .login{
+	text-align: center;
+	border-top: 1px solid #9f9f9f;
+	padding: 10px;
+	border-bottom: 5px solid #f9f9f9;
+}
+
+div.jumbotron .label{
+	padding: 10px;
+}
