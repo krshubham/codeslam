@@ -26,11 +26,11 @@
 			<span class="btn btn-success" id="btn_login">Log In</span>
 		</div>
 	</div>
-	<div align="center" id="signupForm">
-		<form action="/auth/signup" method="POST" >
+	<div align="center">
+		<form action="/auth/signup" method="POST" id="signup-form">
 			<div class="form-group">
 				<label class="control-label" for="Name" >Name</label><br />
-				<input class="form-input" type="text" name="Name" />
+				<span class="fa fa-star" id="star"></span><input class="form-input" type="text" name="Name" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="email" >E-mail</label><br />
@@ -44,6 +44,7 @@
 				<label class="control-label" for="Confirm password" >Confirm Password</label><br />
 				<input class="form-input" type="password" name="c_pwd" />
 			</div>
+			<button type="submit" class="btn btn-primary">Sign Up</button>
 		</form>
 	</div>
 </div>

@@ -46,4 +46,14 @@ hr{
 
 .form-input{
 	padding: 0.5em;
-	width: 15em;
+	color: #000;
+	width: 18em;
+}
+#star{
+	padding: 1em;
+	background-color: #9f9f9f;
+	color: #fff;
+}
+#signup-form{
+	z-index: 99;
+}
