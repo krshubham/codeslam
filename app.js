@@ -11,12 +11,12 @@ var app = express();
 
 
 //Database setup
-var mongo = require('mongodb').MongoClient;
-var assert = require('assert');
+// var mongo = require('mongodb').MongoClient;
+// var assert = require('assert');
 
-var url = 'mongodb://localhost:27017/slam';
+// var url = 'mongodb://localhost:27017/slam';
 //Function for Database connection
-function dbConnect(err,db){
+/*function dbConnect(err,db){
   try{
     assert.equal(err,null);
     console.log('Connection established to ',url);
@@ -29,7 +29,7 @@ function dbConnect(err,db){
 
 mongo.connect(url,dbConnect);
 
-
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
