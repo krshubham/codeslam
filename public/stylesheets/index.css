@@ -43,3 +43,7 @@ hr{
 .intro{
 	text-align: center;
 }
+
+.form-input{
+	padding: 0.5em;
+	width: 15em;

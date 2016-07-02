@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Welcome' });
 });
 router.get('/stylesheets',function(req,res,next){
 	res.send('Not allowed!');

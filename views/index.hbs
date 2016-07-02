@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <div class="jumbotron">
 	<h1><span style="color:green;">Welcome</span><span style="color: yellow;"> to </span><span style="color: red;">Codeslam</span></h1>
 	<h4>Get ready for a fight!</h4>
@@ -20,26 +19,46 @@
 	<div class="col-md-12 col-sm-12">
 		<div class="col-md-6 signup">
 			<h3>Don't have an account? Signup here!</h3><br />
-			<a class="btn btn-info" href="/auth/signup">Sign Up</a>
+			<span class="btn btn-info" id="btn_signup">Sign Up</span>
 		</div>
 		<div class="col-md-6 login">
 			<h3>Login to start a slam now.</h3><br />
-			<a class="btn btn-success" href="/auth/login">Log In</a>
+			<span class="btn btn-success" id="btn_login">Log In</span>
 		</div>
 	</div>
-	<hr id="after-auth">
-	<div class="intro col-md-12 col-sm-12">
-		<h1>
-			<span
-			class="txt-rotate"
-			data-period="2000"
-			data-rotate='[ "Ready To show your skills?", "Array or Tree?", "Greedy or Recursive?","You decide!"]'></span>
-		</h1>
+	<div align="center" id="signupForm">
+		<form action="/auth/signup" method="POST" >
+			<div class="form-group">
+				<label class="control-label" for="Name" >Name</label><br />
+				<input class="form-input" type="text" name="Name" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="email" >E-mail</label><br />
+				<input class="form-input" type="email" name="email" placeholder="This will be your username" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="password" >Password</label><br />
+				<input class="form-input" type="password" name="pwd" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="Confirm password" >Confirm Password</label><br />
+				<input class="form-input" type="password" name="c_pwd" />
+			</div>
+		</form>
 	</div>
-	
+</div>
+<hr id="after-auth">
+<div class="intro col-md-12 col-sm-12">
+	<h1>
+		<span
+		class="txt-rotate"
+		data-period="2000"
+		data-rotate='[ "Ready To show your skills?", "Array or Tree?", "Greedy or Recursive?","You decide!"]'></span>
+	</h1>
+</div>
+<script type="text/javascript" src="/javascripts/index.js"></script>
+<script type="text/javascript">
+	/*$('#btn_signup').click(function(){
 
-
-
-
-
-	<script type="text/javascript" src="/javascripts/index.js"></script>
+	});*/
+</script>
