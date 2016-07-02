@@ -4,11 +4,31 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var app = express();
+
+
+//Database setup
+var mongo = require('mongodb').MongoClient;
+var assert = require('assert');
+
+var url = 'mongodb://localhost:27017/slam';
+//Function for Database connection
+function dbConnect(err,db){
+  try{
+    assert.equal(err,null);
+    console.log('Connection established to ',url);
+  }
+  catch(err){
+    console.log("Unable to connect with the database");
+  }
+  db.close();
+}
+
+mongo.connect(url,dbConnect);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
