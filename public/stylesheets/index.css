@@ -57,3 +57,6 @@ hr{
 #signup-form{
 	z-index: 99;
 }
+form{
+	display: none;
+}
