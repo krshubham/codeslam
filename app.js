@@ -4,19 +4,52 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressSession = require('express-session');
+var mongoStore = require('connect-mongo')(expressSession);
+var mongo = require('./mongo');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var app = express();
 
+app.use(expressSession({
+  secret: 'itsgeekthing',
+  store : new  mongoStore({
+    url: 'mongodb://localhost:27017/slam'
+  })
+}));
+
+function ifLoggedIn(res,req,next){
+  if(req.session.name){
+    var coll = mongo.collections('users');
+    coll.findOne({username: req.session.name},function(err,db){
+      assert.equal(err,null);
+      if(user){
+        req.user = user;
+        res.locals.user = user;
+      }
+      next();
+    });
+  }
+  else{
+    next();
+  }
+}
+
+
+app.use(ifLoggedIn);
+
+
+
+
 
 //Database setup
-// var mongo = require('mongodb').MongoClient;
-// var assert = require('assert');
+var mongo = require('mongodb').MongoClient;
+var assert = require('assert');
 
-// var url = 'mongodb://localhost:27017/slam';
+var url = 'mongodb://localhost:27017/slam';
 //Function for Database connection
-/*function dbConnect(err,db){
+function dbConnect(err,db){
   try{
     assert.equal(err,null);
     console.log('Connection established to ',url);
@@ -29,7 +62,7 @@ var app = express();
 
 mongo.connect(url,dbConnect);
 
-*/
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
