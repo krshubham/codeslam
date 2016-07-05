@@ -11,22 +11,7 @@ function doSignup(req,res,next){
 	next()
 }
 
-function ifLoggedIn(res,req,next){
-	if(req.session.name){
-		var coll = mongo.collections('users');
-		coll.findOne({username: req.session.name},function(err,db){
-			assert.equal(err,null);
-			if(user){
-				req.user = user;
-				res.locals.user = user;
-			}
-			next();
-		});
-	}
-	else{
-		next();
-	}
-}
+
 
 
 
