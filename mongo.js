@@ -1,4 +1,4 @@
-var MongoClient = require('mongodb').MongoClient;
+/*var MongoClient = require('mongodb').MongoClient;
 var db;
 var connected = false;
 
@@ -20,4 +20,4 @@ module.exports = {
     
     return db.collection(name);
   }
-};
+};*/

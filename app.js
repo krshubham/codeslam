@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var auth = require('./routes/auth');
 var app = express();
 
-app.use(expressSession({
+/*app.use(expressSession({
   secret: 'itsgeekthing',
   store : new  mongoStore({
     url: 'mongodb://localhost:27017/slam'
@@ -37,14 +37,14 @@ function ifLoggedIn(res,req,next){
 }
 
 
-app.use(ifLoggedIn);
+app.use(ifLoggedIn);*/
 
 
 
 
 
 //Database setup
-var mongo = require('mongodb').MongoClient;
+/*var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
 
 var url = 'mongodb://localhost:27017/slam';
@@ -60,7 +60,7 @@ function dbConnect(err,db){
   db.close();
 }
 
-mongo.connect(url,dbConnect);
+mongo.connect(url,dbConnect);*/
 
 
 // view engine setup
