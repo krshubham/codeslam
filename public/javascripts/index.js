@@ -61,6 +61,7 @@ function showSignupForm(){
 	$('.fa-close').fadeIn();
 	$('#login-form').slideUp();
 	$('#signup-form').slideDown();
+	
 } 
 function showLoginForm(){
 	$('.fa-close').fadeIn();
