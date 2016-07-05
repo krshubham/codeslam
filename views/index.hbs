@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div align="center">
-		<i class="fa fa-close fa-2x"></i>
+		<i class="fa fa-close fa-2x" style="display:none;" id="closeForm"></i>
 		<form action="/auth/signup" method="POST" id="signup-form">
 			<div class="form-group">
 				<label class="control-label" for="Name" >Name</label><br />
@@ -71,14 +71,5 @@
 </div>
 <script type="text/javascript" src="/javascripts/index.js"></script>
 <script type="text/javascript">
-	function showSignupForm(){
-		$('#login-form').slideUp();
-		$('#signup-form').slideDown();
-	} 
-	function showLoginForm(){
-		$('#signup-form').slideUp();
-		$('#login-form').slideDown();
-	}
-	$('#btn_signup').click(showSignupForm)
-	$('#btn_login').click(showLoginForm)
+	
 	</script>
