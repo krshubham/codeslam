@@ -31,30 +31,30 @@
 		<form action="/auth/signup" method="POST" id="signup-form">
 			<div class="form-group">
 				<label class="control-label" for="Name" >Name</label><br />
-				<span class="fa fa-user input-span"></span><input class="form-input" type="text" name="Name" />
+				<span class="fa fa-user input-span"></span><input class="form-input" required type="text" name="signup_name" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="email" >E-mail</label><br />
-				<span class="fa fa-envelope input-span"></span><input class="form-input" type="email" name="email" placeholder="This will be your username" />
+				<span class="fa fa-envelope input-span"></span><input class="form-input" required type="email" name="signup_email" placeholder="This will be your username" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="password" >Password</label><br />
-				<span class="fa fa-key input-span"></span><input class="form-input" type="password" name="pwd" />
+				<span class="fa fa-key input-span"></span><input class="form-input" required type="password" name="signup_pwd" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="Confirm password" >Confirm Password</label><br />
-				<span class="fa fa-key input-span"></span><input class="form-input" type="password" name="c_pwd" />
+				<span class="fa fa-key input-span"></span><input class="form-input" required type="password" name="c_pwd" />
 			</div>
 			<button type="submit" class="btn btn-primary">Sign Up</button>
 		</form>
 		<form action="/auth/login" method="POST" id="login-form">
 			<div class="form-group">
 				<label class="control-label" for="email" >E-mail</label><br />
-				<span class="fa fa-envelope input-span"></span><input class="form-input" type="email" name="email" placeholder="someone@example.com" />
+				<span class="fa fa-envelope input-span"></span><input class="form-input" required type="email" name="login_email" placeholder="someone@example.com" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="password" >Password</label><br />
-				<span class="fa fa-key input-span"></span><input class="form-input" type="password" name="pwd" />
+				<span class="fa fa-key input-span"></span><input class="form-input" required type="password" name="login_pwd" />
 			</div>
 			<button type="submit" class="btn btn-warning">Log In</button>
 		</form>

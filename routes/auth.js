@@ -1,19 +1,13 @@
 var express = require('express');
-var router = express.Router()
-var mongo = require('../mongo');
+var router = express.Router();
 var assert = require('assert');
-function doLogin(req,res){
+function doLogin(req, res,next){
 	next();
 }
 
-function doSignup(req,res,next){
-	//console.log(req);
-	next()
+function doSignup(req, res, next) {
+	console.log(req.body.signup_name);
 }
-
-
-
-
 
 
 
