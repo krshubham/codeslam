@@ -6,7 +6,14 @@ function doLogin(req, res,next){
 }
 
 function doSignup(req, res, next) {
-	console.log(req.body.signup_name);
+	var name = req.body.signup_name;
+	var email = req.body.signup_email;
+	var password = req.body.signup_password;
+	var confirm_password = req.body.c_pwd;
+	console.log(name);
+	console.log(email);
+	console.log(password);
+	console.log(confirm_password);
 }
 
 
