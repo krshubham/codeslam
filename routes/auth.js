@@ -2,20 +2,28 @@ var express = require('express');
 var router = express.Router();
 var assert = require('assert');
 var xss = require('xss');
+
+
+
+//function for getting a person logged in
 function doLogin(req, res,next){
-	next();
+	var username = xss(req.body.login_email);
+	var password = xss(req.body.login_pwd);
+	//this method calls another method which further check if the user is available in the db.
+	
+	/*console.log(username);
+	console.log(password);*/
 }
 
-function doSignup(req, res, next) {
+function doSignup(req, res) {
 	var name = xss(req.body.signup_name);
-	var email = xss(req.body.signup_email);
+	var username = xss(req.body.signup_email);
 	var password = xss(req.body.signup_pwd);
 	var confirm_password = xss(req.body.c_pwd);
-
-	console.log(name);
+	/*console.log(name);
 	console.log(email);
 	console.log(password);
-	console.log(confirm_password);
+	console.log(confirm_password);*/
 }
 
 
