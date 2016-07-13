@@ -28,7 +28,7 @@
 	</div>
 	<div align="center">
 		{{#if error}}
-			<h3 id="err_msg">Something went wrong. Please Try again</h3>
+			<h3 id="err_msg">{{message}}</h3>
 		{{/if}}
 		<i class="fa fa-close fa-2x" style="display:none;" id="closeForm"></i>
 		<form action="/auth/signup" method="POST" id="signup-form">
