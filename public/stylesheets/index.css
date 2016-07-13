@@ -60,3 +60,6 @@ hr{
 form{
 	display: none;
 }
+#err_msg{
+	color: red;
+}

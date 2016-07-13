@@ -27,15 +27,18 @@
 		</div>
 	</div>
 	<div align="center">
+		{{#if error}}
+			<h3 id="err_msg">Something went wrong. Please Try again</h3>
+		{{/if}}
 		<i class="fa fa-close fa-2x" style="display:none;" id="closeForm"></i>
 		<form action="/auth/signup" method="POST" id="signup-form">
 			<div class="form-group">
 				<label class="control-label" for="Name" >Name</label><br />
-				<span class="fa fa-user input-span"></span><input class="form-input" required type="text" name="signup_name" />
+				<span class="fa fa-user input-span"></span><input class="form-input" value= "{{name}}" required type="text" name="signup_name" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="email" >E-mail</label><br />
-				<span class="fa fa-envelope input-span"></span><input class="form-input" required type="email" name="signup_email" placeholder="This will be your username" />
+				<span class="fa fa-envelope input-span"></span><input class="form-input" value= "{{username}}" required type="email" name="signup_email" placeholder="This will be your username" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="password" >Password</label><br />
