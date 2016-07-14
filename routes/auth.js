@@ -4,22 +4,7 @@ var assert = require('assert');
 var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
-
-//Database connection
-var url = 'mongodb://localhost:27017/slam';
-var userCollection = db.collection('users');
-var db;
-mongo.connect(url,function(err,database){
-	try{
-		assert.equal(err,null);	
-		console.log('connection established with the db at port 27017');
-		db = database
-		console.log(db)
-	}
-	catch(e){
-		console.log('Error connecting to the database');
-	}
-});	
+	
 
 
 //Things to validate before inserting the data:
@@ -29,20 +14,6 @@ function validateUser(name,email,password){
 	user_exists_err = {
 		error: 'true',
 		message: 'Email already in use'
-	}
-
-	if(name.length>0 && username.length>0 && password.length>=6 && password.length<=32){
-		userCollection.findOne({username: email},function(err,item){
-			if(!item){
-				userCollection.insertOne()
-			}
-			else{
-				return res.render('index',user_exists_err)
-			}
-		});
-	}
-	else{
-		return 
 	}
 }
 
