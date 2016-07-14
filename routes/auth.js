@@ -40,13 +40,11 @@ function insertUser(n,e,p){
 		try{
 			assert.equal(item,null);
 			console.log('User does not exist');
-		}
-		/*if(){
 			userCollection.insertOne(user,function(err,ok){
 				assert.equal(err,null);
 				console.log('Document inserted into the db');
 			});
-		}*/
+		}
 		catch(e){
 			console.log('user already exists');
 		}
