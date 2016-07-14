@@ -5,21 +5,53 @@ var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
 
-//Database connection
+
+
+//Connecting to the database.
 var url = 'mongodb://localhost:27017/slam';
-var userCollection = db.collection('users');
-var db;
-mongo.connect(url,function(err,database){
+var userCollection = null;
+mongo.connect(url,function(err,db){
 	try{
-		assert.equal(err,null);	
-		console.log('connection established with the db at port 27017');
-		db = database
-		console.log(db)
+		assert.equal(err,null);
+		console.log('db connection established');
 	}
 	catch(e){
-		console.log('Error connecting to the database');
+		console.log('db connection not possible');
+		return;
 	}
-});	
+	userCollection = db.collection('users');
+});
+//END OF DB connection code.
+
+
+
+function insertUser(n,e,p){
+	//The user item to be inserted.
+
+	user = {
+		username: e,
+		name: n,
+		password: p
+	}	
+	userCollection.findOne({
+		username: e
+	},function(err,item){
+		assert.equal(err,null);
+		try{
+			assert.equal(item,null);
+			console.log('User does not exist');
+		}
+		/*if(){
+			userCollection.insertOne(user,function(err,ok){
+				assert.equal(err,null);
+				console.log('Document inserted into the db');
+			});
+		}*/
+		catch(e){
+			console.log('user already exists');
+		}
+	});
+} 
 
 
 //Things to validate before inserting the data:
@@ -32,17 +64,11 @@ function validateUser(name,email,password){
 	}
 
 	if(name.length>0 && username.length>0 && password.length>=6 && password.length<=32){
-		userCollection.findOne({username: email},function(err,item){
-			if(!item){
-				userCollection.insertOne()
-			}
-			else{
-				return res.render('index',user_exists_err)
-			}
-		});
+		insertUser(name,email,password);
 	}
 	else{
-		return 
+		console.log('The error is here');
+		throw e;
 	}
 }
 
@@ -75,9 +101,10 @@ function doSignup(req, res) {
 	var confirm_password = xss(req.body.c_pwd);
 	try{
 		assert.deepEqual(password,confirm_password);
-		insertUser(name,username,passsword);
+		insertUser(name,username,password);
 	}
 	catch(e){
+		console.log(e);
 		console.log('Something went wrong');
 		// The local variables in the error view model for wrong signup
 		var vm_err = {
