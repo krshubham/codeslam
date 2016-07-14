@@ -30,6 +30,9 @@
 		{{#if error}}
 			<h3 id="err_msg">{{message}}</h3>
 		{{/if}}
+		{{#if authSuccess}}
+			<span class="alert alert-success">{{message}}</span>
+		{{/if}}
 		<i class="fa fa-close fa-2x" style="display:none;" id="closeForm"></i>
 		<form action="/auth/signup" method="POST" id="signup-form">
 			<div class="form-group">

@@ -4,6 +4,9 @@ var assert = require('assert');
 var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
+var bcrypt = require('bcrypt-nodejs');
+
+
 
 
 
@@ -25,31 +28,36 @@ mongo.connect(url,function(err,db){
 
 
 
-function insertUser(n,e,p){
-	//The user item to be inserted.
 
-	user = {
-		username: e,
-		name: n,
-		password: p
-	}	
+//function for inserting the user data into the db.
+function insertUser(n,e,p){	
 	userCollection.findOne({
 		username: e
 	},function(err,item){
 		assert.equal(err,null);
 		try{
 			assert.equal(item,null);
-			console.log('User does not exist');
+			console.log('yayy, your email id is unique');
+			//Hash the password before inserting.
+			user = {
+				username: e,
+				name: n,
+				password: p
+			};
 			userCollection.insertOne(user,function(err,ok){
 				assert.equal(err,null);
 				console.log('Document inserted into the db');
 			});
+			return;
 		}
-		catch(e){
-			console.log('user already exists');
+		catch(err){
+			throw e;
 		}
 	});
 } 
+
+
+
 
 
 //Things to validate before inserting the data:
@@ -69,6 +77,8 @@ function validateUser(name,email,password){
 		throw e;
 	}
 }
+
+
 
 
 function insertuser(name,username,password){
@@ -91,6 +101,10 @@ function doLogin(req, res,next){
 	console.log(password);*/
 }
 
+
+
+
+
 //The below method handles all the the post requests for signup.
 function doSignup(req, res) {
 	var name = xss(req.body.signup_name);
@@ -100,6 +114,11 @@ function doSignup(req, res) {
 	try{
 		assert.deepEqual(password,confirm_password);
 		insertUser(name,username,password);
+		var vm_successful = {
+			authSuccess: true,
+			message: 'Your account created successfully,please login.'
+		}
+		return res.render('index',vm_successful)
 	}
 	catch(e){
 		console.log(e);
@@ -119,6 +138,10 @@ function doSignup(req, res) {
 	console.log(confirm_password);*/
 }
 /* //END OF THE SIGNUP FUNCTION */
+
+
+
+
 
 
 //Routes to do the authentication.
