@@ -34,8 +34,8 @@ function insertUser(n,e,p){
 	userCollection.findOne({
 		username: e
 	},function(err,item){
-		assert.equal(err,null);
 		try{
+			assert.equal(err,null);
 			assert.equal(item,null);
 			console.log('yayy, your email id is unique');
 			//Hash the password before inserting.
@@ -48,10 +48,10 @@ function insertUser(n,e,p){
 				assert.equal(err,null);
 				console.log('Document inserted into the db');
 			});
-			return;
 		}
 		catch(err){
-			throw e;
+			console.log('email is already in use');
+			return;
 		}
 	});
 } 
@@ -70,7 +70,12 @@ function validateUser(name,email,password){
 	}
 
 	if(name.length>0 && username.length>0 && password.length>=6 && password.length<=32){
-		insertUser(name,email,password);
+		try{
+			insertUser(name,email,password);
+		}
+		catch(e){
+			return;
+		}
 	}
 	else{
 		console.log('The error is here');
