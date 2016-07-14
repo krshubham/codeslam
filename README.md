@@ -5,6 +5,6 @@ ___
 
 #### The website is running live on:
 
-[Codeslam | Heroku](codeslam.herokuapp.com)
+[Codeslam | Heroku](http://codeslam.herokuapp.com)
 
 *Note:* The app is still in beta. And is currently static on heroku.
