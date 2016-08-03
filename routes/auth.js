@@ -8,6 +8,8 @@ var bcrypt = require('bcrypt-nodejs');
 var url = 'mongodb://localhost:27017/slam'
 var db = require('./db');
 
+
+
 //function for inserting the user data into the db.
 function insertUser(n,e,p){	
 	userCollection.findOne({
@@ -72,8 +74,8 @@ function doLogin(req, res,next){
 	//this method calls another method which further check if the user is available in the db.
 
 
-	/*console.log(username);
-	console.log(password);*/
+	console.log(username);
+	console.log(password);
 }
 
 //The below method handles all the the post requests for signup.
