@@ -5,29 +5,8 @@ var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
 var bcrypt = require('bcrypt-nodejs');
-
-
-
-
-
-//Connecting to the database.
-var url = 'mongodb://localhost:27017/slam';
-var userCollection = null;
-mongo.connect(url,function(err,db){
-	try{
-		assert.equal(err,null);
-		console.log('db connection established');
-	}
-	catch(e){
-		console.log('db connection not possible');
-		return;
-	}
-	userCollection = db.collection('users');
-});
-//END OF DB connection code.
-
-
-
+var url = 'mongodb://localhost:27017/slam'
+var db = require('./db');
 
 //function for inserting the user data into the db.
 function insertUser(n,e,p){	
@@ -54,11 +33,8 @@ function insertUser(n,e,p){
 			return;
 		}
 	});
-} 
 
-
-
-
+}
 
 //Things to validate before inserting the data:
 function validateUser(name,email,password){
@@ -83,17 +59,11 @@ function validateUser(name,email,password){
 	}
 }
 
-
-
-
 function insertuser(name,username,password){
 	//Call a function which validates the user data.
 	validateUser(name,username,password)
 	//Define this method above.
 }
-
-
-
 
 //function for getting a person logged in
 function doLogin(req, res,next){
@@ -105,10 +75,6 @@ function doLogin(req, res,next){
 	/*console.log(username);
 	console.log(password);*/
 }
-
-
-
-
 
 //The below method handles all the the post requests for signup.
 function doSignup(req, res) {
