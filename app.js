@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var auth = require('./routes/auth');
+var auth = require('./routes/test');
 var app = express();
 //Never ever require any package or install it through npm without mentioning in package.jsona
 
