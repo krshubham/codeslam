@@ -29,6 +29,7 @@
     console.log('Unable to connect to Mongo.')
     process.exit(1)
   } else {
+    console.log('Connection established');
     server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
