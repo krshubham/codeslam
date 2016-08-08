@@ -4,12 +4,10 @@ var assert = require('assert');
 var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
-var bcrypt = require('bcrypt-nodejs');
 var url = 'mongodb://localhost:27017/slam'
 var db = require('./db');
-
-
-const secret = 'g@@k';
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 //function for getting a person logged in
 function doLogin(req, res,next){
 	var username = xss(req.body.login_email);
@@ -36,16 +34,18 @@ function doSignup(req, res) {
 				assert.equal(item,null);
 				console.log('yayy, your email id is unique');
 			//Hash the password before inserting.
-			bcrypt.hash(password, 2,secret,function(err, hash) {
-				assert.equal(err,null);
-				user = {
-					username: username,
-					name: name,
-					password: hash
-				};
-				userCollection.insertOne(user,function(err,ok){
+			bcrypt.genSalt(saltRounds, function(err, salt) {
+				bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
 					assert.equal(err,null);
-					console.log('Document inserted into the db');
+					user = {
+						username: username,
+						name: name,
+						password: hash
+					};
+					userCollection.insertOne(user,function(err,ok){
+						assert.equal(err,null);
+						console.log('Document inserted into the db');
+					});
 				});
 			});
 			res.send('successful');
