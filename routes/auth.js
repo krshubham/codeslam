@@ -32,25 +32,33 @@ function doSignup(req,res,next){
 		validateUserDetails(name,email,password,confirm);
 		bcrypt.hash(password, saltRounds, function(err, hash) {
 			assert.equal(err,null);
-			var user = {
-				name: name,
-				email: email,
-				password: hash
-			}
+			console.log(users);
 			users.findOne({email: email},function(err,user){
 				assert.equal(err,null);
 				if(user){
 					var vm = {
 						title: 'Welcome',
-						success: false
+						success: false,
+						message: 'Something Went Wrong. Please Try again'
 					};
-					return res.render(index,vm);
+					console.log('user exist');
 				}
 				else{
+					var user = {
+						name: name,
+						email: email,
+						password: hash
+					}
 					users.insertOne(user,function(err,done){
+						console.log('user inserted');
 						assert.equal(err,null);
 						console.log(done);
 					});
+					var vm = {
+						title: 'Login',
+						message: 'Login now!'
+					}
+					res.render('index',vm);
 				}
 			});
 
