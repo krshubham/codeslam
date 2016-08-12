@@ -12,7 +12,7 @@ var users = null;
 
 function validateUserDetails(name,email,password,cp){
 	assert.deepEqual(cp,password);
-	if(password.length>=6 && password.length<=32 && validate.isEmail(email) && typeof(name) === 'string' ){
+	if(password.length>=6 && password.length<=32 && validate.isEmail(email) && typeof(name) === 'string'){
 		return;
 	}
 	else{
@@ -32,7 +32,6 @@ function doSignup(req,res,next){
 		validateUserDetails(name,email,password,confirm);
 		bcrypt.hash(password, saltRounds, function(err, hash) {
 			assert.equal(err,null);
-			console.log(users);
 			users.findOne({email: email},function(err,user){
 				assert.equal(err,null);
 				if(user){
@@ -54,14 +53,9 @@ function doSignup(req,res,next){
 						assert.equal(err,null);
 						console.log(done);
 					});
-					var vm = {
-						title: 'Login',
-						message: 'Login now!'
-					}
-					res.render('index',vm);
+					res.redirect('/');
 				}
 			});
-
 		});
 	}
 	catch(err){
@@ -69,10 +63,40 @@ function doSignup(req,res,next){
 	}
 }
 
+function doLogin(req,res,next){
+	users = db.get().collection('users');
+	var username = req.body.login_email,
+	password = req.body.login_pwd;
+	users.findOne({email: username},function(err,user){
+		assert.equal(err,null);
+		if(!user){
+			var vm = {
+				title: 'Welcome',
+				error: true,
+				message: "Those details don't match any records"
+			}
+			res.render('index',vm);
+			next();
+		}
+		else{
+			bcrypt.compare(password,user.password, function(err,result) {
+				assert.equal(err,null);
+				if(!result){
+					console.log('Error in validating login details');
+				}
+				else{
+					res.redirect('/users');
+				}
+			});
+		}
+	});
+}
+
+
+
 
 //Routes to do the authentication.
 router.post('/signup',doSignup);
-//router.post('/login',doLogin);
-
+router.post('/login',doLogin);
 
 module.exports = router;
