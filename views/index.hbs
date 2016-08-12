@@ -1,18 +1,22 @@
 <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<style type="text/css">
+	label{
+		display: block;
+		z-index: 0;
+	}
+</style>
 <div class="jumbotron">
 	<h1><span style="color:green;">Welcome</span><span style="color: yellow;"> to </span><span style="color: red;">Codeslam</span><span style="font-size:0.2em;">beta</span></h1>
 	<h4>Get ready for a fight!</h4>
-	<div>
-		<span class="col-md-4 col-sm-4 col-xs-4 label-usp">
-			<label class="label label-danger"><i class="fa fa-check"></i>Awesome Fights</span>
-			</span>
-			<span class="col-md-4 col-sm-4 col-xs-4 label-usp">
-				<label class="label label-warning"><i class="fa fa-check"></i>Get ranked</label>
-			</span>
-			<span class="col-md-4 col-sm-4 col-xs-4 label-usp">
-				<label class="label label-primary"><i class="fa fa-check"></i>Exciting prizes</label>
-			</span>
+	<div class="col-md-4 col-sm-12 col-xs-12 label-usp">
+		<label class="label label-danger"><i class="fa fa-check"></i>Awesome Fights</label>
+	</div>
+		<div class="col-md-4 col-sm-12 col-xs-12 label-usp">
+			<label class="label label-warning"><i class="fa fa-check"></i>Get ranked</label>
+		</div>
+		<div class="col-md-4 col-sm-12 col-xs-12 label-usp">
+			<label class="label label-primary"><i class="fa fa-check"></i>Exciting prizes</label>
 		</div>
 	</div>
 	<hr id="after-jumbo">
@@ -28,10 +32,10 @@
 	</div>
 	<div align="center">
 		{{#if error}}
-			<h3 id="err_msg">{{message}}</h3>
+		<h3 id="err_msg">{{message}}</h3>
 		{{/if}}
 		{{#if authSuccess}}
-			<span class="alert alert-success">{{message}}</span>
+		<span class="alert alert-success">{{message}}</span>
 		{{/if}}
 		<i class="fa fa-close fa-2x" style="display:none;" id="closeForm"></i>
 		<form action="/auth/signup" method="POST" id="signup-form">
@@ -78,4 +82,4 @@
 <script type="text/javascript" src="/javascripts/index.js"></script>
 <script type="text/javascript">
 	
-	</script>
+</script>

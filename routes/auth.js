@@ -6,10 +6,11 @@ var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
 var url = 'mongodb://localhost:27017/slam'
 var db = require('./db');
+var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var users = null;
-
+var secret = 'g@@k@911';
 function validateUserDetails(name,email,password,cp){
 	assert.deepEqual(cp,password);
 	if(password.length>=6 && password.length<=32 && validate.isEmail(email) && typeof(name) === 'string'){
@@ -21,13 +22,12 @@ function validateUserDetails(name,email,password,cp){
 	}
 }
 
-function doSignup(req,res,next){
+function doSignup(req,res,next){argur
 	users = db.get().collection('users');
 	var name = xss(req.body.signup_name),
 	email = xss(req.body.signup_email),
 	password = xss(req.body.signup_pwd),
 	confirm = xss(req.body.c_pwd);
-	
 	try{
 		validateUserDetails(name,email,password,confirm);
 		bcrypt.hash(password, saltRounds, function(err, hash) {
@@ -85,7 +85,19 @@ function doLogin(req,res,next){
 					console.log('Error in validating login details');
 				}
 				else{
-					res.redirect('/users');
+					var item = {
+						name: username,
+						password: user.password
+					}
+					//Giving a token to the user for the login.
+					var token = jwt.sign(item, secret, {
+						expiresIn: 86400
+					});
+					var vm = {
+						token: token,
+						title: 'home'
+					}
+					res.render('home',vm);
 				}
 			});
 		}

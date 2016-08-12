@@ -27,8 +27,35 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/auth', auth);
+
+
+app.use(function(req, res, next) {
+  var token = req.body.token || req.params.token || req.headers['x-access-token'];
+  if (token) {
+    jwt.verify(token, secret, function(err, decoded) {      
+      if (err){
+       res.redirect('/');    
+     } else {
+      req.decoded = decoded;
+    }
+  });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+      success: false, 
+      message: 'No token provided.'
+    });
+    
+  }
+  
+});
+
+/*protected routes*/
+app.use('/users', users);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
