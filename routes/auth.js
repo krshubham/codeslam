@@ -96,7 +96,7 @@ function doLogin(req,res,next){
 						token: token,
 						title: 'home'
 					}
-					res.render('home',vm);
+					res.render('code',vm);
 				}
 			});
 		}
