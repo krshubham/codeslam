@@ -22,7 +22,7 @@ function validateUserDetails(name,email,password,cp){
 	}
 }
 
-function doSignup(req,res,next){argur
+function doSignup(req,res,next){
 	users = db.get().collection('users');
 	var name = xss(req.body.signup_name),
 	email = xss(req.body.signup_email),
@@ -65,8 +65,8 @@ function doSignup(req,res,next){argur
 
 function doLogin(req,res,next){
 	users = db.get().collection('users');
-	var username = req.body.login_email,
-	password = req.body.login_pwd;
+	var username = xss(req.body.login_email),
+	password = xss(req.body.login_pwd);
 	users.findOne({email: username},function(err,user){
 		assert.equal(err,null);
 		if(!user){
@@ -76,7 +76,6 @@ function doLogin(req,res,next){
 				message: "Those details don't match any records"
 			}
 			res.render('index',vm);
-			next();
 		}
 		else{
 			bcrypt.compare(password,user.password, function(err,result) {
