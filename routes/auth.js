@@ -16,7 +16,7 @@ function doSignup(req,res,next){
 		confirm = xss(req.body.c_pwd);
 		try{
 			assert.deepEqual(confirm,password);
-			db.get()
+			db.get();
 		}
 }
 
