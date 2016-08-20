@@ -4,7 +4,7 @@ var assert = require('assert');
 var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
-var url = 'mongodb://localhost:27017/slam'
+var url = 'mongodb://localhost:27017/slam';
 var db = require('./db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
@@ -43,12 +43,12 @@ function doSignup(req,res,next){
 					console.log('user exist');
 				}
 				else{
-					var user = {
+					var person = {
 						name: name,
 						email: email,
 						password: hash
-					}
-					users.insertOne(user,function(err,done){
+					};
+					users.insertOne(person,function(err,done){
 						console.log('user inserted');
 						assert.equal(err,null);
 						console.log(done);
@@ -73,8 +73,10 @@ function doLogin(req,res,next){
 			var vm = {
 				title: 'Welcome',
 				error: true,
+				bootstrap: true,
+				material: false,
 				message: "Those details don't match any records"
-			}
+			};
 			res.render('index',vm);
 		}
 		else{
@@ -87,16 +89,18 @@ function doLogin(req,res,next){
 					var item = {
 						name: username,
 						password: user.password
-					}
+					};
 					//Giving a token to the user for the login.
 					var token = jwt.sign(item, secret, {
 						expiresIn: 86400
 					});
 					var vm = {
 						token: token,
-						title: 'home'
-					}
-					res.render('code',vm);
+						title: 'home',
+						bootstrap: false,
+						material: true
+					};
+					res.render('test',vm);
 				}
 			});
 		}
