@@ -7,6 +7,11 @@
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 	<title>{{title}} | Codeslam</title>
+	{{#if error}}
+	<script type="text/javascript">
+		alert('hello');
+	</script>
+	{{/if}}
 </head>
 <body>
 	{{{body}}}

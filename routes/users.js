@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var compiler = require('compilex');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -19,14 +20,13 @@ var envData = { OS : "linux" , cmd : "gcc" }; // ( uses gcc command to compile )
 /*End of compiler specific code*/
 
 function CompileAndRun(){
-	
+	//done	
 }
  
-compiler.compileCPPWithInput(envData , code , input , function (data) {
+/*compiler.compileCPPWithInput(envData , code , input , function (data) {
 	res.send(data);
 });
-
-
+*/
 
 router.post('/code',CompileAndRun);
 
