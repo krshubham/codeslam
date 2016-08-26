@@ -1,3 +1,16 @@
 .container{
 	text-align: center;
 }
+.promo{
+	padding-top: 2em;
+}
+.promo-card{
+	padding: 3rem;
+}
+.promo i{
+	font-size: 7rem;
+	color: #2196F3;
+}
+.promo-caption{
+	font-size: 1.7rem;
+}
