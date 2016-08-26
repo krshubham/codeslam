@@ -1,15 +1,33 @@
-.container{
-	text-align: center;
+body{
+	margin-top: 0;
+	padding-top: 0;
+}
+.brand-nav{
+	background-color: #7A1EA1;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.brand-nav a{
+	opacity: 0.8;
+}
+.promo-bg{
+	background-color: #7A1EA1;
+	padding-bottom: 2em;
+	padding-top: 2em;
 }
 .promo{
 	padding-top: 2em;
 }
 .promo-card{
 	padding: 3rem;
+	margin-left: 2rem;
+	margin-right: 2rem;
+	background-color: #9B26AF; 
+	color: #fff;
 }
 .promo i{
 	font-size: 7rem;
-	color: #2196F3;
+	color: #68EFAD;
 }
 .promo-caption{
 	font-size: 1.7rem;
