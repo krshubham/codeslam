@@ -100,7 +100,7 @@ function doLogin(req,res,next){
 						bootstrap: false,
 						material: true
 					};
-					res.render('test',vm);
+					res.render('index',vm);//render test here
 				}
 			});
 		}

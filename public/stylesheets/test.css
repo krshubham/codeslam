@@ -1,18 +1,19 @@
 body{
 	margin-top: 0;
 	padding-top: 0;
+	background-color: #3F51BF;
 }
 .brand-nav{
 	background-color: #7A1EA1;
 	padding-left: 1em;
 	padding-right: 1em;
-	background-color: #691A99;
+	background-color: #3F51BF;
 }
 .brand-nav a{
 	opacity: 0.8;
 }
 .promo-bg{
-	background-color: #7A1EA1;
+	
 	padding-bottom: 2em;
 	padding-top: 2em;
 }
@@ -23,13 +24,29 @@ body{
 	padding: 3rem;
 	margin-left: 2rem;
 	margin-right: 2rem;
-	background-color: #9B26AF; 
+	background-color: #3F51BF; 
 	color: #fff;
 }
 .promo i{
 	font-size: 7rem;
-	color: #68EFAD;
+	color: #FF4081;
 }
 .promo-caption{
 	font-size: 1.7rem;
+}
+.after-promo{
+	color: #fff;
+}
+
+.about-section{
+	text-align: center;
+}
+.about-section h1{
+	color: #fff;
+}
+.dev-names{
+	font-size: 50px;
+}
+.page-footer{
+	background-color: #3F51BF !important;
 }

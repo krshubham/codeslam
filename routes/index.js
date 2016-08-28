@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
 		material: true,
 		index: true
 	};
-  res.render('test', vm);
+	//res.json(vm);
+  	res.render('index', vm);
 });
 router.get('/stylesheets',function(req,res,next){
 	res.send('Not allowed!');
