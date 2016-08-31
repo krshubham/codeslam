@@ -1,0 +1,56 @@
+﻿Codeslam
+Developers:   
+Kumar Shubham(15BCE1283)
+Aman Saha(15BCE1274)
+Shwetank Babal(15BCE1098)
+
+Abstract: We use skillrack in our college, for all the online challenges and coding tests. Our aim is to build an online platform which is more interactive than skillrack and handles the tasks more efficiently. It will have a better code editor with a  user-friendly experience.
+
+Technologies used: 
+Backend language: Node.Js,expressJs
+Database: MongoDB
+Frontend language: HTML5, CSS3, JavaScript, Jquery
+Template Engine: handlebars
+
+Functional Requirements
+
+ USER AUTHENTICATION:
+There would be a user registration and authentication mechanism where the user would be allowed to
+
+(1) log-in to the website.
+
+(2) Sign-up to the website.
+
+ USER PROFILE
+
+There would be a separate profile page allotted to every user where
+He/she would be able to practice some questions and will be able to compete with other users .
+
+HOME PAGE
+
+There would also be a home page for the user where he would be able to see the public problems and their solutions.
+(R5) SETTINGS PAGE
+
+It would consist of two primary parts-
+Account settings – This page would allow the user to change his password, username, email id etc. It would also allow a user to block other users and even delete his/her account.
+Profile settings – This page would allow the user to change his profile picture, bio, birth-date, location etc.
+ABOUT US: It would consist of information about the website as well as its developers.
+Coding page:
+
+This is the page that will be responsible for maintaining all the handling of source code files and will display the questions to the users.
+Various functionalities included in the coding page include-
+1) it will include various kind of dugging tools for various languages to enable students to write efficient and correct code.
+2)it will allow the students to solve the same problem in various different kind of programming languages.
+3)it will allow users to express their views on different problems via  comments.
+4) it will keep a track of the number of challenges solved by the user  and provide the ranking accordingly.
+
+NON FUNCTIONAL REQUIREMENTS
+
+1) This site would be platform independent ,highly efficient and user friend
+2) The challenges would be sorted according to the difficulties so that the students dont face difficulties while learning from scratch.
+3) Using node JS for powering our site enables us to handle multiple users very efficiently.
+4) The site would be responsive for all kinds of  devices.
+5)We are using the mongo db to make the database in order to get an efficeient database.
+6) Our website would be basically accesible to all without any charges.
+7)Initially our website would be only limited to our college and then then later we would be scaling up our site.
+
