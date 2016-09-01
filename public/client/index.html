@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="codeslam" ng-controller="mainController as main">
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/test.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+	<script type="text/javascript" src="/javascripts/app.js"></script>
+	<script type="text/javascript" src="/javascripts/controllers/normalControllers.js"></script>
+	<script type="text/javascript" src="/javascripts/app.routes.js"></script>
+	<title>{{main.title}}|Codeslam</title>
+</head>
+<body>
+	<nav class="brand-nav">
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Codeslam</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="#">Login</a></li>
+				<li><a href="#">Signup</a></li>
+				<li><a href="#">About us</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div ng-view></div>
+	</body>
+	</html>

@@ -27,8 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 app.use('/auth', auth);
+app.use('*', function(req,res,next){
+  res.sendFile(path.join(__dirname,'public','client','index.html'));
+});
+
 
 
 app.use(function(req, res, next) {
@@ -36,21 +39,21 @@ app.use(function(req, res, next) {
   if (token) {
     jwt.verify(token, secret, function(err, decoded) {      
       if (err){
-       res.redirect('/');    
+         res.redirect('/');    
      } else {
       req.decoded = decoded;
-    }
-  });
+  }
+});
 
-  } else {
+} else {
     // if there is no token
     // return an error
     return res.status(403).send({ 
       success: false, 
       message: 'No token provided.'
-    });
+  });
     
-  }
+}
 });
 
 /*protected routes*/
@@ -72,8 +75,8 @@ if (app.get('env') === 'development') {
     res.render('error', {
       message: err.message,
       error: err
-    });
   });
+});
 }
 
 // production error handler
@@ -83,7 +86,7 @@ app.use(function(err, req, res, next) {
   res.render('error', {
     message: err.message,
     error: {}
-  });
+});
 });
 
 
