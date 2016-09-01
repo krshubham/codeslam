@@ -1,0 +1,111 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<!--Import Google Icon Font-->
+ 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 	<!--Import materialize.css-->
+ 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"  media="screen,projection"/>
+
+ 	<!--Let browser know website is optimized for mobile-->
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ </head>
+
+ <body>
+ 	<nav>
+ 		<div class="nav-wrapper">
+ 			<a href="#" class="brand-logo">Logo</a>
+ 			<a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+ 			<ul id="nav-mobile" class="right hide-on-med-and-down">
+ 				<li><a href="sass.html">Sass</a></li>
+ 				<li><a href="badges.html">Components</a></li>
+ 				<li><a href="collapsible.html">JavaScript</a></li>
+ 			</ul>
+ 		</div>
+ 	</nav>
+
+ 	
+ 	<!--<div class="container"> -->
+ 	<!-- Main content of website goes here -->
+ 	<div class="row">
+ 		<div class="col s3">
+ 			<div class="row">
+ 				<div class="col s12">
+ 					<img src="../public/images/test.jpg" alt="" class="circle responsive-img hoverable center-align"> <!-- notice the "circle" class -->
+ 				</div>
+ 				<div class="row">
+ 					<div class="col s12">
+ 						<span class="black-text">
+ 							This is a square image. Add the "circle" class to it to make it appear circular.
+ 						</span>
+ 					</div></div>
+ 				</div>
+ 			</div>
+ 			<div class="col s9">
+ 				<div class="row">
+ 					<form class="col s12">
+ 						<div class="row">
+ 							<div class="input-field col s6">
+ 								<i class="material-icons prefix">account_circle</i>
+ 								<input id="first_name" type="text" class="validate">
+ 								<label for="first_name">First Name</label>
+ 							</div>
+ 							<div class="input-field col s6">
+ 								<input id="last_name" type="text" class="validate">
+ 								<label for="last_name">Last Name</label>
+ 							</div>
+ 						</div>
+ 						<div class="row">
+ 							<div class="input-field col s12">
+ 								<i class="material-icons prefix">email</i>
+ 								<input id="email" type="email" class="validate">
+ 								<label for="email">Email</label>
+ 							</div>
+ 						</div>
+ 						<div class="input-field col s12">
+ 							<i class="material-icons prefix">phone</i>
+ 							<input id="icon_telephone" type="tel" class="validate">
+ 							<label for="icon_telephone">Telephone</label>
+ 						</div>
+ 						<div class="input-field col s12">
+ 							<i class="material-icons prefix">today</i>
+ 							<input id="dob" type="date" class="datepicker">
+ 							<label for="dob">Date of Birth</label>
+ 						</div>
+ 					</form>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		<!--</div>-->
+
+
+ 		<ul id="slide-out" class="side-nav">
+ 			<li>
+ 				<div class="userView">
+ 					<img class="background" src="../public/images/test.jpg">
+ 					<a href="#"><img class="circle" src="../public/images/test.jpg"></a>
+ 					<a href="#"><span class="white-text name">Hargur Bedi</span></a>
+ 					<a href="#"><span class="white-text email">hargurbedi97@gmail.com</span></a>
+ 				</div>
+ 			</li>
+ 			<li><a href="#" class="waves-effect"><i class="material-icons">lock</i>Log Out</a></li>
+ 			<li><a class="subheader">Subheader</a></li>
+ 		</ul>
+
+ 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+ 		<script type="text/javascript">
+ 			(function($){
+ 				$(function(){
+
+ 					$('.button-collapse').sideNav();
+
+  				}); // end of document ready
+ 				$('.datepicker').pickadate({
+    				selectMonths: true, // Creates a dropdown to control month
+    				selectYears: 15 // Creates a dropdown of 15 years to control year
+    			});
+			})(jQuery); // end of jQuery name space
+		</script>
+		<!-- Import jQuery before materialize.js -->
+</body>
+</html>
