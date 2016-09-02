@@ -20,3 +20,11 @@ app.controller('homeController',function(){
 	vm.me = fuck;
 });
 
+app.controller('loginController', function(){
+	var vm  = this;
+});
+
+app.controller('signupController', function(){
+	var vm = this;
+});
+
