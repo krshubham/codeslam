@@ -1,19 +1,42 @@
 <form ng-controller="signupController as signup">
-	<div class="form-group">
-		<label class="control-label" for="Name" >Name</label><br />
-		<span class="fa fa-user input-span"></span><input class="form-input" value= "{{name}}" required type="text" name="signup_name" />
+	<div class="row">
+		<div class="input-field col s3"></div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">account_circle</i>
+			<input class="validate" value= "{{name}}" required type="text" name="signup_name" />
+			<label for="signup_name">Name</label>
+		</div>
+		<div class="input-field col s3"></div>
 	</div>
-	<div class="form-group">
-		<label class="control-label" for="email" >E-mail</label><br />
-		<span class="fa fa-envelope input-span"></span><input class="form-input" value= "{{username}}" required type="email" name="signup_email" placeholder="This will be your username" />
+	<div class="row">
+		<div class="input-field col s3"></div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">email</i>
+			<input class="validate" value= "{{username}}" required type="email" name="signup_email" placeholder="This will be your username" />
+			<label for="signup_email">Email</label>
+		</div>
+		<div class="input-field col s3"></div>
 	</div>
-	<div class="form-group">
-		<label class="control-label" for="password" >Password</label><br />
-		<span class="fa fa-key input-span"></span><input class="form-input" required type="password" name="signup_pwd" />
+	<div class="row">
+		<div class="input-field col s3"></div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">vpn_key</i>
+			<input class="validate" required type="password" name="signup_pwd" />
+			<label for="signup_pwd">Password</label>
+		</div>
 	</div>
-	<div class="form-group">
-		<label class="control-label" for="Confirm password" >Confirm Password</label><br />
-		<span class="fa fa-key input-span"></span><input class="form-input" required type="password" name="c_pwd" />
+	<div class="row">
+		<div class="input-field col s3"></div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">vpn_key</i>
+			<input class="validate" required type="password" name="c_pwd" />
+			<label for="c_pwd">Confirm Password</label>
+		</div>
+		<div class="input-field col s3"></div>
 	</div>
-	<button type="submit" class="btn btn-primary">Sign Up</button>
+	<div class="row">
+		<div class="input-field col s3"></div>
+		<div class="input-field col s6 center"><button type="submit" class="btn waves-effect waves-light">Sign Up<i class="material-icons right">send</i></button></div>
+		<div class="input-field col s3"></div>
+	</div>
 </form>
