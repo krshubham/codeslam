@@ -4,7 +4,6 @@ var assert = require('assert');
 var xss = require('xss');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
-var url = 'mongodb://localhost:27017/slam';
 var db = require('./db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
@@ -106,9 +105,6 @@ function doLogin(req,res,next){
 		}
 	});
 }
-
-
-
 
 //Routes to do the authentication.
 router.post('/signup',doSignup);
