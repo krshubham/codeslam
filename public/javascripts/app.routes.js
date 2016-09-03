@@ -29,7 +29,7 @@ app.config(function($routeProvider,$locationProvider){
 			controllerAs: 'about'
 		})
 		.when('/code',{
-			templateUrl: '../../views/code.html' ,
+			templateUrl: '/client/views/code.html' ,
 			controller: 'codeController' ,
 			controllerAs: 'code'
 		});

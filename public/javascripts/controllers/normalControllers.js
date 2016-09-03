@@ -28,3 +28,6 @@ app.controller('signupController', function(){
 	var vm = this;
 });
 
+app.controller('codeController', function () {
+	var vm = this ;
+}) ;
