@@ -19,4 +19,3 @@ app.controller('homeController',function(){
 	var fuck = 'hello';
 	vm.me = fuck;
 });
-
