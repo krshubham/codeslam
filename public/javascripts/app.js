@@ -5,5 +5,6 @@
 */
  var app = angular.module('codeslam', [
 	'codeslam.controllers',
-	'codeslam.routes'
+	'codeslam.routes',
+	'codeslam.services'
 ]);
