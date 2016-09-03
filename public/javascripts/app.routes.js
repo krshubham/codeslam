@@ -27,6 +27,11 @@ app.config(function($routeProvider,$locationProvider){
 			templateUrl: '/client/views/about.html',
 			controller: 'aboutController',
 			controllerAs: 'about'
+		})
+		.when('/code',{
+			templateUrl: '../../views/code.html' ,
+			controller: 'codeController' ,
+			controllerAs: 'code'
 		});
 
 		$locationProvider.html5Mode(true);
