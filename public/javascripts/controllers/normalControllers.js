@@ -26,5 +26,6 @@ app.controller('loginController', function(){
 
 app.controller('signupController', function(){
 	var vm = this;
+	vm.name = 'SuperMan';
 });
 

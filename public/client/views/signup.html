@@ -1,9 +1,17 @@
-<form ng-controller="signupController as signup" style="margin-top:3em;" ng-submit="signup.submitForm()">
+<div ng-controller="signupController as signup">
+	<div class="row">
+		<div class="col s12 m12">
+			<div class="card-panel teal">
+			<p id="main-title">Codeslam.Signup();</p>
+		</div>	
+	</div>
+</div>
+<form ng-submit="signup.submitForm()">
 	<div class="row">
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">account_circle</i>
-			<input class="validate" value= "{{name}}" required type="text" name="signup_name" />
+			<input class="validate" required type="text" name="signup_name" />
 			<label for="signup_name">Name</label>
 		</div>
 		<div class="input-field col s3"></div>
@@ -40,3 +48,13 @@
 		<div class="input-field col s3"></div>
 	</div>
 </form>
+</div>
+<style type="text/css">
+	#main-title{
+		font-size: 3rem;
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		color: #fff;
+	}
+</style>
