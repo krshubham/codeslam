@@ -1,5 +1,5 @@
 <div ng-controller="loginController as login">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col s12 m12">
 			<div class="card-panel teal">
 				<p id="main-title" style="text-align: center;">Codeslam.login();</p>
@@ -24,14 +24,38 @@
 		<div align="center">
 			<button type="button" class="btn waves-effect">Login</button>
 		</div>
-	</form>
-</div>
-<style type="text/css">
-	#main-title{
-		font-size: 3rem;
-		text-align: center;
-		padding: 0;
-		margin: 0;
-		color: #fff;
-	}
-</style>
+	</form> -->
+	<style type="text/css" media="screen">
+		#editor { 
+			position: absolute;
+			top: 50px;
+			right: 50px;
+			bottom: 50px;
+			left: 50px;
+		}
+	</style>
+		<div id="editor">function foo(items) {
+			var x = "All this is syntax highlighted";
+			return x;
+		}</div>
+		<script>
+			var editor = ace.edit("editor");
+			editor.setTheme("ace/theme/monokai");
+			editor.getSession().setMode("ace/mode/javascript");
+			editor.setOptions({
+				enableBasicAutocompletion: true,
+				enableSnippets: true,
+				enableLiveAutocompletion: false
+			});
+		</script>
+
+	</div>
+	<style type="text/css">
+		#main-title{
+			font-size: 3rem;
+			text-align: center;
+			padding: 0;
+			margin: 0;
+			color: #fff;
+		}
+	</style>
