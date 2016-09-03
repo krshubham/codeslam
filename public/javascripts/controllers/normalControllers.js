@@ -19,16 +19,3 @@ app.controller('homeController',function(){
 	var fuck = 'hello';
 	vm.me = fuck;
 });
-
-app.controller('loginController', function(){
-	var vm  = this;
-});
-
-app.controller('signupController', function(){
-	var vm = this;
-	vm.name = 'SuperMan';
-});
-
-app.controller('codeController', function () {
-	var vm = this ;
-}) ;
