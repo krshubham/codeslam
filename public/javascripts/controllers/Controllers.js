@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('codeslam.controllers', [])
+var app = angular.module('codeslam.controllers', ['codeslam.services'])
 
 //global variable for setting the title of the page
 var title = '';
@@ -20,10 +20,18 @@ app.controller('homeController',function(){
 	vm.me = fuck;
 });
 
-app.controller('loginController', ['$http','AuthService',function($http,AuthService){
+app.controller('loginController', ['AuthService',function(AuthService){
 	var vm  = this;
-	vm.submitForm = function($http,AuthService){
-		console.log(email);
+	vm.submitForm = function(){
+		var user = vm.user;
+		console.log(user);
+		AuthService.login(user)
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(data){
+				console.log(data);
+			});
 	};
 }]);
 
@@ -31,3 +39,5 @@ app.controller('signupController', function(){
 	var vm = this;
 	vm.name = 'SuperMan';
 });
+
+
