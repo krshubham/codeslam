@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('codeslam.services', [])
+var app = angular.module('codeslam.services', []);
 
 
 app.service('AuthService', ['$http', function($http){
