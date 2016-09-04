@@ -16,9 +16,9 @@ var compiler = require('compilex');
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+/*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+*/
 // uncomment after placing your favicon in /public
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -28,10 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api', api);
 app.use('*', function(req,res,next){
   res.sendFile(path.join(__dirname,'public','client','index.html'));
 });
-
 
 
 
@@ -73,7 +73,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.status(500).json({
       message: err.message,
       error: err
   });
@@ -84,7 +84,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.status(500).json({
     message: err.message,
     error: {}
 });
