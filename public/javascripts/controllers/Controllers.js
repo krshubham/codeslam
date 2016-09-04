@@ -22,7 +22,9 @@ app.controller('homeController',function(){
 
 app.controller('loginController', ['$http','AuthService',function($http,AuthService){
 	var vm  = this;
-	
+	vm.submitForm = function($http,AuthService){
+		console.log(email);
+	};
 }]);
 
 app.controller('signupController', function(){
