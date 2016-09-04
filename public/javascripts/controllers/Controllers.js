@@ -35,7 +35,10 @@ app.controller('loginController', ['AuthService',function(AuthService){
 
 app.controller('signupController', function(){
 	var vm = this;
-	vm.name = 'SuperMan';
+	vm.error = false;
+	vm.submitForm = function(){
+		var user = vm.person;
+	};
 });
 
 app.controller('codeController', function(){

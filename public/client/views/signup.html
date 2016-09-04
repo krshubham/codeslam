@@ -7,11 +7,14 @@
 	</div>
 </div>
 <form ng-submit="signup.submitForm()">
+	<div class="row" ng-if="signup.error">
+		<h4>Passwords are not the same</h4>
+	</div>
 	<div class="row">
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">account_circle</i>
-			<input class="validate" required type="text" name="signup_name" />
+			<input class="validate" required type="text" name="signup_name" ng-model="signup.person.name"/>
 			<label for="signup_name">Name</label>
 		</div>
 		<div class="input-field col s3"></div>
@@ -20,7 +23,7 @@
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">email</i>
-			<input class="validate" value= "{{username}}" required type="email" name="signup_email"/>
+			<input class="validate" ng-model="signup.person.email" required type="email" name="signup_email"/>
 			<label for="signup_email">Email</label>
 		</div>
 		<div class="input-field col s3"></div>
@@ -29,7 +32,7 @@
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">vpn_key</i>
-			<input class="validate" required type="password" name="signup_pwd" />
+			<input class="validate" required type="password" name="signup_pwd" ng-model="signup.person.password" />
 			<label for="signup_pwd">Password</label>
 		</div>
 	</div>
@@ -37,7 +40,7 @@
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">vpn_key</i>
-			<input class="validate" required type="password" name="c_pwd" />
+			<input class="validate" ng-model="signup.person.cp" required type="password" name="c_pwd" />
 			<label for="c_pwd">Confirm Password</label>
 		</div>
 		<div class="input-field col s3"></div>

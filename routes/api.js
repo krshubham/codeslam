@@ -9,7 +9,6 @@ var db = require('./db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
-var users = null;
 var secret = 'g@@k@911';
 
 
@@ -34,6 +33,8 @@ router.post('/login',function(req,res,next){
 		try{
 			//check if there is no error
 			assert.equal(err,null);
+			//check if the user is found
+			console.log(user);
 			if(!user){
 				//user not found
 				res.status(401).json({
@@ -77,7 +78,7 @@ router.post('/login',function(req,res,next){
 			}
 		}
 		catch(err){
-			//catch all the errors and set success flasg to false
+			//catch all the errors and set success flag to false
 			//send a forbidden status code
 			res.status(403).json({
 				success: false,
@@ -86,5 +87,12 @@ router.post('/login',function(req,res,next){
 		}
 	});
 });
+
+function Signup(req,res,next){
+	console.log('Signup request received');
+}
+
+router.post('/signup',Signup);
+
 
 module.exports = router;
