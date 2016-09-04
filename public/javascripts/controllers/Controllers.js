@@ -19,3 +19,13 @@ app.controller('homeController',function(){
 	var fuck = 'hello';
 	vm.me = fuck;
 });
+
+app.controller('loginController', ['$http','AuthService',function($http,AuthService){
+	var vm  = this;
+	
+}]);
+
+app.controller('signupController', function(){
+	var vm = this;
+	vm.name = 'SuperMan';
+});
