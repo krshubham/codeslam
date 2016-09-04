@@ -16,8 +16,6 @@ app.controller('mainController',function(){
 
 app.controller('homeController',function(){
 	var vm = this;
-	var fuck = 'hello';
-	vm.me = fuck;
 });
 
 app.controller('loginController', ['AuthService',function(AuthService){
@@ -27,7 +25,7 @@ app.controller('loginController', ['AuthService',function(AuthService){
 		console.log(user);
 		AuthService.login(user)
 			.success(function(data){
-				console.log(data);
+				window.alert(data);
 			})
 			.error(function(data){
 				console.log(data);

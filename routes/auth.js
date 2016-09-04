@@ -10,6 +10,9 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var users = null;
 var secret = 'g@@k@911';
+
+
+
 function validateUserDetails(name,email,password,cp){
 	assert.deepEqual(cp,password);
 	if(password.length>=6 && password.length<=32 && validate.isEmail(email) && typeof(name) === 'string'){
