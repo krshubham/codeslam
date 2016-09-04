@@ -45,7 +45,12 @@ app.controller('signupController', function(){
 		}
 	}	
 	vm.submitForm = function(){
-		var user = vm.person;
+		if(vm.error)
+			return false;
+		else{
+			var user = vm.person;
+			console.log(user);
+		}
 	};
 });
 
