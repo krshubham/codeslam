@@ -1,3 +1,4 @@
+    
     <style type="text/css" media="screen">
         #editor { 
             position: absolute;
@@ -7,11 +8,17 @@
             left: 50px;
         }
     </style>
-        <div id="editor">function foo(items) {
-            var x = "All this is syntax highlighted";
-            return x;
-        }</div>
-        <script>
+    <div ng-controller="codeController as code">
+        <div style="background-color:#000000;width:100%;">
+             <div id="editor" style="width:65%;margin-left:auto;margin-right:auto;">
+                function foo(items) {
+                    var x = "All this is syntax highlighted";
+                    return x;
+                }
+            </div> 
+        </div> 
+
+       <script>
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.getSession().setMode("ace/mode/javascript");
@@ -21,7 +28,6 @@
                 enableLiveAutocompletion: false
             });
         </script>
-
     </div>
     <style type="text/css">
         #main-title{
