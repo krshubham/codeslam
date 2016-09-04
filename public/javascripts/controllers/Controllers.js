@@ -40,4 +40,7 @@ app.controller('signupController', function(){
 	vm.name = 'SuperMan';
 });
 
-
+app.controller('codeController', function(){
+	var vm = this;
+	vm.name = 'code';
+});
