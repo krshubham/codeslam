@@ -6,23 +6,23 @@
 			</div>
 		</div>
 	</div>
-	<form class="col s12 m12" autocomplete="off">
+	<form class="col s12 m12" autocomplete="off" ng-submit="login.submitForm()">
 		<div class="row">
 			<div class="input-field col s8 offset-s2">
 				<i class="material-icons prefix">account_circle</i>
-				<input id="icon_prefix" type="text" class="validate">
+				<input id="icon_prefix" type="text" class="validate" ng-model="login.user.email">
 				<label for="icon_prefix">Username</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s8 offset-s2">
 				<i class="material-icons prefix">lock</i>
-				<input id="icon_telephone" type="password" class="validate">
+				<input id="icon_telephone" type="password" class="validate" ng-model="login.user.password">
 				<label for="icon_telephone">Password</label>
 			</div>
 		</div>
 		<div align="center">
-			<button type="button" class="btn waves-effect">Login</button>
+			<button type="submit" class="btn waves-effect">Login</button>
 		</div>
 	</form>
 </div>
