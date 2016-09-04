@@ -30,8 +30,8 @@ app.config(function($routeProvider,$locationProvider){
 		})
 		.when('/code',{
 			templateUrl: '/client/views/code.html' ,
-			controller: 'codingController' ,
-			controllerAs: 'coding'
+			controller: 'codeController' ,
+			controllerAs: 'code'
 		});
 
 		$locationProvider.html5Mode(true);
