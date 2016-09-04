@@ -24,18 +24,26 @@ app.controller('loginController', ['AuthService',function(AuthService){
 		var user = vm.user;
 		console.log(user);
 		AuthService.login(user)
-			.success(function(data){
-				window.alert(data);
-			})
-			.error(function(data){
-				console.log(data);
-			});
+		.success(function(data){
+			window.alert(data);
+		})
+		.error(function(data){
+			console.log(data);
+		});
 	};
 }]);
 
 app.controller('signupController', function(){
 	var vm = this;
 	vm.error = false;
+	vm.checkPassword = function(){
+		if(vm.person.password !== vm.person.cp){
+			vm.error = true;
+		}
+		else{
+			vm.error = false;
+		}
+	}	
 	vm.submitForm = function(){
 		var user = vm.person;
 	};

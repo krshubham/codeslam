@@ -8,7 +8,7 @@
 </div>
 <form ng-submit="signup.submitForm()">
 	<div class="row" ng-if="signup.error">
-		<h4>Passwords are not the same</h4>
+		<h4 style="text-align: center;color: red;">Passwords are not the same</h4>
 	</div>
 	<div class="row">
 		<div class="input-field col s3"></div>
@@ -40,7 +40,7 @@
 		<div class="input-field col s3"></div>
 		<div class="input-field col s6">
 			<i class="material-icons prefix">vpn_key</i>
-			<input class="validate" ng-model="signup.person.cp" required type="password" name="c_pwd" />
+			<input class="validate" ng-model="signup.person.cp" ng-keyup="signup.checkPassword()" required type="password" name="c_pwd" />
 			<label for="c_pwd">Confirm Password</label>
 		</div>
 		<div class="input-field col s3"></div>
