@@ -26,6 +26,7 @@ app.controller('loginController', ['AuthService','$window',function(AuthService,
 		AuthService.login(user)
 		.success(function(data){
 			$window.localStorage['codeslam-token'] = data.token;
+			
 			console.log($window.localStorage);
 		})
 		.error(function(data){
