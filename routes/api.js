@@ -90,6 +90,32 @@ router.post('/login',function(req,res,next){
 
 function Signup(req,res,next){
 	console.log('Signup request received');
+	users = db.get().collection('users');
+	var name = xss(req.body.name),
+		email = xss(req.body.email),
+		password = xss(req.body.password),
+		confirm_password = xss(req.body.cp);
+	try{
+		//make sure that the user does not exist already,
+		user = {
+			email: email
+		}
+		users.findOne(user,function(err,user){
+			assert.equal(err,null);
+			if(user){
+				res.json({
+					success: false,
+					message: 'User already exists'
+				});
+			}
+			else{
+				//proceed further			
+			}
+		});
+	}
+	catch(err){
+		console.log(err.message);
+	}
 }
 
 router.post('/signup',Signup);
