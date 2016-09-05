@@ -1,3 +1,4 @@
+    
     <style type="text/css" media="screen">
         #editor { 
             /* the styling for the coding window */
@@ -19,7 +20,8 @@
                         <option value="1">C++</option>
                         <option value="2">Python</option>
                         <option value="3">Java</option>
-                    </select> 
+                    </select>
+                    <img src="" alt="">
                     <div id="editor">function foo(items) { 
                         var x = "All this is syntax highlighted";
                         return x;
@@ -28,6 +30,7 @@
                     </div> 
             </div>
         </div>
+
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
@@ -38,25 +41,6 @@
             enableLiveAutocompletion: false
         });
     </script>
-             <!-- <div id="editor" style="width:65%;margin-left:auto;margin-right:auto;">
-                function foo(items) {
-                    var x = "All this is syntax highlighted";
-                    return x;
-                }
-            </div> 
-        </div> 
-
-       <script>
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/javascript");
-            editor.setOptions({
-                enableBasicAutocompletion: true,
-                enableSnippets: true,
-                enableLiveAutocompletion: false
-            });
-        </script>
-    </div> -->
     <style type="text/css">
         #main-title{
             font-size: 3rem;
