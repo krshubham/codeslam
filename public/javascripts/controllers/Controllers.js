@@ -18,14 +18,15 @@ app.controller('homeController',function(){
 	var vm = this;
 });
 
-app.controller('loginController', ['AuthService',function(AuthService){
+app.controller('loginController', ['AuthService','$window',function(AuthService,$window){
 	var vm  = this;
 	vm.submitForm = function(){
 		var user = vm.user;
 		console.log(user);
 		AuthService.login(user)
 		.success(function(data){
-			console.log(data);
+			$window.localStorage['codeslam-token'] = data.token;
+			console.log($window.localStorage);
 		})
 		.error(function(data){
 			console.log(data);
@@ -33,7 +34,7 @@ app.controller('loginController', ['AuthService',function(AuthService){
 	};
 }]);
 
-app.controller('signupController',['AuthService','$location', function(AuthService,$location){
+app.controller('signupController',['AuthService','$location','$window', function(AuthService,$location,$window){
 	var vm = this;
 	var success = false;
 	vm.error = false;

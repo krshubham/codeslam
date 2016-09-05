@@ -9,6 +9,9 @@ angular.module('codeslam.services', [])
 			signup : function(user) {
 				return $http.post('/api/signup',user);
 			}
+			/*isLoggedIn: function(token){
+				
+			}*/
 		};
 
 	}]);
