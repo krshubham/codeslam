@@ -25,7 +25,7 @@ app.controller('loginController', ['AuthService',function(AuthService){
 		console.log(user);
 		AuthService.login(user)
 		.success(function(data){
-			window.alert(data);
+			console.log(data);
 		})
 		.error(function(data){
 			console.log(data);
@@ -33,8 +33,9 @@ app.controller('loginController', ['AuthService',function(AuthService){
 	};
 }]);
 
-app.controller('signupController', function(){
+app.controller('signupController',['AuthService','$location', function(AuthService,$location){
 	var vm = this;
+	var success = false;
 	vm.error = false;
 	vm.checkPassword = function(){
 		if(vm.person.password !== vm.person.cp){
@@ -50,9 +51,22 @@ app.controller('signupController', function(){
 		else{
 			var user = vm.person;
 			console.log(user);
+			AuthService.signup(user)
+			.success(function(data){
+				if(data.success){
+					$location.path('/login');
+				}
+				else{
+					alert('fucked up');
+				}
+
+			})
+			.error(function(data){
+				console.log(data);
+			});
 		}
 	};
-});
+}]);
 
 app.controller('codeController', function(){
 	var vm = this;

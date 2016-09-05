@@ -64,7 +64,7 @@ router.post('/login',function(req,res,next){
 							email: user.email,
 							name: user.name,							 
 						};
-						s//sign the token to the user
+						//sign the token to the user
 						var token = jwt.sign(item,secret,{
 							expiresIn: 86400
 						});
@@ -92,24 +92,41 @@ function Signup(req,res,next){
 	console.log('Signup request received');
 	users = db.get().collection('users');
 	var name = xss(req.body.name),
-		email = xss(req.body.email),
-		password = xss(req.body.password),
-		confirm_password = xss(req.body.cp);
+	email = xss(req.body.email),
+	password = xss(req.body.password),
+	confirm_password = xss(req.body.cp);
 	try{
+		//if js is not enabled, verify here.
+		assert.deepEqual(password,confirm_password);
 		//make sure that the user does not exist already,
-		user = {
+		var user = {
 			email: email
 		}
 		users.findOne(user,function(err,user){
 			assert.equal(err,null);
-			if(user){
-				res.json({
+			console.log('checking the user');
+			if(user){//the user exists already
+				return res.json({
 					success: false,
 					message: 'User already exists'
 				});
 			}
 			else{
-				//proceed further			
+				bcrypt.hash(password,saltRounds,function(err,hash){
+					var user = {
+						name: name,
+						email: email,
+						password: hash
+					};
+					users.insertOne(user,function(err,done){
+						assert.equal(err,null);
+						console.log('user inserted');
+						return res.json({
+							success: true,
+							message: 'user successfully created'
+						});
+					});
+				});		
 			}
 		});
 	}
