@@ -1,3 +1,4 @@
+    
     <style type="text/css" media="screen">
         #editor { 
             /* the styling for the coding window */
@@ -14,12 +15,22 @@
                 <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
             </div>
             <div class="container z-depth-2" style="padding-top:1vh;margin:3vh auto;height:100vh;">        
-                    <select class="browser-default" style="width:15%;margin:2vh 2vw;">
+                    <select class="browser-default" style="width:15%;margin:2vh 5vw;float:left">
                         <option value="" disabled selected>Languages</option>
                         <option value="1">C++</option>
                         <option value="2">Python</option>
                         <option value="3">Java</option>
-                    </select> 
+                    </select>
+                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'">Drop Me!<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>    
+                      <li><a href="#!">one</a></li>
+                      <li><a href="#!">two</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!">three</a></li>
+                    </ul>
+                    
+                    <!-- <button type="button" style="float:right;margin-right:5vw;margin-top:1vw;"><img src="../images/settings_1.png" alt="settings" height="20px" width="20px" style="margin-top:5px;"></button> -->
                     <div id="editor">function foo(items) { 
                         var x = "All this is syntax highlighted";
                         return x;
@@ -28,6 +39,7 @@
                     </div> 
             </div>
         </div>
+
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
@@ -37,26 +49,10 @@
             enableSnippets: true,
             enableLiveAutocompletion: false
         });
+        function log(){
+            console.log('YEp') ;
+        }
     </script>
-             <!-- <div id="editor" style="width:65%;margin-left:auto;margin-right:auto;">
-                function foo(items) {
-                    var x = "All this is syntax highlighted";
-                    return x;
-                }
-            </div> 
-        </div> 
-
-       <script>
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/javascript");
-            editor.setOptions({
-                enableBasicAutocompletion: true,
-                enableSnippets: true,
-                enableLiveAutocompletion: false
-            });
-        </script>
-    </div> -->
     <style type="text/css">
         #main-title{
             font-size: 3rem;
