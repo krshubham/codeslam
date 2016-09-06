@@ -78,6 +78,7 @@ app.controller('userController', ['Auth','$location','$window','AuthToken', func
 		}
 		else{
 			alert('fuck you');
+			$location.path('/login');
 		}
 	}
 }]);
