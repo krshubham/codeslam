@@ -64,7 +64,7 @@ angular.module('authservice', [])
 
 	// get the token out of local storage
 	authTokenFactory.getToken = function() {
-		return $window.localStorage.getItem('token');
+		return $window.localStorage.getItem('codeslam-token');
 	};
 
 	// function to set token or clear token
@@ -72,9 +72,9 @@ angular.module('authservice', [])
 	// if there is no token, clear it from local storage
 	authTokenFactory.setToken = function(token) {
 		if (token)
-			$window.localStorage.setItem('token', token);
+			$window.localStorage.setItem('codeslam-token', token);
 		else
-			$window.localStorage.removeItem('token');
+			$window.localStorage.removeItem('codeslam-token');
 	};
 
 	return authTokenFactory;

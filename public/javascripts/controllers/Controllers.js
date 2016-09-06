@@ -70,8 +70,6 @@ app.controller('aboutController',function(){
 	vm.name = 'code';	
 });
 
-app.controller('userController',function(){
-	var vm  = this;
-	if()
-
-});
+app.controller('userController', ['Auth','$location','$window','AuthToken', function(Auth,$location,$window,AuthToken){
+	var vm = this;
+}]);
