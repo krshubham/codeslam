@@ -30,14 +30,17 @@
         select { 
             display:block; 
             width:150px; 
-            margin:2vh 1vw ;
+            margin:2vh 2vw ;
             float: left;
         }  
 
         .submit{
-            margin-left: 5vw;
+            margin-left: 4.5vw;
         }
 
+        .font{
+
+        }
 
     </style>
 
@@ -49,7 +52,7 @@
             <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
 
             <!-- The languages in which codes can be written -->
-                <select id="ace-mode" size="1" style="margin-left:5vw;" class="z-depth-1">
+                <select id="ace-mode" size="1" style="margin-left:4.5vw;margin-right:0" class="z-depth-1">
                     <option value="c_cpp">C/C++</option>
                     <option value="Java">Java</option>
                     <option value="Python">Python</option>
@@ -91,32 +94,30 @@
                         <option value="vibrant_ink">Vibrant ink</option>
                       </optgroup>
                 </select>
-                <br>
-                <br>
 
-                <div id="editor" class="z-depth-1">function foo(items) { 
-  var x = "All this is syntax highlighted";
-  return x;
-}
-                </div>
+                <input type="number" name="font_size" id="font_size" style="float:left;width:5vw;" min="7" placeholder="7" onchange="font_change()" />
+
+                <div id="editor" class="z-depth-1">#include&lt;iostream.h&gt;
+
+int main(){
+    cout<<"Hello World" ;
+}                </div>
                 <br>
                 <form style="margin:0 4.5vw;">
-                    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Enter your Inputs"></textarea>
+                    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
                 </form>
                 <br>
-                <a class="waves-effect waves-light btn submit">button</a>
+                <a class="waves-effect waves-light btn submit" id="submit">Submit</a>
             </div>
     </div>
 
     <script>
         var editor = ace.edit("editor");
-        var theme='ace/theme/tomorrow';
-        var mode='ace/mode/c_cpp';
-        editor.setTheme("ace/theme/monokai");
-/*        var editor= ace.edit('ace-editorid');*/
-            editor.setTheme(theme);
-            editor.getSession().setMode(mode);
-            // editor.renderer.setShowGutter(false); 
+        var theme='ace/theme/monokai';/*sets the default theme for the code editor as monokau*/
+        var mode='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
+        editor.getSession().setMode(mode);
+        editor.setTheme(theme);
+
         $('#ace-mode').on('change',function(){
           editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
           console.log( $(this).val().toLowerCase());
@@ -124,7 +125,10 @@
         $('#ace-theme').on('change',function(){
           editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
         });
-/*        editor.getSession().setMode("ace/mode/javascript");*/
+
+        function font_change(){
+
+        }
         editor.setOptions({
             enableBasicAutocompletion: true,
             enableSnippets: true,
