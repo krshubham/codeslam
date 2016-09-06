@@ -73,3 +73,8 @@ app.controller('codeController', function(){
 	var vm = this;
 	vm.name = 'code';
 });
+
+app.controller('aboutController',function(){
+	var vm  = this;
+	vm.name = 'code';	
+});
