@@ -26,7 +26,6 @@ app.controller('loginController', ['AuthService','$window',function(AuthService,
 		AuthService.login(user)
 		.success(function(data){
 			$window.localStorage['codeslam-token'] = data.token;
-			
 			console.log($window.localStorage);
 		})
 		.error(function(data){
@@ -73,4 +72,9 @@ app.controller('signupController',['AuthService','$location','$window', function
 app.controller('codeController', function(){
 	var vm = this;
 	vm.name = 'code';
+});
+
+app.controller('aboutController',function(){
+	var vm  = this;
+	vm.name = 'code';	
 });
