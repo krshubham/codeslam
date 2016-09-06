@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('codeslam.routes', ['ngRoute']);
+var app = angular.module('routes', ['ngRoute']);
 
 app.config(function($routeProvider,$locationProvider){
 	$routeProvider
@@ -32,7 +32,11 @@ app.config(function($routeProvider,$locationProvider){
 			templateUrl: '/client/views/code.html' ,
 			controller: 'codeController' ,
 			controllerAs: 'code'
+		})
+		.when('/user',{
+			templateUrl: '/client/views/profile.html',
+			controller: 'userController',
+			controllerAs: 'user'
 		});
-
 		$locationProvider.html5Mode(true);
 });

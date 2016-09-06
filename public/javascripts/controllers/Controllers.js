@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('codeslam.controllers', ['codeslam.services'])
+var app = angular.module('controllers', ['authservice']);
 
 //global variable for setting the title of the page
 var title = '';
@@ -18,23 +18,18 @@ app.controller('homeController',function(){
 	var vm = this;
 });
 
-app.controller('loginController', ['AuthService','$window',function(AuthService,$window){
+app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm  = this;
 	vm.submitForm = function(){
 		var user = vm.user;
-		console.log(user);
-		AuthService.login(user)
-		.success(function(data){
-			$window.localStorage['codeslam-token'] = data.token;
-			console.log($window.localStorage);
-		})
-		.error(function(data){
-			console.log(data);
+		Auth.login(user)
+		.then(function(status){
+			console.log(status.data);
 		});
 	};
 }]);
 
-app.controller('signupController',['AuthService','$location','$window', function(AuthService,$location,$window){
+app.controller('signupController',['Auth','$location','$window', function(Auth,$location,$window){
 	var vm = this;
 	var success = false;
 	vm.error = false;
@@ -51,19 +46,15 @@ app.controller('signupController',['AuthService','$location','$window', function
 			return false;
 		else{
 			var user = vm.person;
-			console.log(user);
-			AuthService.signup(user)
-			.success(function(data){
-				if(data.success){
-					$location.path('/login');
-				}
-				else{
-					alert('fucked up');
-				}
-
-			})
-			.error(function(data){
+			//console.log(user);
+			Auth.signup(user)
+			.success(function(data) {
 				console.log(data);
+				if(data.success)
+					$location.path('/login');
+				else{
+					return false;
+				}
 			});
 		}
 	};
@@ -77,4 +68,10 @@ app.controller('codeController', function(){
 app.controller('aboutController',function(){
 	var vm  = this;
 	vm.name = 'code';	
+});
+
+app.controller('userController',function(){
+	var vm  = this;
+	if()
+
 });
