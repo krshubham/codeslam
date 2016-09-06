@@ -34,7 +34,7 @@ app.config(function($routeProvider,$locationProvider){
 			controllerAs: 'code'
 		})
 		.when('/user',{
-			templateUrl: '/client/views/profile.html',
+			templateUrl: '/client/views/user.html',
 			controller: 'userController',
 			controllerAs: 'user'
 		});

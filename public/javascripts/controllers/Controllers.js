@@ -72,4 +72,12 @@ app.controller('aboutController',function(){
 
 app.controller('userController', ['Auth','$location','$window','AuthToken', function(Auth,$location,$window,AuthToken){
 	var vm = this;
+	vm.onload = function(){
+		if(Auth.isLoggedIn()){
+			alert('hello you!');
+		}
+		else{
+			alert('fuck you');
+		}
+	}
 }]);
