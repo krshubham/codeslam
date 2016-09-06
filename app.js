@@ -10,7 +10,7 @@ var auth = require('./routes/auth');
 var api = require('./routes/api')
 var app = express();
 var compiler = require('compilex');
-//Never ever require any package or install it through npm without mentioning in package.jsona
+//Never ever require any package or install it through npm without mentioning in package.json
 
 
 
