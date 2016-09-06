@@ -1,0 +1,67 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 1.5em;
+  background: #3589ae;
+}
+
+label, a {
+  font: 300 1em/1.5em 'Lato', sans-serif;
+  color: #3589ae;
+}
+
+fieldset {
+  background: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em 1.5em 2em;
+  margin-bottom: -3px;
+}
+fieldset a {
+  float: right;
+  display: block;
+  text-decoration: none;
+  margin-left: -100%;
+}
+fieldset img {
+  width: 100px;
+  float: left;
+}
+fieldset label {
+  float: right;
+  display: inline-block;
+  margin-left: -100%;
+  margin-top: 1.5em;
+}
+fieldset label {
+  margin-right: 170px;
+}
+fieldset label + label {
+  margin-right: 0px;
+}
+fieldset select {
+  display: block;
+  width: 150px;
+}
+
+.wrapper {
+  position: relative;
+  height: 1400px;
+}
+
+#ace-editorid {
+  font-size: .9em;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
