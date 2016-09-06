@@ -1,22 +1,348 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <title>The Materialize Dropdowns Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
-   </head>
-   <body class="container"> 
-    <h3>Drop Down Demo</h3>
-      <ul id="dropdown" class="dropdown-content">
-         <li><a href="#">Inbox<span class="badge">12</span></a></li>
-         <li><a href="#!">Unread<span class="new badge">4</span></a></li>
-         <li><a href="#">Sent</a></li>
-     <li class="divider"></li>
-     <li><a href="#">Outbox<span class="badge">14</span></a></li>
-      </ul>
-      <a class="btn dropdown-button" href="#" data-activates="dropdown">Mail Box<i class="mdi-navigation-arrow-drop-down right"></i></a>   
-   </body>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Ace - embeddable code editor</title>
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+    <script>
+      //cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js
+      var theme='ace/theme/tomorrow';
+      var mode='ace/mode/scss';
+      var editor= ace.edit('ace-editorid');
+          editor.setTheme(theme);
+          editor.getSession().setMode(mode);
+          // editor.renderer.setShowGutter(false); 
+
+      $('#ace-mode').on('change',function(){
+        editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
+      });
+      $('#ace-theme').on('change',function(){
+        editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
+      });
+    </script>
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+      *, *:before, *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        padding: 1.5em;
+        background: #3589ae;
+      }
+
+      label, a {
+        font: 300 1em/1.5em 'Lato', sans-serif;
+        color: #3589ae;
+      }
+
+      fieldset {
+        background: #f1f1f1;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em 1.5em 2em;
+        margin-bottom: -3px;
+      }
+      fieldset a {
+        float: right;
+        display: block;
+        text-decoration: none;
+        margin-left: -100%;
+      }
+      fieldset img {
+        width: 100px;
+        float: left;
+      }
+      fieldset label {
+        float: right;
+        display: inline-block;
+        margin-left: -100%;
+        margin-top: 1.5em;
+      }
+      fieldset label {
+        margin-right: 170px;
+      }
+      fieldset label + label {
+        margin-right: 0px;
+      }
+      fieldset select {
+        display: block;
+        width: 150px;
+      }
+
+      .wrapper {
+        position: relative;
+        height: 1400px;
+      }
+
+      #ace-editorid {
+        font-size: .9em;
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+      }
+      
+    </style>    
+  </head>
+
+  <body>
+
+    <fieldset>
+<img src="https://raw.githubusercontent.com/ajaxorg/ace/master/api/resources/images/ace_logo.png" />
+<a href="http://ace.c9.io/" target="blank">ace.c9.io</a> 
+<label>Theme:
+<select id="ace-theme" size="1">
+  <optgroup label="bright">
+    <option value="chrome">chrome</option>
+    <option value="clouds">clouds</option>
+    <option value="crimson_editor">crimson_editor</option>
+    <option value="dawn">dawn</option>
+    <option value="dreamweaver">dreamweaver</option>
+    <option value="eclipse">eclipse</option>
+    <option value="github">github</option>
+    <option value="solarized_light">solarized_light</option>
+    <option value="textmate">textmate</option>
+    <option value="tomorrow" selected>tomorrow</option>
+    <option value="xcode">xcode</option>
+  </optgroup>
+  <optgroup label="dark">
+    <option value="clouds_midnight">clouds_midnight</option>
+    <option value="cobalt">cobalt</option>
+    <option value="idle_fingers">idle_fingers</option>
+    <option value="kr_theme">kr_theme</option>
+    <option value="merbivore">merbivore</option>
+    <option value="merbivore_soft">merbivore_soft</option>
+    <option value="mono_industrial">mono_industrial</option>
+    <option value="monokai">monokai</option>
+    <option value="pastel_on_dark">pastel_on_dark</option>
+    <option value="solarized_dark">solarized_dark</option>
+    <option value="terminal">terminal</option>
+    <option value="tomorrow_night">tomorrow_night</option>
+    <option value="tomorrow_night_blue">tomorrow_night_blue</option>
+    <option value="tomorrow_night_bright">tomorrow_night_bright</option>
+    <option value="tomorrow_night_eighties">tomorrow_night_eighties</option>
+    <option value="twilight">twilight</option>
+    <option value="vibrant_ink">vibrant_ink</option>
+  </optgroup>
+</select>
+</label>  
+
+<label>Mode:  
+<select id="ace-mode">
+  <option value="ABAP">ABAP</option>
+  <option value="ActionScript">ActionScript</option>
+  <option value="ADA">ADA</option>
+  <option value="Apache Conf">Apache Conf</option>
+  <option value="AsciiDoc">AsciiDoc</option>
+  <option value="Assembly x86">Assembly x86</option>
+  <option value="AutoHotKey">AutoHotKey</option>
+  <option value="BatchFile">BatchFile</option>
+  <option value="C/C++">C/C++</option>
+  <option value="C#">C#</option>
+  <option value="C9 Search Results">C9 Search Results</option>
+  <option value="Cirru">Cirru</option>
+  <option value="Clojure">Clojure</option>
+  <option value="Cobol">Cobol</option>
+  <option value="CoffeeScript">CoffeeScript</option>
+  <option value="ColdFusion">ColdFusion</option>
+  <option value="CSS">CSS</option>
+  <option value="Curly">Curly</option>
+  <option value="D">D</option>
+  <option value="Dart">Dart</option>
+  <option value="Diff">Diff</option>
+  <option value="Dockerfile">Dockerfile</option>
+  <option value="Dot">Dot</option>
+  <option value="EJS">EJS</option>
+  <option value="Erlang">Erlang</option>
+  <option value="Forth">Forth</option>
+  <option value="FreeMarker">FreeMarker</option>
+  <option value="Gherkin">Gherkin</option>
+  <option value="Gitignore">Gitignore</option>
+  <option value="Glsl">Glsl</option>
+  <option value="Go">Go</option>
+  <option value="Groovy">Groovy</option>
+  <option value="HAML">HAML</option>
+  <option value="Handlebars">Handlebars</option>
+  <option value="Haskell">Haskell</option>
+  <option value="haXe">haXe</option>
+  <option value="HTML">HTML</option>
+  <option value="HTML (Ruby)">HTML (Ruby)</option>
+  <option value="INI">INI</option>
+  <option value="Jack">Jack</option>
+  <option value="Jade">Jade</option>
+  <option value="Java">Java</option>
+  <option value="JavaScript">JavaScript</option>
+  <option value="JSON">JSON</option>
+  <option value="JSONiq">JSONiq</option>
+  <option value="JSP">JSP</option>
+  <option value="JSX">JSX</option>
+  <option value="Julia">Julia</option>
+  <option value="LaTeX">LaTeX</option>
+  <option value="LESS">LESS</option>
+  <option value="Liquid">Liquid</option>
+  <option value="Lisp">Lisp</option>
+  <option value="LiveScript">LiveScript</option>
+  <option value="LogiQL">LogiQL</option>
+  <option value="LSL">LSL</option>
+  <option value="Lua">Lua</option>
+  <option value="LuaPage">LuaPage</option>
+  <option value="Lucene">Lucene</option>
+  <option value="Makefile">Makefile</option>
+  <option value="Markdown">Markdown</option>
+  <option value="MATLAB">MATLAB</option>
+  <option value="MEL">MEL</option>
+  <option value="MUSHCode">MUSHCode</option>
+  <option value="MySQL">MySQL</option>
+  <option value="Nix">Nix</option>
+  <option value="Nix">Nix</option>
+  <option value="Objective-C">Objective-C</option>
+  <option value="OCaml">OCaml</option>
+  <option value="Pascal">Pascal</option>
+  <option value="Perl">Perl</option>
+  <option value="pgSQL">pgSQL</option>
+  <option value="PHP">PHP</option>
+  <option value="Plain Text">Plain Text</option>
+  <option value="Powershell">Powershell</option>
+  <option value="Prolog">Prolog</option>
+  <option value="Properties">Properties</option>
+  <option value="Protobuf">Protobuf</option>
+  <option value="Python">Python</option>
+  <option value="R">R</option>
+  <option value="RDoc">RDoc</option>
+  <option value="RHTML">RHTML</option>
+  <option value="Ruby">Ruby</option>
+  <option value="Rust">Rust</option>
+  <option value="SASS">SASS</option>
+  <option value="SCAD">SCAD</option>
+  <option value="Scala">Scala</option>
+  <option value="Scheme">Scheme</option>
+  <option value="SCSS" selected>SCSS</option>
+  <option value="SH">SH</option>
+  <option value="SJS">SJS</option>
+  <option value="Smarty">Smarty</option>
+  <option value="snippets">snippets</option>
+  <option value="Soy Template">Soy Template</option>
+  <option value="Space">Space</option>
+  <option value="SQL">SQL</option>
+  <option value="Stylus">Stylus</option>
+  <option value="SVG">SVG</option>
+  <option value="Tcl">Tcl</option>
+  <option value="Tex">Tex</option>
+  <option value="Text">Text</option>
+  <option value="Textile">Textile</option>
+  <option value="Toml">Toml</option>
+  <option value="Twig">Twig</option>
+  <option value="Typescript">Typescript</option>
+  <option value="Vala">Vala</option>
+  <option value="VBScript">VBScript</option>
+  <option value="Velocity">Velocity</option>
+  <option value="Verilog">Verilog</option>
+  <option value="XML">XML</option>
+  <option value="XQuery">XQuery</option>
+  <option value="YAML">YAML</option>
+</select>
+</label> 
+
+</fieldset>  
+<div class="wrapper">
+  <code id="ace-editorid">
+  // ================================================
+  // SCSS @extends Across Media Queries  
+  // More info: http://codepen.io/jakob-e/pen/jKyuq  
+  // ================================================  
+  
+  // Simple media mixin - without the overthinking
+  // of breakpoint libraries - sorry guys ;)
+  $_current_breakpoint_key:'';
+  @mixin media($breakpointkeys...){
+    @each $key, $value in $breakpointkeys {
+      $_current_breakpoint_key:$key !global;
+      @media #{map-get($breakpoints,$key)}{ @content; }
+      $_current_breakpoint_key:'' !global;
+    }
+  };
+  
+  // Mixin to add extends to each media query   
+  @mixin extends(){ 
+    @content; 
+    @each $key, $value in $breakpoints { 
+      @include media($key){ @content; } 
+    } 
+  }
+  // Mixin to create cross media extends
+  @mixin new-extend($name){ 
+    %#{ $_current_breakpoint_key + $name}{ @content; } 
+  }
+  // Mixin to handle cross media extend
+  @mixin extend($name){ 
+    & { 
+      @extend %#{ $_current_breakpoint_key + $name };    
+    }
+  }
+
+    
+  // =============================================
+  // How to use 
+  // =============================================
+    
+  // Define breakpoints   
+  $breakpoints:(
+    'mobile' : '(max-width:480px)',
+    'tablet' : '(min-width:481px) and (max-width:960px)',  
+    'desktop': '(min-width:961px)'    
+  );  
+
+  // Create extends
+  @include extends(){
+    @include new-extend(foo){ content:'foo extend'; }
+    @include new-extend(bar){ content:'bar extend'; }
+    @include new-extend(doh){ content:'doh extend'; }  
+  } 
+
+  // Extend 
+  .a {
+    @extend %foo;
+    @include extend(foo);  
+  }
+
+  .b {
+    @include media(mobile){
+      @include extend(foo);  
+      @include extend(bar);  
+      @include extend(doh);    
+    }
+    @include media(tablet, desktop){
+      @include extend(foo);  
+      @include extend(bar);  
+      @include extend(doh);    
+    }  
+  }
+
+  @include media(mobile){  
+    .c {
+      @include extend(foo);  
+      @include extend(bar);  
+      @include extend(doh);
+    }
+  }
+  @include media(tablet, desktop){  
+    .c {
+      @include extend(foo);  
+      @include extend(bar);  
+      @include extend(doh);
+    }
+  }  
+  </code>
+</div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js'></script>
+      <script src="js/index.js"></script>  
+  </body>
 </html>
