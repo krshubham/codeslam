@@ -1,5 +1,7 @@
     
     <style type="text/css" media="screen">
+        @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+        
         #editor { 
             /* the styling for the coding window */
             position: relative;
@@ -9,49 +11,126 @@
             margin-right: auto;
             margin-top:2vh ;
         }
+        
+        label, a { font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
+        
+        fieldset {
+          background:#f1f1f1;
+          border:1px solid #ddd;
+          border-radius:3px;  
+          padding:1.5em 1.5em 2em;
+          margin-bottom:-3px;
+        }
+
+        a {float:right; display:block; text-decoration:none; margin-left:-100%;}
+        
+        img { width:100px; float:left;}
+        
+        label{ 
+            float:right; 
+            display:inline-block; 
+            margin-left:-100%; 
+            margin-top:1.5em;
+        } 
+        
+        label { margin-right:170px; }
+        
+        label + label { margin-right:0px; }
+        
+        select { 
+            display:block; 
+            width:150px; 
+            margin:2vh 5vw ;
+        }  
     </style>
-        <div ng-controller="codeController as code">
+
+    <!-- here goes the main body of the code page -->
+    <div ng-controller="codeController as code">
             <div>
                 <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
             </div>
             <div class="container z-depth-2" style="padding-top:1vh;margin:3vh auto;height:100vh;">        
-                    <select class="browser-default" style="width:15%;margin:2vh 5vw;float:left">
-                        <option value="" disabled selected>Languages</option>
-                        <option value="1">C++</option>
-                        <option value="2">Python</option>
-                        <option value="3">Java</option>
-                    </select>
-                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'">Drop Me!<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>    
-                      <li><a href="#!">one</a></li>
-                      <li><a href="#!">two</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#!">three</a></li>
-                    </ul>
+                <select class="browser-default" style="width:15%;margin:2vh 5vw;float:left">
+                    <option value="" disabled selected>Languages</option>
+                    <option value="1">C++</option>
+                    <option value="2">Python</option>
+                    <option value="3">Java</option>
+                <!-- option for themes -->
+                </select>
+                    <select id="ace-theme" size="1" style="float:right;">
+                        <option value="Themes" disabled selected="selected">Themes</option>}
+                      <optgroup label="Bright">
+                        <option value="chrome">chrome</option>
+                        <option value="clouds">clouds</option>
+                        <option value="crimson_editor">crimson_editor</option>
+                        <option value="dawn">dawn</option>
+                        <option value="dreamweaver">dreamweaver</option>
+                        <option value="eclipse">eclipse</option>
+                        <option value="github">github</option>
+                        <option value="solarized_light">solarized_light</option>
+                        <option value="textmate">textmate</option>
+                        <option value="tomorrow">tomorrow</option>
+                        <option value="xcode">xcode</option>
+                      </optgroup>
+                      <optgroup label="Dark">
+                        <option value="clouds_midnight">clouds_midnight</option>
+                        <option value="cobalt">cobalt</option>
+                        <option value="idle_fingers">idle_fingers</option>
+                        <option value="kr_theme">kr_theme</option>
+                        <option value="merbivore">merbivore</option>
+                        <option value="merbivore_soft">merbivore_soft</option>
+                        <option value="mono_industrial">mono_industrial</option>
+                        <option value="monokai">monokai</option>
+                        <option value="pastel_on_dark">pastel_on_dark</option>
+                        <option value="solarized_dark">solarized_dark</option>
+                        <option value="terminal">terminal</option>
+                        <option value="tomorrow_night">tomorrow_night</option>
+                        <option value="tomorrow_night_blue">tomorrow_night_blue</option>
+                        <option value="tomorrow_night_bright">tomorrow_night_bright</option>
+                        <option value="tomorrow_night_eighties">tomorrow_night_eighties</option>
+                        <option value="twilight">twilight</option>
+                        <option value="vibrant_ink">vibrant_ink</option>
+                      </optgroup>
+                </select>
+                <br>
+                <br>
+                <div id="editor">function foo(items) { 
+                    var x = "All this is syntax highlighted";
+                    return x;
+                    }
+                    <!-- <script src="https://cdn.jsdelivr.net/ace/1.2.4/min/ace.js" type="text/javascript" charset="utf-8"></script> -->
+                </div>
+                <br>
+                <br>
+                <textarea cols="50" rows="4">
                     
-                    <!-- <button type="button" style="float:right;margin-right:5vw;margin-top:1vw;"><img src="../images/settings_1.png" alt="settings" height="20px" width="20px" style="margin-top:5px;"></button> -->
-                    <div id="editor">function foo(items) { 
-                        var x = "All this is syntax highlighted";
-                        return x;
-                        }
-                        <script src="https://cdn.jsdelivr.net/ace/1.2.4/min/ace.js" type="text/javascript" charset="utf-8"></script>
-                    </div> 
+                </textarea>     
             </div>
-        </div>
+    </div>
 
     <script>
+ /*       $('#ace-mode').on('change',function(){
+          editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
+        });*/
+        $('#ace-theme').on('change',function(){
+          editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
+        });
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
+      editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
         editor.setOptions({
             enableBasicAutocompletion: true,
             enableSnippets: true,
             enableLiveAutocompletion: false
         });
-        function log(){
-            console.log('YEp') ;
-        }
+        var theme='ace/theme/tomorrow';
+        var mode='ace/mode/scss';
+        var editor= ace.edit('ace-editorid');
+            editor.setTheme(theme);
+            editor.getSession().setMode(mode);
+            // editor.renderer.setShowGutter(false); 
+
+       
     </script>
     <style type="text/css">
         #main-title{
