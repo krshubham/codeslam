@@ -52,7 +52,7 @@
             <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
 
             <!-- The languages in which codes can be written -->
-                <select id="ace-mode" size="1" style="margin-left:4.5vw;margin-right:0" class="z-depth-1">
+                <select id="ace-mode" style="margin-left:4.5vw;margin-right:0;width:80px;" class="z-depth-1">
                     <option value="c_cpp">C/C++</option>
                     <option value="Java">Java</option>
                     <option value="Python">Python</option>
@@ -60,7 +60,7 @@
 
                 </select>
                     <select id="ace-theme" class="z-depth-1">
-                        <option value="Themes" disabled selected="selected">Themes</option>}
+                        <option value="Themes" disabled selected="selected">Themes</option>
                       <optgroup label="Bright">
                         <option value="chrome">Chrome</option>
                         <option value="clouds">Clouds</option>
@@ -94,8 +94,11 @@
                         <option value="vibrant_ink">Vibrant ink</option>
                       </optgroup>
                 </select>
-
-                <input type="number" name="font_size" id="font_size" style="float:left;width:5vw;" min="7" placeholder="7" onchange="font_change()" />
+                <form accept-charset="utf-8">
+                    <label>Font size:
+                    <input type="number" name="font_size" id="font_size" style="width:45px;height:70px;margin-bottom:-1vw;text-align:center;border:hidden;" min="12" value="12" onchange="font_change()" />
+                    </label>
+                </form>
 
                 <div id="editor" class="z-depth-1">#include&lt;iostream.h&gt;
 
@@ -112,23 +115,24 @@ int main(){
     </div>
 
     <script>
+        function font_change(){
+            var  size = document.getElementById('font_size').value ;
+            document.getElementById('editor').style.fontSize=size+'px';
+        }
         var editor = ace.edit("editor");
-        var theme='ace/theme/monokai';/*sets the default theme for the code editor as monokau*/
+        var theme='ace/theme/tomorrow';/*sets the default theme for the code editor as monokau*/
         var mode='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
         editor.getSession().setMode(mode);
         editor.setTheme(theme);
 
         $('#ace-mode').on('change',function(){
           editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
-          console.log( $(this).val().toLowerCase());
         });
         $('#ace-theme').on('change',function(){
           editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
         });
 
-        function font_change(){
 
-        }
         editor.setOptions({
             enableBasicAutocompletion: true,
             enableSnippets: true,
