@@ -1,10 +1,10 @@
     
     <style type="text/css" media="screen">
         @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+
         
         #editor { 
-            /* the styling for the coding window */
-            position: relative;
+            position: relative;/* the styling for the coding window */
             height: 70vh;
             width: 60vw ;
             margin-left: auto ;
@@ -12,10 +12,8 @@
             margin-top:2vh ;
         }
         
-        label, a { font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
-        
-        a {float:right; display:block; text-decoration:none; margin-left:-100%;}
-        
+        label{ font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
+
         img { width:100px; float:left;}
         
         label{ 
@@ -29,12 +27,16 @@
         
         label + label { margin-right:0px; }
         
-        select, .buttons { 
+        select { 
             display:block; 
             width:150px; 
             margin:2vh 1vw ;
             float: left;
         }  
+
+        .submit{
+            margin-left: 5vw;
+        }
 
 
     </style>
@@ -44,86 +46,77 @@
             <div>
                 <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
             </div>
-            <div class="container z-depth-2" style="padding-top:1vh;margin:3vh auto;height:100vh;">        
-            <!-- <label>Mode:</label> -->   
+            <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
 
             <!-- The languages in which codes can be written -->
-                <select id="ace-mode" size="1" style="margin-left:5vw;">
-                    <option value="C/C++">C/C++</option>
-                    <option value="C#">C#</option>
-                    <option value="CSS">CSS</option>
-                    <option value="HTML">HTML</option>
+                <select id="ace-mode" size="1" style="margin-left:5vw;" class="z-depth-1">
+                    <option value="c_cpp">C/C++</option>
                     <option value="Java">Java</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="JSON">JSON</option>
-                    <option value="MySQL">MySQL</option>
-                    <option value="Objective-C">Objective-C</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Plain Text">Plain Text</option>
                     <option value="Python">Python</option>
-                    <option value="SQL">SQL</option>
                 </select>
 
-                <!-- <select class="browser-default" style="width:15%;margin:2vh 5vw;float:left">
-                    <option value="" disabled selected>Languages</option>
-                    <option value="1">C++</option>
-                    <option value="2">Python</option>
-                    <option value="3">Java</option> -->
-                <!-- option for themes -->
-                
                 </select>
-                    <select id="ace-theme" size="1">
+                    <select id="ace-theme" class="z-depth-1">
                         <option value="Themes" disabled selected="selected">Themes</option>}
                       <optgroup label="Bright">
-                        <option value="chrome">chrome</option>
-                        <option value="clouds">clouds</option>
-                        <option value="crimson_editor">crimson_editor</option>
-                        <option value="dawn">dawn</option>
-                        <option value="dreamweaver">dreamweaver</option>
-                        <option value="eclipse">eclipse</option>
-                        <option value="github">github</option>
-                        <option value="solarized_light">solarized_light</option>
-                        <option value="textmate">textmate</option>
-                        <option value="tomorrow">tomorrow</option>
-                        <option value="xcode">xcode</option>
+                        <option value="chrome">Chrome</option>
+                        <option value="clouds">Clouds</option>
+                        <option value="crimson_editor">Crimson editor</option>
+                        <option value="dawn">Dawn</option>
+                        <option value="dreamweaver">Dreamweaver</option>
+                        <option value="eclipse">Eclipse</option>
+                        <option value="github">Github</option>
+                        <option value="solarized_light">Solarized light</option>
+                        <option value="textmate">Textmate</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="xcode">Xcode</option>
                       </optgroup>
                       <optgroup label="Dark">
-                        <option value="clouds_midnight">clouds_midnight</option>
-                        <option value="cobalt">cobalt</option>
-                        <option value="idle_fingers">idle_fingers</option>
-                        <option value="kr_theme">kr_theme</option>
-                        <option value="merbivore">merbivore</option>
-                        <option value="merbivore_soft">merbivore_soft</option>
-                        <option value="mono_industrial">mono_industrial</option>
-                        <option value="monokai">monokai</option>
-                        <option value="pastel_on_dark">pastel_on_dark</option>
-                        <option value="solarized_dark">solarized_dark</option>
-                        <option value="terminal">terminal</option>
-                        <option value="tomorrow_night">tomorrow_night</option>
-                        <option value="tomorrow_night_blue">tomorrow_night_blue</option>
-                        <option value="tomorrow_night_bright">tomorrow_night_bright</option>
-                        <option value="tomorrow_night_eighties">tomorrow_night_eighties</option>
-                        <option value="twilight">twilight</option>
-                        <option value="vibrant_ink">vibrant_ink</option>
+                        <option value="clouds_midnight">Clouds midnight</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="idle_fingers">Idle fingers</option>
+                        <option value="kr_theme">Kr_theme</option>
+                        <option value="merbivore">Merbivore</option>
+                        <option value="merbivore_soft">Merbivore soft</option>
+                        <option value="mono_industrial">Mono industrial</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="pastel_on_dark">Pastel on dark</option>
+                        <option value="solarized_dark">Solarized dark</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="tomorrow_night">Tomorrow night</option>
+                        <option value="tomorrow_night_blue">Tomorrow night blue</option>
+                        <option value="tomorrow_night_bright">Tomorrow night bright</option>
+                        <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="vibrant_ink">Vibrant ink</option>
                       </optgroup>
                 </select>
                 <br>
                 <br>
 
-                <div id="editor">
-function foo(items) { 
+                <div id="editor" class="z-depth-1">function foo(items) { 
   var x = "All this is syntax highlighted";
   return x;
 }
-
                 </div>
                 <br>
-                <button type="button" class="button" style="margin-left:5vw;">Submit</button> 
+                <form style="margin:0 4.5vw;">
+                    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Enter your Inputs"></textarea>
+                </form>
+                <br>
+                <a class="waves-effect waves-light btn submit">button</a>
             </div>
     </div>
 
     <script>
         var editor = ace.edit("editor");
+        var theme='ace/theme/tomorrow';
+        var mode='ace/mode/c_cpp';
+        editor.setTheme("ace/theme/monokai");
+/*        var editor= ace.edit('ace-editorid');*/
+            editor.setTheme(theme);
+            editor.getSession().setMode(mode);
+            // editor.renderer.setShowGutter(false); 
         $('#ace-mode').on('change',function(){
           editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
           console.log( $(this).val().toLowerCase());
@@ -131,22 +124,12 @@ function foo(items) {
         $('#ace-theme').on('change',function(){
           editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
         });
-
-      editor.setTheme("ace/theme/monokai");
 /*        editor.getSession().setMode("ace/mode/javascript");*/
         editor.setOptions({
             enableBasicAutocompletion: true,
             enableSnippets: true,
-            enableLiveAutocompletion: false
-        });
-        var theme='ace/theme/tomorrow';
-        var mode='ace/mode/scss';
-        var editor= ace.edit('ace-editorid');
-            editor.setTheme(theme);
-            editor.getSession().setMode(mode);
-            // editor.renderer.setShowGutter(false); 
-
-       
+            enableLiveAutocompletion: true
+        });      
     </script>
     <style type="text/css">
         #main-title{
