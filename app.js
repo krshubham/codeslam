@@ -35,7 +35,7 @@ app.use('*', function(req,res,next){
 
 
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   var token = req.body.token || req.params.token || req.headers['x-access-token'];
   if (token) {
     jwt.verify(token, secret, function(err, decoded) {      
@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
     
 }
 });
-
+*/
 /*protected routes*/
 app.use('/users', users);
 // catch 404 and forward to error handler
