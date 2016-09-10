@@ -6,7 +6,7 @@ angular.module('authservice', [])
 // inject $q to return promise objects
 // inject AuthToken to manage tokens
 // ===================================================
-.factory('Auth', function($http, $q, AuthToken) {
+.factory('Auth', function($http, $q, AuthToken,$window) {
 
 	// create auth factory object
 	var authFactory = {};
@@ -31,22 +31,28 @@ angular.module('authservice', [])
 		// clear the token
 		AuthToken.setToken();
 	};
-
+	var payload;
 	// check if a user is logged in
 	// checks if there is a local token
-	authFactory.isLoggedIn = function() {
-		if (AuthToken.getToken()) 
-			return true;
-		else
+	authFactory.isLoggedIn = function() { 
+		var token = AuthToken.getToken();
+		if(token){
+			payload = token.split('.')[1];
+			payload = $window.atob(payload);
+			payload = JSON.parse(payload);
+			return payload.exp > Date.now() / 1000;
+		}
+		else{
 			return false;	
+		}
 	};
 
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
-			return $http.get('/api/me', { cache: true });
+			return payload;
 		else
-			return $q.reject({ message: 'User has no token.' });		
+			return false;		
 	};
 
 	// return auth factory object
@@ -79,41 +85,4 @@ angular.module('authservice', [])
 
 	return authTokenFactory;
 
-})
-
-// ===================================================
-// application configuration to integrate token into requests
-// ===================================================
-/*.factory('AuthInterceptor', function($q, $location, AuthToken) {
-
-	var interceptorFactory = {};
-
-	// this will happen on all HTTP requests
-	interceptorFactory.request = function(config) {
-
-		// grab the token
-		var token = AuthToken.getToken();
-
-		// if the token exists, add it to the header as x-access-token
-		if (token) 
-			config.headers['x-access-token'] = token;
-		
-		return config;
-	};
-
-	// happens on response errors
-	interceptorFactory.responseError = function(response) {
-
-		// if our server returns a 403 forbidden response
-		if (response.status == 403) {
-			AuthToken.setToken();
-			$location.path('/login');
-		}
-
-		// return the errors from the server as a promise
-		return $q.reject(response);
-	};
-
-	return interceptorFactory;
-	
-});*/
+});

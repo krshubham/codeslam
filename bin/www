@@ -8,7 +8,8 @@
  var debug = require('debug')('codeslam:server');
  var http = require('http');
  var db = require('../routes/db');
- var url = 'mongodb://localhost:27017/slam';
+ var url = "mongodb://krshubham:NewOne11@ds029106.mlab.com:29106/slam";
+ var dev_url = 'mongodb://localhost:27017/slam';
 /**
  * Get port from environment and store in Express.
  */
@@ -25,7 +26,7 @@
 /**
  * Listen on provided port, on all network interfaces.
  */
- db.connect(url, function(err) {
+ db.connect(dev_url, function(err) {
   if (err) {
     console.log('Unable to connect to Mongo.');
     process.exit(1);

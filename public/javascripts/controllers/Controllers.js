@@ -8,11 +8,22 @@ var app = angular.module('controllers', ['authservice']);
 //global variable for setting the title of the page
 var title = '';
 
-app.controller('mainController',function(){
+app.controller('mainController',['Auth',function(Auth){
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
-});
+	vm.loggedIn = function(){
+		if(Auth.isLoggedIn()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	vm.logout = function(){
+		Auth.logout();
+	}
+}]);
 
 app.controller('homeController',function(){
 	var vm = this;
@@ -20,11 +31,18 @@ app.controller('homeController',function(){
 
 app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm  = this;
+	vm.error = false;
 	vm.submitForm = function(){
 		var user = vm.user;
 		Auth.login(user)
 		.then(function(status){
-			console.log(status.data);
+			if(status.success){
+				vm.error = false;
+				$location.path('/user/create');
+			}
+			else{
+				vm.error = true;
+			}
 		});
 	};
 }]);
@@ -70,15 +88,18 @@ app.controller('aboutController',function(){
 	vm.name = 'code';	
 });
 
-app.controller('userController', ['Auth','$location','$window','AuthToken', function(Auth,$location,$window,AuthToken){
+app.controller('createController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm = this;
-	vm.onload = function(){
-		if(Auth.isLoggedIn()){
-			alert('hello you!');
+	if(Auth.isLoggedIn()){
+		var user = Auth.getUser();
+		if(user){
+			vm.name = user.name.split(' ')[0];
 		}
 		else{
-			alert('fuck you');
 			$location.path('/login');
 		}
+	}	
+	else{
+		$location.path('/login');
 	}
 }]);

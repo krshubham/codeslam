@@ -37,7 +37,7 @@ router.post('/login',function(req,res,next){
 			console.log(user);
 			if(!user){
 				//user not found
-				res.status(401).json({
+				return res.json({
 					success: false,
 					message: 'Something is wrong Please try again.'
 				});
@@ -51,7 +51,7 @@ router.post('/login',function(req,res,next){
 						//Result is not there, assword wrong
 						console.log('Error in password');
 						//send 401 status code saying Unauthorized
-						res.status(401).json({
+						return res.json({
 							success: false,
 							message: 'Something is wrong! Please try again.'
 						});	
@@ -69,7 +69,7 @@ router.post('/login',function(req,res,next){
 							expiresIn: 86400
 						});
 						//send the correct response to the user
-						res.json({
+						return res.json({
 							success: true,
 							token: token
 						});
