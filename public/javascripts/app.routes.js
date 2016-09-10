@@ -33,10 +33,13 @@ app.config(function($routeProvider,$locationProvider){
 			controller: 'codeController' ,
 			controllerAs: 'code'
 		})
-		.when('/user/profile',{
-			templateUrl: '/client/views/user.html',
-			controller: 'userController',
-			controllerAs: 'user'
+		.when('/user/create',{
+			templateUrl: '/client/views/create.html',
+			controller: 'createController',
+			controllerAs: 'create'
+		})
+		.otherwise({
+			redirectTo: '/'
 		});
 		$locationProvider.html5Mode(true);
 });
