@@ -8,7 +8,7 @@
  var debug = require('debug')('codeslam:server');
  var http = require('http');
  var db = require('../routes/db');
- var url = 'mongodb://localhost:27017/slam';
+ var url = "mongodb://krshubham:NewOne11@ds029106.mlab.com:29106/slam";
 /**
  * Get port from environment and store in Express.
  */
