@@ -31,11 +31,18 @@ app.controller('homeController',function(){
 
 app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm  = this;
+	vm.error = false;
 	vm.submitForm = function(){
 		var user = vm.user;
 		Auth.login(user)
 		.then(function(status){
-			console.log(status.data);
+			if(status.success){
+				vm.error = false;
+				$location.path('/user/create');
+			}
+			else{
+				vm.error = true;
+			}
 		});
 	};
 }]);
