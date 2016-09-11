@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html ng-app="codeslam" ng-controller="mainController as main">
 <head>
+	<!--Meta tags-->
 	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html">
 	<meta name="theme-color" content="#32CD32">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="Code, fights, codeslam, code fights">
 	<!--jQuery CDN link-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-	<!--materialize css loaded before custome css for changes-->
+	<!--materialize css loaded before custom css for changes-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
@@ -16,11 +19,13 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/test.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-  
+  	
 
 	<!--angularJS scripts from CDN-->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+	<!-- Angular Material-->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 
 	<!--custom angular files-->
 	<script type="text/javascript" src="/javascripts/services/authservice.js"></script>
@@ -36,13 +41,13 @@
 <body>
 	<nav class="brand-nav">
 		<div class="nav-wrapper">
-			<a href="/" class="brand-logo">Codeslam</a>
+			<a href="{{main.path}}" class="brand-logo">Codeslam</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="/code">Code</a></li>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/signup">Signup</a></li>
-				<li><a href="/about">About us</a></li>
-				<li><a href="/logout" ng-show="main.loggedIn()" ng-click="main.logout()">Logout</a></li>
+				<li><a href="/login" ng-hide="main.loggedIn()">Login</a></li>
+				<li><a href="/signup" ng-hide="main.loggedIn()">Signup</a></li>
+				<li><a href="/about" ng-hide="main.loggedIn()">About us</a></li>
+				<li><a href="#" ng-show="main.loggedIn()" ng-click="main.logout()">Logout</a></li>
 			</ul>
 		</div>
 	</nav>

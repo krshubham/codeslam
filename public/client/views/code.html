@@ -1,150 +1,145 @@
     
-    <style type="text/css" media="screen">
-        @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+<style type="text/css" media="screen">
+    @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
 
-        
-        #editor { 
-            position: relative;/* the styling for the coding window */
-            height: 70vh;
-            width: 60vw ;
-            margin-left: auto ;
-            margin-right: auto;
-            margin-top:2vh ;
-        }
-        
-        label{ font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
 
-        img { width:100px; float:left;}
-        
-        label{ 
-            float:right; 
-            display:inline-block; 
-            margin-left:-100%; 
-            margin-top:1.5em;
-        } 
-        
-        label { margin-right:170px; }
-        
-        label + label { margin-right:0px; }
-        
-        select { 
-            display:block; 
-            width:150px; 
-            margin:2vh 2vw ;
-            float: left;
-        }  
+    #editor { 
+        position: relative;/* the styling for the coding window */
+        height: 70vh;
+        width: 60vw ;
+        margin-left: auto ;
+        margin-right: auto;
+        margin-top:2vh ;
+    }
 
-        .submit{
-            margin-left: 4.5vw;
-        }
+    label{ font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
 
-        .font{
+    img { width:100px; float:left;}
 
-        }
+    label{ 
+        float:right; 
+        display:inline-block; 
+        margin-left:-100%; 
+        margin-top:1.5em;
+    } 
 
-    </style>
+    label { margin-right:170px; }
 
-    <!-- here goes the main body of the code page -->
-    <div ng-controller="codeController as code">
-            <div>
-                <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
-            </div>
-            <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
+    label + label { margin-right:0px; }
 
-            <!-- The languages in which codes can be written -->
-                <select id="ace-mode" style="margin-left:4.5vw;margin-right:0;width:80px;" class="z-depth-1">
-                    <option value="c_cpp">C/C++</option>
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                </select>
+    select { 
+        display:block; 
+        width:150px; 
+        margin:2vh 2vw ;
+        float: left;
+    }  
 
-                </select>
-                    <select id="ace-theme" class="z-depth-1">
-                        <option value="Themes" disabled selected="selected">Themes</option>
-                      <optgroup label="Bright">
-                        <option value="chrome">Chrome</option>
-                        <option value="clouds">Clouds</option>
-                        <option value="crimson_editor">Crimson editor</option>
-                        <option value="dawn">Dawn</option>
-                        <option value="dreamweaver">Dreamweaver</option>
-                        <option value="eclipse">Eclipse</option>
-                        <option value="github">Github</option>
-                        <option value="solarized_light">Solarized light</option>
-                        <option value="textmate">Textmate</option>
-                        <option value="tomorrow">Tomorrow</option>
-                        <option value="xcode">Xcode</option>
-                      </optgroup>
-                      <optgroup label="Dark">
-                        <option value="clouds_midnight">Clouds midnight</option>
-                        <option value="cobalt">Cobalt</option>
-                        <option value="idle_fingers">Idle fingers</option>
-                        <option value="kr_theme">Kr_theme</option>
-                        <option value="merbivore">Merbivore</option>
-                        <option value="merbivore_soft">Merbivore soft</option>
-                        <option value="mono_industrial">Mono industrial</option>
-                        <option value="monokai">Monokai</option>
-                        <option value="pastel_on_dark">Pastel on dark</option>
-                        <option value="solarized_dark">Solarized dark</option>
-                        <option value="terminal">Terminal</option>
-                        <option value="tomorrow_night">Tomorrow night</option>
-                        <option value="tomorrow_night_blue">Tomorrow night blue</option>
-                        <option value="tomorrow_night_bright">Tomorrow night bright</option>
-                        <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
-                        <option value="twilight">Twilight</option>
-                        <option value="vibrant_ink">Vibrant ink</option>
-                      </optgroup>
-                </select>
-                <form accept-charset="utf-8" style="margin-bottom:0;">
-                    <label>Font size:
-                    <input type="number" name="font_size" id="font_size" style="width:45px;height:20px;margin-bottom:-1vw;text-align:center;border:hidden;" min="12" value="12" onchange="font_change()" />
-                    </label>
-                </form>
+    .submit{
+        margin-left: 4.5vw;
+    }
 
-                <div id="editor" class="z-depth-1">#include&lt;iostream.h&gt;
+    .font{
 
-int main(){
-    cout<<"Hello World" ;
-}                </div>
-                <br>
-                <form style="margin:0 4.5vw;">
-                    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
-                </form>
-                <br>
-                <a class="waves-effect waves-light btn submit" id="submit">Submit</a>
-            </div>
+    }
+
+</style>
+
+<!-- here goes the main body of the code page -->
+<div ng-controller="codeController as codectrl">
+    <div>
+        <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
     </div>
+    <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
 
-    <script>
-        function font_change(){
-            var  size = document.getElementById('font_size').value ;
-            document.getElementById('editor').style.fontSize=size+'px';
-        }
-        var editor = ace.edit("editor");
-        var theme='ace/theme/tomorrow';/*sets the default theme for the code editor as monokau*/
-        var mode='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
-        editor.getSession().setMode(mode);
-        editor.setTheme(theme);
+        <!-- The languages in which codes can be written -->
+        <select id="ace-mode" style="margin-left:4.5vw;margin-right:0;width:80px;" class="z-depth-1">
+            <option value="c_cpp">C/C++</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+        </select>
+        <select id="ace-theme" class="z-depth-1">
+            <option value="Themes" disabled selected="selected">Themes</option>
+            <optgroup label="Bright">
+                <option value="chrome">Chrome</option>
+                <option value="clouds">Clouds</option>
+                <option value="crimson_editor">Crimson editor</option>
+                <option value="dawn">Dawn</option>
+                <option value="dreamweaver">Dreamweaver</option>
+                <option value="eclipse">Eclipse</option>
+                <option value="github">Github</option>
+                <option value="solarized_light">Solarized light</option>
+                <option value="textmate">Textmate</option>
+                <option value="tomorrow">Tomorrow</option>
+                <option value="xcode">Xcode</option>
+            </optgroup>
+            <optgroup label="Dark">
+                <option value="clouds_midnight">Clouds midnight</option>
+                <option value="cobalt">Cobalt</option>
+                <option value="idle_fingers">Idle fingers</option>
+                <option value="kr_theme">Kr_theme</option>
+                <option value="merbivore">Merbivore</option>
+                <option value="merbivore_soft">Merbivore soft</option>
+                <option value="mono_industrial">Mono industrial</option>
+                <option value="monokai">Monokai</option>
+                <option value="pastel_on_dark">Pastel on dark</option>
+                <option value="solarized_dark">Solarized dark</option>
+                <option value="terminal">Terminal</option>
+                <option value="tomorrow_night">Tomorrow night</option>
+                <option value="tomorrow_night_blue">Tomorrow night blue</option>
+                <option value="tomorrow_night_bright">Tomorrow night bright</option>
+                <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
+                <option value="twilight">Twilight</option>
+                <option value="vibrant_ink">Vibrant ink</option>
+            </optgroup>
+        </select>
+        <form accept-charset="utf-8" style="margin-bottom:0;">
+            <label>Font size:
+                <input type="number" name="font_size" id="font_size" style="width:45px;height:20px;margin-bottom:-1vw;text-align:center;border:hidden;" min="12" value="12" onclick="font_change()" />
+            </label>
+        </form>
 
-        $('#ace-mode').on('change',function(){
-          editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
-        });
-        $('#ace-theme').on('change',function(){
-          editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
-        });
+        <div id="editor" class="z-depth-1">
+        </div>
+        <br>
+        <form style="margin:0 4.5vw;">
+            <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
+        </form>
+        <br>
+        <a class="waves-effect waves-light btn submit" id="submit" onclick="vm.">Submit</a>
+    </div>
+</div>
+<script>
+    function font_change(){
+        var  size = document.getElementById('font_size').value ;
+        document.getElementById('editor').style.fontSize=size+'px';
+    }
+    var editor = ace.edit("editor");
+    var theme='ace/theme/tomorrow';/*sets the default theme for the code editor as monokau*/
+    var mode='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
+    editor.getSession().setMode(mode);
+    editor.setTheme(theme);
+
+    $('#ace-mode').on('change',function(){
+      editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
+  });
+    $('#ace-theme').on('change',function(){
+      editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
+  });
 
 
-        editor.setOptions({
-            enableBasicAutocompletion: true,
-            enableSnippets: true,
-            enableLiveAutocompletion: true
-        });      
-    </script>
-    <style type="text/css">
-        #main-title{
-            font-size: 3rem;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            color: #fff;
-        }
-    </style>
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+        enableEmmet: true
+    });      
+</script>
+<style type="text/css">
+    #main-title{
+        font-size: 3rem;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        color: #fff;
+    }
+</style>

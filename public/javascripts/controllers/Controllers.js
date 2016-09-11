@@ -8,20 +8,25 @@ var app = angular.module('controllers', ['authservice']);
 //global variable for setting the title of the page
 var title = '';
 
-app.controller('mainController',['Auth',function(Auth){
+app.controller('mainController',['Auth','$location',function(Auth,$location){
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
+	vm.path = '/';
 	vm.loggedIn = function(){
 		if(Auth.isLoggedIn()){
+			vm.path = '/user/create';
+			$location.path('/user/create');
 			return true;
 		}
 		else{
+			vm.path = '/';
 			return false;
 		}
 	}
 	vm.logout = function(){
 		Auth.logout();
+		$location.path('/');
 	}
 }]);
 
@@ -31,17 +36,16 @@ app.controller('homeController',function(){
 
 app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm  = this;
-	vm.error = false;
+	vm.error  = false;
 	vm.submitForm = function(){
 		var user = vm.user;
 		Auth.login(user)
 		.then(function(status){
-			if(status.success){
-				vm.error = false;
-				$location.path('/user/create');
+			if(status.data.success){
+				$location.path('/user/create')
 			}
 			else{
-				vm.error = true;
+				 vm.error = true;
 			}
 		});
 	};
@@ -81,6 +85,9 @@ app.controller('signupController',['Auth','$location','$window', function(Auth,$
 app.controller('codeController', function(){
 	var vm = this;
 	vm.name = 'code';
+	vm.submit = function(){
+		console.log(vm.code);
+	};
 });
 
 app.controller('aboutController',function(){
