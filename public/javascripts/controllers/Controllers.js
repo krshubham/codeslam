@@ -3,25 +3,29 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice']);
+var app = angular.module('controllers', ['authservice','codeservice']);
 
 //global variable for setting the title of the page
 var title = '';
 
-app.controller('mainController',['Auth',function(Auth){
+app.controller('mainController',['Auth','$location',function(Auth,$location){
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
+	vm.path = '/';
 	vm.loggedIn = function(){
 		if(Auth.isLoggedIn()){
+			vm.path = '/user/create';
 			return true;
 		}
 		else{
+			vm.path = '/';
 			return false;
 		}
 	}
 	vm.logout = function(){
 		Auth.logout();
+		$location.path('/');
 	}
 }]);
 
@@ -31,17 +35,16 @@ app.controller('homeController',function(){
 
 app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm  = this;
-	vm.error = false;
+	vm.error  = false;
 	vm.submitForm = function(){
 		var user = vm.user;
 		Auth.login(user)
 		.then(function(status){
-			if(status.success){
-				vm.error = false;
-				$location.path('/user/create');
+			if(status.data.success){
+				$location.path('/user/create')
 			}
 			else{
-				vm.error = true;
+				 vm.error = true;
 			}
 		});
 	};
@@ -78,10 +81,27 @@ app.controller('signupController',['Auth','$location','$window', function(Auth,$
 	};
 }]);
 
-app.controller('codeController', function(){
+app.controller('codeController',['Code' ,function(Code){
 	var vm = this;
 	vm.name = 'code';
-});
+	vm.submit = function(){
+		var code = editor.getValue();
+		var lang = vm.lang;
+		if(lang === undefined){
+			alert('Choose correct programming language');
+			return false;
+		}
+		else{
+			var data = {
+				code: code,
+				lang: lang
+			};
+			Code.send(data).then(function(data){
+				alert(data.data);
+			});
+		}
+	};
+}]);
 
 app.controller('aboutController',function(){
 	var vm  = this;

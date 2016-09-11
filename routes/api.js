@@ -135,7 +135,14 @@ function Signup(req,res,next){
 	}
 }
 
-router.post('/signup',Signup);
 
+function compile(req,res,next){
+	var code = req.body.code,
+		lang = req.body.lang
+	res.send('The language used was: '+ lang +' and the code is: '+code);
+}
+
+router.post('/signup',Signup);
+router.post('/code',compile);
 
 module.exports = router;
