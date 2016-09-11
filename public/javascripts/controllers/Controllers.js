@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice']);
+var app = angular.module('controllers', ['authservice','codeservice']);
 
 //global variable for setting the title of the page
 var title = '';
@@ -16,7 +16,6 @@ app.controller('mainController',['Auth','$location',function(Auth,$location){
 	vm.loggedIn = function(){
 		if(Auth.isLoggedIn()){
 			vm.path = '/user/create';
-			$location.path('/user/create');
 			return true;
 		}
 		else{
@@ -82,13 +81,27 @@ app.controller('signupController',['Auth','$location','$window', function(Auth,$
 	};
 }]);
 
-app.controller('codeController', function(){
+app.controller('codeController',['Code' ,function(Code){
 	var vm = this;
 	vm.name = 'code';
 	vm.submit = function(){
-		console.log(vm.code);
+		var code = editor.getValue();
+		var lang = vm.lang;
+		if(lang === undefined){
+			alert('Choose correct programming language');
+			return false;
+		}
+		else{
+			var data = {
+				code: code,
+				lang: lang
+			};
+			Code.send(data).then(function(data){
+				alert(data.data);
+			});
+		}
 	};
-});
+}]);
 
 app.controller('aboutController',function(){
 	var vm  = this;
