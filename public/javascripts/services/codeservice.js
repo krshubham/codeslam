@@ -1,4 +1,4 @@
-angular.module('codeservice',[])
+var app = angular.module('codeservice',[]);
  
  //==============================================
  // Code factory exclusively for all the code transactions
