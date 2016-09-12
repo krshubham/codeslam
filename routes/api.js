@@ -9,8 +9,10 @@ var db = require('./db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
-var compiler = require('compilex');
 var secret = 'g@@k@911';
+var compiler = require('compilex');
+var options = {stats : true}; //prints stats on console  
+compiler.init(options);
 
 
 
@@ -140,19 +142,49 @@ function Signup(req,res,next){
 function compile(req,res,next){
 	var code = req.body.code,
 		lang = req.body.lang;
-
-	var envData = { OS : "windows" , cmd : "g++"};	   
-	compiler.compileCPP(envData , code , function (data) {
-		if(data.error)
+	res.send('The language used was: '+ lang +' and the code is: '+code);
+	if(lang === 'C/C++')
 		{
-			res.send(data.error);
-		}    	
-		else
-		{
-			res.send(data.output);
+			var envData = { OS : "windows" , cmd : "g++"};
+			compiler.compileCPP(envData , code , function (data) {
+				if(data.error)
+				{
+					res.send(data.error);
+				}    	
+				else
+				{
+					res.send(data.output);
+				}
+				});
 		}
-
-	});
+	if(lang === 'Java')
+		{
+			var envData = { OS : "windows"};
+			compiler.compileJava(envData , code , function (data) {
+				if(data.error)
+				{
+					res.send(data.error);
+				}    	
+				else
+				{
+					res.send(data.output);
+				}
+				});
+		}
+	if(lang === 'Python')
+		{
+			var envData = { OS : "windows"};
+			compiler.compilePython(envData , code , function (data) {
+				if(data.error)
+				{
+					res.send(data.error);
+				}    	
+				else
+				{
+					res.send(data.output);
+				}
+				});
+		}
 }
 
 router.post('/signup',Signup);
