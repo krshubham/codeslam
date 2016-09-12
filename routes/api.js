@@ -137,7 +137,7 @@ function Signup(req,res,next){
 }
 
 
-function compile(req,res,next){
+function CppWithoutInputs(req,res,next){
 	var code = req.body.code,
 		lang = req.body.lang;
 		//console.log(code);
@@ -151,6 +151,8 @@ function compile(req,res,next){
 		var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
 		//console.log(command);
 		exec(command,function(err,stdout,stderr){
+			console.log(stderr);
+			console.log(err);
 			//assert.equal(err,null);
 			//assert.equal(stderr,null);
 			exec(path+filename,function(a,b,c){
@@ -163,6 +165,6 @@ function compile(req,res,next){
 }
 
 router.post('/signup',Signup);
-router.post('/code',compile);
+router.post('/code',CppWithoutInputs);
 
 module.exports = router;
