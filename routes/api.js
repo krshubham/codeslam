@@ -143,48 +143,6 @@ function compile(req,res,next){
 	var code = req.body.code,
 		lang = req.body.lang;
 	res.send('The language used was: '+ lang +' and the code is: '+code);
-	if(lang === 'C/C++')
-		{
-			var envData = { OS : "windows" , cmd : "g++"};
-			compiler.compileCPP(envData , code , function (data) {
-				if(data.error)
-				{
-					res.send(data.error);
-				}    	
-				else
-				{
-					res.send(data.output);
-				}
-				});
-		}
-	if(lang === 'Java')
-		{
-			var envData = { OS : "windows"};
-			compiler.compileJava(envData , code , function (data) {
-				if(data.error)
-				{
-					res.send(data.error);
-				}    	
-				else
-				{
-					res.send(data.output);
-				}
-				});
-		}
-	if(lang === 'Python')
-		{
-			var envData = { OS : "windows"};
-			compiler.compilePython(envData , code , function (data) {
-				if(data.error)
-				{
-					res.send(data.error);
-				}    	
-				else
-				{
-					res.send(data.output);
-				}
-				});
-		}
 }
 
 router.post('/signup',Signup);
