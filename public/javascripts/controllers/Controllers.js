@@ -87,7 +87,7 @@ app.controller('codeController',['Code' ,function(Code){
 	vm.submit = function(){
 		var code = editor.getValue();
 		var lang = vm.lang;
-		if(lang === undefined){
+		if(lang === undefined || lang === ''){
 			alert('Choose correct programming language');
 			return false;
 		}
