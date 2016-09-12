@@ -154,7 +154,6 @@ function compile(req,res,next){
 
 	});
 }
-}
 
 router.post('/signup',Signup);
 router.post('/code',compile);
