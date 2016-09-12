@@ -10,11 +10,9 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var secret = 'g@@k@911';
-var compiler = require('compilex');
-var options = {stats : true}; //prints stats on console  
-compiler.init(options);
-
-
+var fs = require('fs');
+var cuid = require('cuid');
+var exec = require('exec');
 
 //The login handler for the api
 router.post('/login',function(req,res,next){
@@ -142,7 +140,26 @@ function Signup(req,res,next){
 function compile(req,res,next){
 	var code = req.body.code,
 		lang = req.body.lang;
-	res.send('The language used was: '+ lang +' and the code is: '+code);
+		//console.log(code);
+		var path = './temp/';
+		var filename = cuid.slug();
+		//console.log(filename);
+	//res.send('The language used was: '+ lang +' and the code is: '+code);
+	fs.writeFile(path + filename + '.cpp',code,function(err){
+		assert.equal(err,null);
+		//console.log('file made with the name '+ filename);
+		var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
+		//console.log(command);
+		exec(command,function(err,stdout,stderr){
+			//assert.equal(err,null);
+			//assert.equal(stderr,null);
+			exec(path+filename,function(a,b,c){
+				//console.log(a);
+				res.send(b);
+				//console.log(c);
+			});
+		});	
+	});
 }
 
 router.post('/signup',Signup);
