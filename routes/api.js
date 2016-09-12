@@ -9,6 +9,7 @@ var db = require('./db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+var compiler = require('compilex');
 var secret = 'g@@k@911';
 
 
@@ -138,8 +139,21 @@ function Signup(req,res,next){
 
 function compile(req,res,next){
 	var code = req.body.code,
-		lang = req.body.lang
-	res.send('The language used was: '+ lang +' and the code is: '+code);
+		lang = req.body.lang;
+
+	var envData = { OS : "windows" , cmd : "g++"};	   
+	compiler.compileCPP(envData , code , function (data) {
+		if(data.error)
+		{
+			res.send(data.error);
+		}    	
+		else
+		{
+			res.send(data.output);
+		}
+
+	});
+}
 }
 
 router.post('/signup',Signup);
