@@ -1,7 +1,56 @@
 <div ng-controller="createController as create">
 	<div class="container">
 		<div class="row">
-			<h3 style="text-align: center;">Hello {{create.name}}, Just a few more things to do</h3>
+			<h3 style="text-align: center;">Hello {{create.name}}, here are your probelms:</h3>
+			<h5 style="text-align: center;">Have a nice time :)</h5>
+		</div>
+		<div class="card hoverable">
+			<div class="card-content">
+				<div class="card-title" align="center">
+					Question 1 : swapping
+				</div> 
+				<p>
+					&nbsp;&nbsp;Swap the two numbers in three ways:
+					<ul class="collection">
+						<li class="collection-item">
+							Using a temporary variable
+						</li>
+						<li class="collection-item">
+							Without using a temp variable
+						</li>
+						<li class="collection-item">
+							In least number of statements.
+						</li>
+					</ul>
+				</p>
+			</div>
+			<div class="card-action">
+				<button ng-click="create.codeNow(1)" class="btn waves-effect waves-light">Code the question</button>
+			</div>
+		</div>
+		<div class="card hoverable">
+			<div class="card-content">
+				<div class="card-title" align="center">
+					Question 1 : swapping
+				</div> 
+				<p>
+					&nbsp;&nbsp;Swap the two numbers in three ways:
+					<ul class="collection">
+						<li class="collection-item">
+							Using a temporary variable
+						</li>
+						<li class="collection-item">
+							Without using a temp variable
+						</li>
+						<li class="collection-item">
+							In least number of statements.
+						</li>
+					</ul>
+				</p>
+			</div>
+			<div class="card-action">
+				<button ng-click="create.codeNow(1)" class="btn waves-effect waves-light">Code the question</button>
+			</div>
 		</div>
 	</div>
 </div>

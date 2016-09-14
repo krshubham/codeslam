@@ -49,70 +49,86 @@
     <div>
         <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
     </div>
-    <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
+    <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;" ng-click="codeCtrl.openModal()">
+    <a class="btn-floating btn-large red" href="#modal1">
+          <i class="material-icons">menu</i>
+      </a>
+  </div>
+  <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
 
-        <!-- The languages in which codes can be written -->
-        <select id="ace-mode" style="margin-left:4.5vw;margin-right:10px;width:100px;" class="z-depth-1" ng-model="codeCtrl.lang" >
-            <option value="">Language</option>
-            <option value="c_cpp">C/C++</option>
-            <option value="Java">Java</option>
-            <option value="Python">Python</option>
-        </select>
+    <!-- The languages in which codes can be written -->
+    <select id="ace-mode" style="margin-left:4.5vw;margin-right:10px;width:100px;" class="z-depth-1" ng-model="codeCtrl.lang" >
+        <option value="">Language</option>
+        <option value="c_cpp">C/C++</option>
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+    </select>
 
-    </select>
-    <select id="ace-theme" class="z-depth-1">
-        <option value="Themes" disabled selected="selected">Themes</option>
-        <optgroup label="Bright">
-            <option value="chrome">Chrome</option>
-            <option value="clouds">Clouds</option>
-            <option value="crimson_editor">Crimson editor</option>
-            <option value="dawn">Dawn</option>
-            <option value="dreamweaver">Dreamweaver</option>
-            <option value="eclipse">Eclipse</option>
-            <option value="github">Github</option>
-            <option value="solarized_light">Solarized light</option>
-            <option value="textmate">Textmate</option>
-            <option value="tomorrow">Tomorrow</option>
-            <option value="xcode">Xcode</option>
-        </optgroup>
-        <optgroup label="Dark">
-            <option value="clouds_midnight">Clouds midnight</option>
-            <option value="cobalt">Cobalt</option>
-            <option value="idle_fingers">Idle fingers</option>
-            <option value="kr_theme">Kr_theme</option>
-            <option value="merbivore">Merbivore</option>
-            <option value="merbivore_soft">Merbivore soft</option>
-            <option value="mono_industrial">Mono industrial</option>
-            <option value="monokai">Monokai</option>
-            <option value="pastel_on_dark">Pastel on dark</option>
-            <option value="solarized_dark">Solarized dark</option>
-            <option value="terminal">Terminal</option>
-            <option value="tomorrow_night">Tomorrow night</option>
-            <option value="tomorrow_night_blue">Tomorrow night blue</option>
-            <option value="tomorrow_night_bright">Tomorrow night bright</option>
-            <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
-            <option value="twilight">Twilight</option>
-            <option value="vibrant_ink">Vibrant ink</option>
-        </optgroup>
-    </select>
-    <form accept-charset="utf-8" style="margin-bottom:0;">
-        <label>Font size:
+</select>
+<select id="ace-theme" class="z-depth-1">
+    <option value="Themes" disabled selected="selected">Themes</option>
+    <optgroup label="Bright">
+        <option value="chrome">Chrome</option>
+        <option value="clouds">Clouds</option>
+        <option value="crimson_editor">Crimson editor</option>
+        <option value="dawn">Dawn</option>
+        <option value="dreamweaver">Dreamweaver</option>
+        <option value="eclipse">Eclipse</option>
+        <option value="github">Github</option>
+        <option value="solarized_light">Solarized light</option>
+        <option value="textmate">Textmate</option>
+        <option value="tomorrow">Tomorrow</option>
+        <option value="xcode">Xcode</option>
+    </optgroup>
+    <optgroup label="Dark">
+        <option value="clouds_midnight">Clouds midnight</option>
+        <option value="cobalt">Cobalt</option>
+        <option value="idle_fingers">Idle fingers</option>
+        <option value="kr_theme">Kr_theme</option>
+        <option value="merbivore">Merbivore</option>
+        <option value="merbivore_soft">Merbivore soft</option>
+        <option value="mono_industrial">Mono industrial</option>
+        <option value="monokai">Monokai</option>
+        <option value="pastel_on_dark">Pastel on dark</option>
+        <option value="solarized_dark">Solarized dark</option>
+        <option value="terminal">Terminal</option>
+        <option value="tomorrow_night">Tomorrow night</option>
+        <option value="tomorrow_night_blue">Tomorrow night blue</option>
+        <option value="tomorrow_night_bright">Tomorrow night bright</option>
+        <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
+        <option value="twilight">Twilight</option>
+        <option value="vibrant_ink">Vibrant ink</option>
+    </optgroup>
+</select>
+<form accept-charset="utf-8" style="margin-bottom:0;">
+    <label>Font size:
         <input type="number" name="font_size" id="font_size" style="width:45px;height:20px;margin-bottom:-1vw;text-align:center;border:hidden;" min="12" value="12" onclick="font_change()" />
-        </label>
-    </form>
+    </label>
+</form>
 
-    <div id="editor" class="z-depth-1">#include&lt;iostream.h&gt;
-
-        int main(){
-        cout<<"Hello World" ;
-    }                </div>
-    <br>
-    <form style="margin:0 4.5vw;">
-        <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
-    </form>
-    <br>
-    <a class="waves-effect waves-light btn submit" id="submit" ng-click="codeCtrl.submit()">Submit</a>
+<div id="editor" class="z-depth-1">
+    #include &lt;iostream&gt;
+    using namespace std;
+    int main(){
+    return 0;
+}                
 </div>
+<br>
+<form style="margin:0 4.5vw;">
+    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
+</form>
+<br>
+<a class="waves-effect waves-light btn submit" id="submit" ng-click="codeCtrl.submit()">Submit</a>
+</div>
+</div>
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>
 
 <script>
@@ -138,7 +154,11 @@
         enableBasicAutocompletion: true,
         enableSnippets: true,
         enableLiveAutocompletion: true
-    });      
+    });  
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+});    
 </script>
 <style type="text/css">
     #main-title{

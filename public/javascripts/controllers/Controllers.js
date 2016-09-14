@@ -101,6 +101,9 @@ app.controller('codeController',['Code' ,function(Code){
 			});
 		}
 	};
+	vm.openModal = function(){
+		alert('modal to be opened');
+	}
 }]);
 
 app.controller('aboutController',function(){
@@ -117,6 +120,10 @@ app.controller('createController', ['Auth','$location','$window',function(Auth,$
 		}
 		else{
 			$location.path('/login');
+		}
+		vm.codeNow = function(num){
+			console.log(num);
+
 		}
 	}	
 	else{
