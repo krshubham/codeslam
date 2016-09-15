@@ -1,7 +1,7 @@
 <div ng-controller="createController as create">
 	<div class="container">
 		<div class="row">
-			<h3 style="text-align: center;">Hello {{create.name}}, here are your probelms:</h3>
+			<h3 style="text-align: center;">Hello {{create.name}}, here are your problems:</h3>
 			<h5 style="text-align: center;">Have a nice time :)</h5>
 		</div>
 		<div class="card hoverable">
@@ -31,21 +31,50 @@
 		<div class="card hoverable">
 			<div class="card-content">
 				<div class="card-title" align="center">
-					Question 1 : swapping
+					Question 2 : Fibonacci Number
 				</div> 
 				<p>
-					&nbsp;&nbsp;Swap the two numbers in three ways:
-					<ul class="collection">
-						<li class="collection-item">
-							Using a temporary variable
-						</li>
-						<li class="collection-item">
-							Without using a temp variable
-						</li>
-						<li class="collection-item">
-							In least number of statements.
-						</li>
-					</ul>
+					&nbsp;&nbsp;Find the 24<sup>th</sup> Fibonacci number:
+				</p>
+			</div>
+			<div class="card-action">
+				<button ng-click="create.codeNow(1)" class="btn waves-effect waves-light">Code the question</button>
+			</div>
+		</div>
+		<div class="card hoverable">
+			<div class="card-content">
+				<div class="card-title" align="center">
+					Question 3 : Right Triangle
+				</div> 
+				<p>
+					A right angled triangle has a hypotenuse equal to 10cm and an altitude of 6 cm. Find the area<br> of the triangle.
+				</p>
+			</div>
+			<div class="card-action">
+				<button ng-click="create.codeNow(1)" class="btn waves-effect waves-light">Code the question</button>
+			</div>
+		</div>
+		<div class="card hoverable">
+			<div class="card-content">
+				<div class="card-title" align="center">
+					Question 4 : Find the ball.
+				</div> 
+				<p>
+					You have 17 magenta and 17 green balls. You remove 2 balls at a time. If the two balls are same in colour, add in one extra green ball. If they are different in colours, add in an extra magenta ball.What is the colour of the final ball removed.<br><br>
+					<span style="font-weight: 900">Note: You have to prove it</span>
+				</p>
+			</div>
+			<div class="card-action">
+				<button ng-click="create.codeNow(1)" class="btn waves-effect waves-light">Code the question</button>
+			</div>
+		</div>
+		<div class="card hoverable">
+			<div class="card-content">
+				<div class="card-title" align="center">
+					Question 5 : Number of squares.
+				</div> 
+				<p>
+					Find the number of sqaures of edge length 2 in an isoceles right triangle of base length b.
 				</p>
 			</div>
 			<div class="card-action">
