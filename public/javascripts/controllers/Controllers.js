@@ -111,6 +111,8 @@ app.controller('aboutController',function(){
 	vm.name = 'code';	
 });
 
+
+//This is the controller that will control the upload of file and some other details from the user.
 app.controller('createController', ['Auth','$location','$window',function(Auth,$location,$window){
 	var vm = this;
 	if(Auth.isLoggedIn()){

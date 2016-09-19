@@ -22,11 +22,12 @@ router.post('/login',function(req,res,next){
 	//getting all the data from the users collection
 	users = db.get().collection('users');
 
-	//prevebting the xss vulnerable characters from entering the db.
+	//preventing the xss vulnerable characters from entering the db.
 	var email = xss(req.body.email);
 	var password = xss(req.body.password);
 	var person = {
-		email: email
+		email: email,
+		verified: true
 	}
 
 	//Finding the user from the db.
@@ -117,7 +118,8 @@ function Signup(req,res,next){
 					var user = {
 						name: name,
 						email: email,
-						password: hash
+						password: hash,
+						verified: false,
 					};
 					users.insertOne(user,function(err,done){
 						assert.equal(err,null);
