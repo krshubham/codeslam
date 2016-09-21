@@ -151,7 +151,7 @@ function CppWithoutInputs(req,res,next){
 		assert.equal(err,null);
 		//console.log('file made with the name '+ filename);
 		var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
-		//console.log(command);
+		console.log(command);
 		exec(command,function(err,stdout,stderr){
 			console.log(stderr);
 			console.log(err);
@@ -166,6 +166,8 @@ function CppWithoutInputs(req,res,next){
 	});
 }
 
+
+ 
 router.post('/signup',Signup);
 router.post('/code',CppWithoutInputs);
 
