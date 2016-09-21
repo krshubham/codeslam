@@ -14,6 +14,9 @@ var fs = require('fs');
 var cuid = require('cuid');
 var exec = require('exec');
 
+var exec  = require('child_process').exec;
+var colors = require('colors');
+
 //The login handler for the api
 router.post('/login',function(req,res,next){
 	//checking if the code is executing or not
@@ -139,36 +142,64 @@ function Signup(req,res,next){
 }
 
 
-function CppWithoutInputs(req,res,next){
+/*function CppWithoutInputs(req,res,next){
 	var code = req.body.code,
 		lang = req.body.lang;
+		console.log(lang) ;
 		//console.log(code);
 		var path = './temp/';
 		var filename = cuid.slug();
-		//console.log(filename);
-	//res.send('The language used was: '+ lang +' and the code is: '+code);
-	fs.writeFile(path + filename + '.cpp',code,function(err){
-		assert.equal(err,null);
-		//console.log('file made with the name '+ filename);
-		var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
-		console.log(command);
-		exec(command,function(err,stdout,stderr){
-			console.log(stderr);
-			console.log(err);
-			//assert.equal(err,null);
-			//assert.equal(stderr,null);
-			exec(path+filename,function(a,b,c){
-				//console.log(a);
-				res.send(b);
-				//console.log(c);
-			});
-		});	
+		console.log(filename);
+		console.log('The language used was: '+ lang +' and the code is: '+code);
+		fs.writeFile(path + filename + '.cpp',code,function(err){
+			assert.equal(err,null);
+			//console.log('file made with the name '+ filename);
+			var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
+			console.log(command);
+			exec(command,function(err,stdout,stderr){
+				console.log(stderr);
+				console.log(err);
+				//assert.equal(err,null);
+				//assert.equal(stderr,null);
+				exec(path+filename,function(a,b,c){
+					//console.log(a);
+					res.send(b);
+					//console.log(c);
+				});
+			 });	
+		});
+}*/
+
+function PythonWithoutInputs(req, res, next){
+	var code = req.body.code ;
+	var lang = req.body.lang ;
+	// console.log(lang) ;
+
+	var filename = cuid.slug(); 
+	var path = './temp/' ;
+	// console.log(filename) ;
+	// console.log('The filename is' + filename + "and the code is" + code);
+
+	fs.writeFile(path + filename + '.py', code, function(err){
+		assert.equal(err, null);
+
+		var command = 'python ' + path + filename + '.py' ;
+		exec(command, function(err, stdout, stderr){
+			console.log(stderr) ;
+			console.log(err) ;
+			//console.log('INFO: ' + filename + '.py successfully executed !');
+			//console.log(out) ;
+			res.send(stdout) ;
+
+		});
+
 	});
 }
 
 
+
  
 router.post('/signup',Signup);
-router.post('/code',CppWithoutInputs);
+router.post('/code',PythonWithoutInputs);
 
 module.exports = router;
