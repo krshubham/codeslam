@@ -30,7 +30,6 @@ router.post('/login',function(req,res,next){
 	var password = xss(req.body.password);
 	var person = {
 		email: email,
-		verified: true
 	}
 
 	//Finding the user from the db.
@@ -122,7 +121,6 @@ function Signup(req,res,next){
 						name: name,
 						email: email,
 						password: hash,
-						verified: false,
 					};
 					users.insertOne(user,function(err,done){
 						assert.equal(err,null);
