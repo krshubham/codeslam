@@ -3,132 +3,131 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice','codeservice']);
+var app = angular.module('controllers', ['authservice', 'codeservice']);
 
 //global variable for setting the title of the page
 var title = '';
 
-app.controller('mainController',['Auth','$location',function(Auth,$location){
+app.controller('mainController', ['Auth', '$location', function (Auth, $location) {
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
 	vm.path = '/';
-	vm.loggedIn = function(){
-		if(Auth.isLoggedIn()){
+	vm.loggedIn = function () {
+		if (Auth.isLoggedIn()) {
 			vm.path = '/user/create';
 			return true;
 		}
-		else{
+		else {
 			vm.path = '/';
 			return false;
 		}
 	}
-	vm.logout = function(){
+	vm.logout = function () {
 		Auth.logout();
 		$location.path('/');
 	}
 }]);
 
-app.controller('homeController',function(){
+app.controller('homeController', function () {
 	var vm = this;
 });
 
-app.controller('loginController', ['Auth','$location','$window',function(Auth,$location,$window){
-	var vm  = this;
-	vm.error  = false;
-	vm.submitForm = function(){
+app.controller('loginController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
+	var vm = this;
+	vm.error = false;
+	vm.submitForm = function () {
 		var user = vm.user;
 		Auth.login(user)
-		.then(function(status){
-			if(status.data.success){
-				$location.path('/user/create')
-			}
-			else{
-				 vm.error = true;
-			}
-		});
+			.then(function (status) {
+				if (status.data.success) {
+					$location.path('/user/create')
+				}
+				else {
+					vm.error = true;
+				}
+			});
 	};
 }]);
 
-app.controller('signupController',['Auth','$location','$window', function(Auth,$location,$window){
+app.controller('signupController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
 	var success = false;
 	vm.error = false;
-	vm.checkPassword = function(){
-		if(vm.person.password !== vm.person.cp){
+	vm.checkPassword = function () {
+		if (vm.person.password !== vm.person.cp) {
 			vm.error = true;
 		}
-		else{
+		else {
 			vm.error = false;
 		}
-	}	
-	vm.submitForm = function(){
-		if(vm.error)
+	}
+	vm.submitForm = function () {
+		if (vm.error)
 			return false;
-		else{
+		else {
 			var user = vm.person;
 			//console.log(user);
 			Auth.signup(user)
-			.success(function(data) {
-				console.log(data);
-				if(data.success)
-					$location.path('/login');
-				else{
-					return false;
-				}
-			});
+				.success(function (data) {
+					console.log(data);
+					if (data.success)
+						$location.path('/login');
+					else {
+						return false;
+					}
+				});
 		}
 	};
 }]);
 
-app.controller('codeController',['Code' ,function(Code){
+app.controller('codeController', ['Code', function (Code) {
 	var vm = this;
 	vm.name = 'code';
-	vm.submit = function(){
+	vm.out = "Let's see!";
+	vm.submit = function () {
 		var code = editor.getValue();
 		var lang = vm.lang;
-		if(lang === undefined || lang === ''){
+		if (lang === undefined || lang === '') {
 			alert('Choose correct programming language');
 			return false;
 		}
-		else{
+		else {
 			var data = {
 				code: code,
 				lang: lang
 			};
-			Code.send(data).then(function(data){
-				alert(data.data);
+			Code.send(data).then(function (data) {
+				console.log(data);
+				vm.out = data.data.output;
 			});
 		}
 	};
-	vm.openModal = function(){
-		alert('modal to be opened');
-	}
 }]);
 
-app.controller('aboutController',function(){
-	var vm  = this;
-	vm.name = 'code';	
+app.controller('aboutController', function () {
+	var vm = this;
+	vm.name = 'code';
 });
 
 
 //This is the controller that will control the upload of file and some other details from the user.
-app.controller('createController', ['Auth','$location','$window',function(Auth,$location,$window){
+app.controller('createController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
-	if(Auth.isLoggedIn()){
+	if (Auth.isLoggedIn()) {
 		var user = Auth.getUser();
-		if(user){
+		if (user) {
 			vm.name = user.name.split(' ')[0];
 		}
-		else{
+		else {
 			$location.path('/login');
 		}
-		vm.codeNow = function(num){
+		vm.codeNow = function (num) {
 			console.log(num);
 
 		}
-	}	
-	else{
+	}
+	else {
 		$location.path('/login');
 	}
 }]);

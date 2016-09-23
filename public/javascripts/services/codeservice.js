@@ -11,7 +11,7 @@ angular.module('codeservice',[])
 	var codeFactory = {};
 
 	codeFactory.send = function(code){
-		return $http.post('/api/code',code)
+		return $http.post('/code/compile',code)
 		.success(function(data){
 			return data;
 		})

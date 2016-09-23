@@ -1,47 +1,52 @@
-    
 <style type="text/css" media="screen">
     @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
-
-
-    #editor { 
-        position: relative;/* the styling for the coding window */
+    #editor {
+        position: relative;
+        /* the styling for the coding window */
         height: 70vh;
-        width: 60vw ;
-        margin-left: auto ;
+        width: 60vw;
+        margin-left: auto;
         margin-right: auto;
-        margin-top:2vh ;
+        margin-top: 2vh;
     }
-
-    label{ font:300 1em/1.5em 'Lato', sans-serif; color:rgba(53, 137, 174, 1);}
-
-    img { width:100px; float:left;}
-
-    label{ 
-        float:right; 
-        display:inline-block; 
-        margin-left:-100%; 
-        margin-top:1.5em;
-    } 
-
-    label { margin-right:170px; }
-
-    label + label { margin-right:0px; }
-
-    select { 
-        display:block; 
-        width:150px; 
-        margin:2vh 2vw ;
+    
+    label {
+        font: 300 1em/1.5em 'Lato', sans-serif;
+        color: rgba(53, 137, 174, 1);
+    }
+    
+    img {
+        width: 100px;
         float: left;
-    }  
-
-    .submit{
+    }
+    
+    label {
+        float: right;
+        display: inline-block;
+        margin-left: -100%;
+        margin-top: 1.5em;
+    }
+    
+    label {
+        margin-right: 170px;
+    }
+    
+    label + label {
+        margin-right: 0px;
+    }
+    
+    select {
+        display: block;
+        width: 150px;
+        margin: 2vh 2vw;
+        float: left;
+    }
+    
+    .submit {
         margin-left: 4.5vw;
     }
-
-    .font{
-
-    }
-
+    
+    .font {}
 </style>
 
 <!-- here goes the main body of the code page -->
@@ -49,23 +54,24 @@
     <div>
         <h1 style="font-family: 'Exo 2', sans-serif;text-align:center;">CREATE | OPTIMIZE | PERFECT</h1>
     </div>
-    <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;" ng-click="codeCtrl.openModal()">
-    <a class="btn-floating btn-large red" href="#modal1">
-          <i class="material-icons">menu</i>
-      </a>
-  </div>
-  <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">   
+    <!-- Modal Trigger -->
+    <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red modal-trigger" href="#modal1">
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
+    <div class="container z-depth-2 grey lighten-1" style="padding-top:1vh;margin:3vh auto;height:120vh;">
 
-    <!-- The languages in which codes can be written -->
-    <select id="ace-mode" style="margin-left:4.5vw;margin-right:10px;width:100px;" class="z-depth-1" ng-model="codeCtrl.lang" >
+        <!-- The languages in which codes can be written -->
+        <select id="ace-mode" style="margin-left:4.5vw;margin-right:10px;width:100px;" class="z-depth-1" ng-model="codeCtrl.lang">
         <option value="">Language</option>
         <option value="c_cpp">C/C++</option>
         <option value="Java">Java</option>
         <option value="Python">Python</option>
     </select>
 
-</select>
-<select id="ace-theme" class="z-depth-1">
+        </select>
+        <select id="ace-theme" class="z-depth-1">
     <option value="Themes" disabled selected="selected">Themes</option>
     <optgroup label="Bright">
         <option value="chrome">Chrome</option>
@@ -100,35 +106,30 @@
         <option value="vibrant_ink">Vibrant ink</option>
     </optgroup>
 </select>
-<form accept-charset="utf-8" style="margin-bottom:0;">
-    <label>Font size:
-        <input type="number" name="font_size" id="font_size" style="width:45px;height:20px;margin-bottom:-1vw;text-align:center;border:hidden;" min="12" value="12" onclick="font_change()" />
+        <form accept-charset="utf-8" style="margin-bottom:0;">
+            <label>Font size:
+        <input type="number" name="font_size" id="font_size" style="width:45px;height:20px;margin-bottom:-1vw;text-align:center;border:hidden;" min="18" value="18" onclick="font_change()" />
     </label>
-</form>
+        </form>
 
-<div id="editor" class="z-depth-1">
-    #include &lt;iostream&gt;
-    using namespace std;
-    int main(){
-    return 0;
-}                
-</div>
-<br>
-<form style="margin:0 4.5vw;">
-    <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
-</form>
-<br>
-<a class="waves-effect waves-light btn submit" id="submit" ng-click="codeCtrl.submit()">Submit</a>
-</div>
-</div>
-<div id="modal1" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
+        <div id="editor" class="z-depth-1">
+        </div>
+        <br>
+        <form style="margin:0 4.5vw;">
+            <textarea rows="30" style="height:10vw;background-color:#ffffff;" placeholder="Custom Inputs" name="inputs" id="inputs"></textarea>
+        </form>
+        <br>
+        <a class="waves-effect waves-light btn submit" id="submit" ng-click="codeCtrl.submit()">Submit</a>
+    </div>
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4 style="text-align:center;">Output</h4>
+            <pre>{{codeCtrl.out}}</pre>
+        </div>
+        <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -149,7 +150,6 @@
       editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
   });
 
-
     editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
@@ -161,7 +161,7 @@
 });    
 </script>
 <style type="text/css">
-    #main-title{
+    #main-title {
         font-size: 3rem;
         text-align: center;
         padding: 0;
