@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "agenda": "^0.9.0",
     "bcrypt": "^0.8.7",
     "body-parser": "~1.13.2",
     "compilex": "^0.7.3",

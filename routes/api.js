@@ -199,5 +199,7 @@ function PythonWithoutInputs(req, res, next){
  
 router.post('/signup',Signup);
 router.post('/code',PythonWithoutInputs);
-
+router.get('/test',function(req,res){
+	res.send('Hello');
+});
 module.exports = router;
