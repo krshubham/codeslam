@@ -12,7 +12,7 @@ const saltRounds = 10;
 var cuid = require('cuid');
 var secret = 'g@@k@911';
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://kumar.shubham92411%40gmail.com:mkj1970@#@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://kumarshubham347%40gmail.com:shubh1997@smtp.gmail.com');
 
 //The login handler for the api
 router.post('/login', function (req, res, next) {
