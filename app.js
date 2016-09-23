@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var api = require('./routes/api');
 var compiler = require('./routes/compiler');
+var verify = require('./routes/verify');
 var app = express();
 //Never ever require any package or install it through npm without mentioning in package.json
 
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/verify',verify);
 app.use('/api', api);
 app.use('/code',compiler);
 app.use('*', function(req,res,next){
