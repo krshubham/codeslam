@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <title>Verify | Codeslam</title>
+</head>
+<body>
+    <div>
+        <h1 style="text-align:center;">Enter the code sent on your email</h1>
+        <div align="center">
+            <form action="/verify" method="POST" class="verify-form">
+                <label for="verification_code">Enter the code below</label>
+                <input type="password" name="id">
+                <button type="submit" class="waves-effect waves-light btn light-blue">Done</button>
+            </form>
+        </div>
+    </div>
+    <style>
+        .verify-form{
+            margin-top: 2em;
+            width: 50%;
+        }
+    </style>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+</html>
