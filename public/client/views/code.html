@@ -131,6 +131,10 @@
 </div>
 
 <script>
+    (function font_change(){
+        var  size = document.getElementById('font_size').value ;
+        document.getElementById('editor').style.fontSize=size+'px';
+    })();
     function font_change(){
         var  size = document.getElementById('font_size').value ;
         document.getElementById('editor').style.fontSize=size+'px';
