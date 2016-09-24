@@ -1,0 +1,27 @@
+<div ng-controller="facultyloginController as flc">
+    <h1 style="text-align:center">Codeslam.Faculty.Login()</h1>
+    <div align="center">
+        <form ng-submit="flc.login()">
+            <div class="row" alig="left" >
+                <label for="email">Email</label>
+                <input type="email" class="validate" ng-model="flc.faculty.email">
+            </div>
+            <div class="row" align="center">
+                <label for="email" style="text-align:left;">Password</label>
+                <input type="password" ng-model="flc.faculty.password">
+            </div>
+            <button type="submit" class="btn waves-effect deep-purple">Login</button>
+        </form>
+    </div>
+</div>
+<style>
+    form {
+        width: 50%;
+        margin-top: 3em;
+    }
+    label{
+        color: #000;
+        text-align:left;
+        font-weight: 600;
+    }
+</style>

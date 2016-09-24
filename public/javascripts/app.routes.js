@@ -38,6 +38,11 @@ app.config(function($routeProvider,$locationProvider){
 			controller: 'createController',
 			controllerAs: 'create'
 		})
+		.when('/faculty',{
+			templateUrl: '/client/views/faculty_login.html',
+			controller: 'facultyloginController',
+			controllerAs: 'flc'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

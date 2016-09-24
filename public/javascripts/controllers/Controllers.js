@@ -40,12 +40,15 @@ app.controller('homeController', function () {
 app.controller('loginController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
 	vm.error = false;
+	if (Auth.isLoggedIn()) {
+		$location.path('/user/home');
+	}
 	vm.submitForm = function () {
 		var user = vm.user;
 		Auth.login(user)
 			.then(function (status) {
 				if (status.data.success) {
-					$location.path('/user/create')
+					$location.path('/user/home');
 				}
 				else {
 					vm.error = true;
@@ -136,3 +139,5 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 		$location.path('/login');
 	}
 }]);
+
+
