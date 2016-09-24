@@ -104,6 +104,7 @@ app.controller('codeController', ['Code', function (Code) {
 			Code.send(data).then(function (data) {
 				console.log(data);
 				vm.out = data.data.output;
+				$('#modal1').openModal();
 			});
 		}
 	};
