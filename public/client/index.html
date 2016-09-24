@@ -45,10 +45,11 @@
 		<div class="nav-wrapper">
 			<a href="{{main.path}}" class="brand-logo">Codeslam</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li ng-show="main.loggedIn()"><a href="/user/profile">{{main.name}}</a></li>
 				<li><a href="/code">Code</a></li>
 				<li><a href="/login" ng-hide="main.loggedIn()">Login</a></li>
 				<li><a href="/signup" ng-hide="main.loggedIn()">Signup</a></li>
-				<li><a href="/about" ng-hide="main.loggedIn()">About us</a></li>
+				<li><a href="/about" >About us</a></li>
 				<li><a href="#" ng-show="main.loggedIn()" ng-click="main.logout()">Logout</a></li>
 			</ul>
 		</div>

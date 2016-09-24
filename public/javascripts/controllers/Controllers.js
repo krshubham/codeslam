@@ -15,7 +15,11 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 	vm.path = '/';
 	vm.loggedIn = function () {
 		if (Auth.isLoggedIn()) {
-			vm.path = '/user/create';
+			vm.path = '/user/home';
+			var user = Auth.getUser();
+			if (user) {
+				vm.name = user.name.split(' ')[0];
+			}
 			return true;
 		}
 		else {

@@ -33,7 +33,7 @@ app.config(function($routeProvider,$locationProvider){
 			controller: 'codeController' ,
 			controllerAs: 'code'
 		})
-		.when('/user/create',{
+		.when('/user/home',{
 			templateUrl: '/client/views/create.html',
 			controller: 'createController',
 			controllerAs: 'create'
