@@ -120,7 +120,7 @@ function Signup(req, res, next) {
 					subject: 'Confirm your Email', // Subject line
 					text: 'Hey there, We recently got a login request for this email. Click on the link below to' +
 					'verify',
-					html: '<a href="http://52.66.86.243/verify/' + link + '">Click Here</a>' // html body
+					html: '<a href="http://localhost/verify/' + link + '">Click Here</a>' // html body
 				};
 				console.log(mailOptions.html);
 				bcrypt.hash(password, saltRounds, function (err, hash) {
@@ -133,10 +133,6 @@ function Signup(req, res, next) {
 					users.insertOne(user, function (err, done) {
 						assert.equal(err, null);
 						console.log('user inserted');
-						return res.json({
-							success: true,
-							message: 'user successfully created'
-						});
 					});
 				});
 				transporter.sendMail(mailOptions, function (error, info) {
@@ -144,6 +140,10 @@ function Signup(req, res, next) {
 						return console.log(error);
 					}
 					console.log('Message sent: ' + info.response);
+					return res.json({
+						success: true,
+						message: 'user successfully created'
+					});
 				});
 			}
 		});

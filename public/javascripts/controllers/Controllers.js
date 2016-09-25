@@ -73,13 +73,17 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 		if (vm.error)
 			return false;
 		else {
+			console.log('Loading');
 			var user = vm.person;
 			//console.log(user);
 			Auth.signup(user)
 				.success(function (data) {
+					Materialize.toast('Verification Email sent successfuly', 5000,'rounded')
 					console.log(data);
-					if (data.success)
+					if (data.success){
+						console.log('Loading done');
 						$location.path('/login');
+					}
 					else {
 						return false;
 					}
