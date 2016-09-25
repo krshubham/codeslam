@@ -4,11 +4,11 @@
         <form ng-submit="flc.login()">
             <div class="row" alig="left" >
                 <label for="email">Email</label>
-                <input type="email" class="validate" ng-model="flc.faculty.email">
+                <input type="email" class="validate" ng-model="flc.faculty.email" ng-required="">
             </div>
             <div class="row" align="center">
                 <label for="email" style="text-align:left;">Password</label>
-                <input type="password" ng-model="flc.faculty.password">
+                <input type="password" ng-model="flc.faculty.password" required>
             </div>
             <button type="submit" class="btn waves-effect deep-purple">Login</button>
         </form>

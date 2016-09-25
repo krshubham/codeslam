@@ -21,7 +21,7 @@ function PythonWithoutInputs(req, res, next) {
         assert.equal(err, null);
         var command = 'python3 ' + path + filename + '.py';
         //console.log(command);
-        exec(command, function (err, stdout, stderr) {
+        exec(command,{maxBuffer: 1024 * 500},function (err, stdout, stderr) {
             console.log(stderr);
             console.log(err);
             console.log('INFO: ' + filename + '.py successfully executed !');

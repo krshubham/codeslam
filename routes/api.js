@@ -105,7 +105,7 @@ function Signup(req, res, next) {
 		}
 		users.findOne(user, function (err, user) {
 			assert.equal(err, null);
-			console.log('checking the user');
+			console.log(user);
 			if (user) {//the user exists already
 				return res.json({
 					success: false,
@@ -133,17 +133,17 @@ function Signup(req, res, next) {
 					users.insertOne(user, function (err, done) {
 						assert.equal(err, null);
 						console.log('user inserted');
-					});
-				});
-				transporter.sendMail(mailOptions, function (error, info) {
-					if (error) {
-						res.redirect('/error')
-						return console.log(error);
-					}
-					console.log('Message sent: ' + info.response);
-					return res.json({
-						success: true,
-						message: 'user successfully created'
+						transporter.sendMail(mailOptions, function (error, info) {
+							if (error) {
+								res.redirect('/error')
+								return console.log(error);
+							}
+							console.log('Message sent: ' + info.response);
+							return res.json({
+								success: true,
+								message: 'user successfully created'
+							});
+						});
 					});
 				});
 			}

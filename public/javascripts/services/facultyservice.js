@@ -11,7 +11,7 @@ angular.module('facultyservice', [])
 	// create auth factory object
 	var authFactory = {};
 
-	// log a user in
+	// log a faculty in
 	authFactory.login = function(user) {
 
 		// return the promise object and its data

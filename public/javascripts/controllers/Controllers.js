@@ -60,8 +60,8 @@ app.controller('loginController', ['Auth', '$location', '$window', function (Aut
 app.controller('signupController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
 	var success = false;
-	vm.error = false;
-	vm.checkPassword = function () {
+	var vm.error = false;
+	var vm.checkPassword = function () {
 		if (vm.person.password !== vm.person.cp) {
 			vm.error = true;
 		}
@@ -69,7 +69,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			vm.error = false;
 		}
 	}
-	vm.submitForm = function () {
+	var vm.submitForm = function () {
 		if (vm.error)
 			return false;
 		else {
@@ -78,9 +78,9 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			//console.log(user);
 			Auth.signup(user)
 				.success(function (data) {
-					Materialize.toast('Verification Email sent successfuly', 5000,'rounded')
 					console.log(data);
 					if (data.success){
+						Materialize.toast('Verification Email sent successfuly', 5000,'rounded')
 						console.log('Loading done');
 						$location.path('/login');
 					}
@@ -94,9 +94,9 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 
 app.controller('codeController', ['Code', function (Code) {
 	var vm = this;
-	vm.name = 'code';
-	vm.out = "Let's see!";
-	vm.submit = function () {
+	var vm.name = 'code';
+	var vm.out = "Let's see!";
+	var vm.submit = function () {
 		var code = editor.getValue();
 		var lang = vm.lang;
 		if (lang === undefined || lang === '') {
@@ -119,7 +119,7 @@ app.controller('codeController', ['Code', function (Code) {
 
 app.controller('aboutController', function () {
 	var vm = this;
-	vm.name = 'code';
+	var vm.name = 'code';
 });
 
 
