@@ -43,6 +43,11 @@ app.config(function($routeProvider,$locationProvider){
 			controller: 'facultyloginController',
 			controllerAs: 'flc'
 		})
+		.when('/error',{
+			templateUrl: '/client/views/error.html',
+			controller: 'errorController',
+			controllerAs: 'error'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

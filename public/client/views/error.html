@@ -1,0 +1,76 @@
+<div class="container" ng-controller="errorController as error">
+    <h1 style="text-align:center;">Some Error occured</h1>
+        <div class="message">
+            <div class="overlay"></div>
+            <div class="content">
+                <h1 class="content__header">SORRY</h1>
+                <h1 class="content__header">You Have</h1>
+                <h1 class="content__header">encountered</h1>
+                <h1 class="content__header content__header--strong">Error</h1>
+            </div>
+        </div>
+</div>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Montserrat:700,400);
+@import url(http://fonts.googleapis.com/css?family=Cabin);
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  display: block;
+  background-color: #f8fff3;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FFF8FFF3', endColorstr='#FF085078');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjEwMCUiIGN5PSIxMDAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMTAlIiBzdG9wLWNvbG9yPSIjZjhmZmYzIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiM4NWQ4Y2UiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzg1ZDhjZSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjODVkOGNlIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiM4NWQ4Y2UiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -moz-radial-gradient(100% 100%, ellipse farthest-side, #f8fff3 10%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%);
+  background-image: -webkit-radial-gradient(100% 100%, ellipse farthest-side, #f8fff3 10%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%);
+  background-image: radial-gradient(ellipse farthest-side at 100% 100%, #f8fff3 10%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%, #85d8ce 50%);
+}
+
+.message {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  width: 60vh;
+  margin: 0 auto 0 auto;
+  display: block;
+  border: 10px solid black;
+  padding: 2em 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  content: "1";
+  background-color: white;
+  width: 100vh;
+  height: 100vw;
+  display: block;
+  position: absolute;
+  margin: -4em;
+  z-index: 1;
+  opacity: .5;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  line-height: 3.5em;
+}
+.content__header {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 400;
+}
+.content__header--strong {
+  font-weight: 700;
+  text-shadow: 5px 6px 0 rgba(0, 0, 0, 0.2);
+}
+.content__header:first-of-type {
+  font-weight: 700;
+  display: inline-block;
+  border-bottom: 2px solid black;
+  margin-bottom: 0.5em;
+}
+</style>

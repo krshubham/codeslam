@@ -13,9 +13,10 @@ function verify(req, res) {
     tempUsers.findOne({ v_link: req.params.id }, function (err, found) {
         try {
             assert.equal(err, null);
-            console.log('hey'+found);
+            console.log('hey' + found);
             if (!found) {
                 console.log('Not in the temp dir');
+                res.redirect('/error');
             }
             else {
                 delete found.v_link;
@@ -24,6 +25,7 @@ function verify(req, res) {
                     assert.equal(err, null);
                     if (user) {
                         console.log('User already exists');
+                        res.redirect('/error');
                     }
                     else {
                         users.insertOne(perma_user, function (err, okay) {
@@ -34,15 +36,16 @@ function verify(req, res) {
                             else {
                                 console.log('peram db insertion done');
                                 res.redirect('/login');
-                                
+
                             }
                         });
-                        tempUsers.deleteOne(found,function(err,done){
-                            assert.equal(err,null);
-                            if(!done){
+                        tempUsers.deleteOne(found, function (err, done) {
+                            assert.equal(err, null);
+                            if (!done) {
                                 console.log('unable to delete');
+                                res.redirect('/error');
                             }
-                            else{
+                            else {
                                 console.log('Tempuser deleted');
                             }
                         });
@@ -51,6 +54,7 @@ function verify(req, res) {
             }
         }
         catch (err) {
+            res.redirect('/error');
             console.log(err);
         }
     });

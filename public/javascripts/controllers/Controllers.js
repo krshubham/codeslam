@@ -144,4 +144,8 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 	}
 }]);
 
+app.controller('errorController',[function(){
+	var vm = this;
+}]);
+
 
