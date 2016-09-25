@@ -33,6 +33,16 @@ function verify(req, res) {
                             }
                             else {
                                 console.log('peram db insertion done');
+                                res.redirect('/login');
+                            }
+                        });
+                        tempUsers.deleteOne(found,function(err,done){
+                            assert.equal(err,null);
+                            if(!done){
+                                console.log('unable to delete');
+                            }
+                            else{
+                                console.log(done);
                             }
                         });
                     }
