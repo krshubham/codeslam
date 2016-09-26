@@ -60,7 +60,7 @@ app.controller('loginController', ['Auth', '$location', '$window', function (Aut
 app.controller('signupController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
 	var success = false;
-	var vm.error = false;
+	vm.error = false;
 	vm.checkPassword = function () {
 		if (vm.person.password !== vm.person.cp) {
 			vm.error = true;
@@ -94,8 +94,8 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 
 app.controller('codeController', ['Code', function (Code) {
 	var vm = this;
-	var vm.name = 'code';
-	var vm.out = "Let's see!";
+	vm.name = 'code';
+	vm.out = "Let's see!";
 	vm.submit = function () {
 		var code = editor.getValue();
 		var lang = vm.lang;
@@ -119,7 +119,7 @@ app.controller('codeController', ['Code', function (Code) {
 
 app.controller('aboutController', function () {
 	var vm = this;
-	var vm.name = 'code';
+	vm.name = 'code';
 });
 
 
