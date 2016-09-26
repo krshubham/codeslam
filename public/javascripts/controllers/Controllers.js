@@ -61,7 +61,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 	var vm = this;
 	var success = false;
 	var vm.error = false;
-	var vm.checkPassword = function () {
+	vm.checkPassword = function () {
 		if (vm.person.password !== vm.person.cp) {
 			vm.error = true;
 		}
@@ -69,7 +69,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			vm.error = false;
 		}
 	}
-	var vm.submitForm = function () {
+	vm.submitForm = function () {
 		if (vm.error)
 			return false;
 		else {
@@ -96,7 +96,7 @@ app.controller('codeController', ['Code', function (Code) {
 	var vm = this;
 	var vm.name = 'code';
 	var vm.out = "Let's see!";
-	var vm.submit = function () {
+	vm.submit = function () {
 		var code = editor.getValue();
 		var lang = vm.lang;
 		if (lang === undefined || lang === '') {
