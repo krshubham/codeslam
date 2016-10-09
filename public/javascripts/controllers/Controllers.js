@@ -99,6 +99,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 					}
 					else {
 						vm.emailErr = true;
+						loading = false;
 						vm.message = data.message;
 						return false;
 					}
