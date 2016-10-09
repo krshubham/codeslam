@@ -64,12 +64,14 @@
 			<div class="userView">
 				<img class="background" src="../images/test.jpg">
 				<a href="#"><img class="circle" src="../images/test.jpg"></a>
-				<a href="#"><span class="white-text name">Hargur Bedi</span></a>
-				<a href="#"><span class="white-text email">hargurbedi97@gmail.com</span></a>
+				<a href="#"><span class="white-text name">{{main.name}}</span></a>
+				<a href="#"><span class="white-text email">{{main.email}}</span></a>
 			</div>
-		</li>
-		<li><a href="#" class="waves-effect"><i class="material-icons">lock</i>Log Out</a></li>
-		<li><a class="subheader">Subheader</a></li>
+			<li><a href="/code">Code</a></li>
+			<li><a href="/login" ng-hide="main.loggedIn()">Login</a></li>
+			<li><a href="/signup" ng-hide="main.loggedIn()">Signup</a></li>
+			<li><a href="/about">About us</a></li>
+			<li><a href="#" class="waves-effect" ng-show="main.loggedIn()" ng-click="main.logout()"><i class="material-icons">lock</i>Log Out</a></li>
 	</ul>
 	<div class="progress" ng-show="main.loading()">
 		<div class="indeterminate"></div>

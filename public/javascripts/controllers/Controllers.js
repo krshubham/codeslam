@@ -20,6 +20,7 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 			var user = Auth.getUser();
 			if (user) {
 				vm.name = user.name.split(' ')[0];
+				vm.email = user.email;
 			}
 			return true;
 		}
@@ -148,6 +149,7 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 	if (Auth.isLoggedIn()) {
 		var user = Auth.getUser();
 		if (user) {
+			console.log(user);
 			vm.name = user.name.split(' ')[0];
 		}
 		else {
