@@ -52,6 +52,7 @@ app.controller('loginController', ['Auth', '$location', '$window', function (Aut
 				}
 				else {
 					vm.error = true;
+					vm.message = status.data.message;
 				}
 			});
 	};

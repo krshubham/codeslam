@@ -17,7 +17,10 @@ angular.module('authservice', [])
 		// return the promise object and its data
 		return $http.post('/api/login', user)
 		.success(function(data) {
-			AuthToken.setToken(data.token);
+			console.log(data);
+			if(data.token){
+				AuthToken.setToken(data.token);
+			}
 			return data;
 		});
 	};

@@ -15,7 +15,7 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://codeslamvitc%40gmail.com:admin@911@smtp.gmail.com');
 
 //The login handler for the api
-router.post('/login', function (req, res, next) {
+router.post('/login', function (req, res) {
 	//checking if the code is executing or not
 	console.log('received the request for login');
 
@@ -25,9 +25,16 @@ router.post('/login', function (req, res, next) {
 	//preventing the xss vulnerable characters from entering the db.
 	var email = xss(req.body.email);
 	var password = xss(req.body.password);
-	var person = {
-		email: email,
+	if(!validate.isEmail(email)){
+		console.log('not email');
+		return res.json({
+			success: false,
+			message: 'Email not in correct format'	
+		});
 	}
+	var person = {
+		email: email
+	};
 	//Finding the user from the db.
 
 	users.findOne(person, function (err, user) {
@@ -40,7 +47,7 @@ router.post('/login', function (req, res, next) {
 				//user not found
 				return res.json({
 					success: false,
-					message: 'Something is wrong Please try again.'
+					message: 'Something is wrong!, please try again.'
 				});
 			}
 			else {

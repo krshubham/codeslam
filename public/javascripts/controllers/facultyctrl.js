@@ -1,9 +1,8 @@
 var app = angular.module('facultyctrl', ['facultyservice']);
 
 
-app.controller('facultyloginController', ['facAuth', function (facAuth) {
+app.controller('facultyloginController', ['facAuth', '$location', function (facAuth, $location) {
 	var vm = this;
-	var faculty = vm.faculty;
 	vm.login = function (faculty) {
 		console.log(faculty);
 		facAuth.login(faculty).then(function (status) {
@@ -12,6 +11,7 @@ app.controller('facultyloginController', ['facAuth', function (facAuth) {
 			}
 			else {
 				vm.error = true;
+				$location.path('/error');
 			}
 		});
 	};
