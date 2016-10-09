@@ -133,7 +133,7 @@ function Signup(req, res, next) {
 					subject: 'Confirm your Email', // Subject line
 					text: 'Hey there, We recently got a login request for this email. Click on the link below to' +
 					'verify',
-					html: '<a href="http://52.66.86.243/verify/' + link + '">Click Here</a>' // html body
+					html: '<a href="http://52.66.23.154/verify/' + link + '">Click Here</a>' // html body
 				};
 				console.log(mailOptions.html);
 				bcrypt.hash(password, saltRounds, function (err, hash) {
