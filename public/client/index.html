@@ -47,6 +47,7 @@
 <body>
 	<nav class="brand-nav">
 		<div class="nav-wrapper">
+			<a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
 			<a href="{{main.path}}" class="brand-logo">Codeslam</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li ng-show="main.loggedIn()"><a href="/user/profile">{{main.name}}</a></li>
@@ -58,10 +59,31 @@
 			</ul>
 		</div>
 	</nav>
+	<ul id="slide-out" class="side-nav">
+		<li>
+			<div class="userView">
+				<img class="background" src="../public/images/test.jpg">
+				<a href="#"><img class="circle" src="../public/images/test.jpg"></a>
+				<a href="#"><span class="white-text name">Hargur Bedi</span></a>
+				<a href="#"><span class="white-text email">hargurbedi97@gmail.com</span></a>
+			</div>
+		</li>
+		<li><a href="#" class="waves-effect"><i class="material-icons">lock</i>Log Out</a></li>
+		<li><a class="subheader">Subheader</a></li>
+	</ul>
 	<div class="progress" ng-show="main.loading()">
 		<div class="indeterminate"></div>
 	</div>
 	<div ng-view ng-hide="main.loading()"></div>
+	<script type="text/javascript">
+ 	(function($){
+ 		$(function(){
+
+ 			$('.button-collapse').sideNav();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
 </body>
 
 </html>
