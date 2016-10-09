@@ -53,13 +53,16 @@ app.controller('loginController', ['Auth', '$location', '$window', function (Aut
 		$location.path('/user/home');
 	}
 	vm.submitForm = function () {
+		loading = true;
 		var user = vm.user;
 		Auth.login(user)
 			.then(function (status) {
 				if (status.data.success) {
+					loading = false;
 					$location.path('/user/home');
 				}
 				else {
+					loading = false;
 					vm.error = true;
 					vm.message = status.data.message;
 				}
@@ -85,7 +88,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 		else {
 			console.log('Loading');
 			loading = true;
-			console.log(loading);
+			//console.log(loading);
 			var user = vm.person;
 			//console.log(user);
 			Auth.signup(user)
@@ -93,7 +96,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 					console.log(data);
 					if (data.success) {
 						Materialize.toast('Verification Email sent successfuly', 5000, 'rounded')
-						console.log('Loading done');
+						//console.log('Loading done');
 						loading = false;
 						$location.path('/login');
 					}
