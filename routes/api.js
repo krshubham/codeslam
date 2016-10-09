@@ -103,6 +103,12 @@ function Signup(req, res, next) {
 		email = xss(req.body.email),
 		password = xss(req.body.password),
 		confirm_password = xss(req.body.cp);
+		if(!validate.isEmail(email)){
+			return res.json({
+				success: false,
+				message: 'Email not in correct format'
+			})
+		}
 	try {
 		//if js is not enabled, verify here.
 		assert.deepEqual(password, confirm_password);

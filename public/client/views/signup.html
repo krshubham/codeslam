@@ -6,6 +6,7 @@
 		</div>	
 	</div>
 </div>
+<h3 style="text-align: center;" ng-show="signup.emailErr">{{signup.message}}</h3>
 <form ng-submit="signup.submitForm()">
 	<div class="row" ng-if="signup.error">
 		<h4 style="text-align: center;color: red;">Passwords are not the same</h4>

@@ -7,6 +7,7 @@ var app = angular.module('controllers', ['authservice', 'codeservice']);
 
 //global variable for setting the title of the page
 var title = '';
+var loading = false;
 
 app.controller('mainController', ['Auth', '$location', function (Auth, $location) {
 	var vm = this;
@@ -30,6 +31,14 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 	vm.logout = function () {
 		Auth.logout();
 		$location.path('/');
+	}
+	vm.loading = function(){
+		if(loading){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }]);
 
@@ -75,17 +84,22 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			return false;
 		else {
 			console.log('Loading');
+			loading = true;
+			console.log(loading);
 			var user = vm.person;
 			//console.log(user);
 			Auth.signup(user)
 				.success(function (data) {
 					console.log(data);
-					if (data.success){
-						Materialize.toast('Verification Email sent successfuly', 5000,'rounded')
+					if (data.success) {
+						Materialize.toast('Verification Email sent successfuly', 5000, 'rounded')
 						console.log('Loading done');
+						loading = false;
 						$location.path('/login');
 					}
 					else {
+						vm.emailErr = true;
+						vm.message = data.message;
 						return false;
 					}
 				});
@@ -145,7 +159,7 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 	}
 }]);
 
-app.controller('errorController',[function(){
+app.controller('errorController', [function () {
 	var vm = this;
 }]);
 

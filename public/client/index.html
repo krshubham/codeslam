@@ -58,6 +58,10 @@
 			</ul>
 		</div>
 	</nav>
-	<div ng-view></div>
+	<div class="progress" ng-show="main.loading()">
+		<div class="indeterminate"></div>
+	</div>
+	<div ng-view ng-hide="main.loading()"></div>
 </body>
+
 </html>
