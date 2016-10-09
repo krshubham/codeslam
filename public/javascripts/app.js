@@ -9,5 +9,6 @@
 	'facultyservice',
 	'controllers',
 	'facultyctrl',
-	'routes'
+	'routes',
+	'ngAnimate'
 ]);

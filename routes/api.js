@@ -118,7 +118,7 @@ function Signup(req, res, next) {
 		}
 		users.findOne(user, function (err, user) {
 			assert.equal(err, null);
-			console.log(user);
+			//console.log(user);
 			if (user) {//the user exists already
 				return res.json({
 					success: false,
@@ -135,7 +135,7 @@ function Signup(req, res, next) {
 					'verify',
 					html: '<a href="http://52.66.23.154/verify/' + link + '">Click Here</a>' // html body
 				};
-				console.log(mailOptions.html);
+				//console.log(mailOptions.html);
 				bcrypt.hash(password, saltRounds, function (err, hash) {
 					var user = {
 						name: name,
@@ -145,13 +145,13 @@ function Signup(req, res, next) {
 					};
 					users.insertOne(user, function (err, done) {
 						assert.equal(err, null);
-						console.log('user inserted');
+						//console.log('user inserted');
 						transporter.sendMail(mailOptions, function (error, info) {
 							if (error) {
 								res.redirect('/error')
-								return console.log(error);
+								//return console.log(error);
 							}
-							console.log('Message sent: ' + info.response);
+							//console.log('Message sent: ' + info.response);
 							return res.json({
 								success: true,
 								message: 'user successfully created'
@@ -164,6 +164,7 @@ function Signup(req, res, next) {
 	}
 	catch (err) {
 		console.log(err.message);
+		res.redirect('/error');
 	}
 }
 

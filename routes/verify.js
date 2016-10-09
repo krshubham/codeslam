@@ -7,15 +7,15 @@ var tempUsers = null;
 
 
 function verify(req, res) {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     tempUsers = db.get().collection('tempUsers');
     users = db.get().collection('users');
     tempUsers.findOne({ v_link: req.params.id }, function (err, found) {
         try {
             assert.equal(err, null);
-            console.log('hey' + found);
+            //console.log('hey' + found);
             if (!found) {
-                console.log('Not in the temp dir');
+                //console.log('Not in the temp dir');
                 res.redirect('/error');
             }
             else {
@@ -24,17 +24,18 @@ function verify(req, res) {
                 users.findOne({ email: found.email }, function (err, user) {
                     assert.equal(err, null);
                     if (user) {
-                        console.log('User already exists');
+                        //console.log('User already exists');
                         res.redirect('/error');
                     }
                     else {
                         users.insertOne(perma_user, function (err, okay) {
                             assert.equal(err, null);
                             if (!okay) {
-                                console.log('Not able to insert into perma db');
+                                //console.log('Not able to insert into perma db');
+                                res.redirect('/error');
                             }
                             else {
-                                console.log('peram db insertion done');
+                                //console.log('peram db insertion done');
                                 res.redirect('/login');
 
                             }
@@ -42,11 +43,11 @@ function verify(req, res) {
                         tempUsers.deleteOne(found, function (err, done) {
                             assert.equal(err, null);
                             if (!done) {
-                                console.log('unable to delete');
+                                //console.log('unable to delete');
                                 res.redirect('/error');
                             }
                             else {
-                                console.log('Tempuser deleted');
+                                //console.log('Tempuser deleted');
                             }
                         });
                     }
@@ -55,7 +56,7 @@ function verify(req, res) {
         }
         catch (err) {
             res.redirect('/error');
-            console.log(err);
+            //console.log(err);
         }
     });
 }
