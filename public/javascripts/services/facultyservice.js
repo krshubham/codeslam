@@ -17,7 +17,6 @@ angular.module('facultyservice', [])
 			// return the promise object and its data
 			return $http.post('/faculty/login', faculty)
 				.success(function (data) {
-					console.log(data);
 					if (data.token) {
 						AuthToken.setToken(data.token);
 					}

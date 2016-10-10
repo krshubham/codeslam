@@ -56,7 +56,7 @@ router.post('/login', function (req, res) {
 				bcrypt.compare(password, user.password, function (err, result) {
 					assert.equal(err, null);
 					if (!result) {
-						//Result is not there, assword wrong
+						//Result is not there, password wrong
 						console.log('Error in password');
 						//send 401 status code saying Unauthorized
 						return res.json({
