@@ -29,6 +29,7 @@
  db.connect(dev_url, function(err) {
   if (err) {
     console.log('Unable to connect to Mongo.');
+    console.log(err);
     process.exit(1);
   } else {
     console.log('Connection established');

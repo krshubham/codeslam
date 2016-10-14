@@ -148,7 +148,7 @@ function Signup(req, res, next) {
 						//console.log('user inserted');
 						transporter.sendMail(mailOptions, function (error, info) {
 							if (error) {
-								res.redirect('/error')
+								return res.redirect('/error')
 								//return console.log(error);
 							}
 							//console.log('Message sent: ' + info.response);

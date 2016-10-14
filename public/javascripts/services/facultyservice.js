@@ -15,6 +15,7 @@ angular.module('facultyservice', [])
 		authFactory.login = function (faculty) {
 
 			// return the promise object and its data
+			console.log(faculty);
 			return $http.post('/faculty/login', faculty)
 				.success(function (data) {
 					if (data.token) {
@@ -68,7 +69,7 @@ angular.module('facultyservice', [])
 
 		// get the token out of local storage
 		authTokenFactory.getToken = function () {
-			return $window.localStorage.getItem('codeslam-token');
+			return $window.localStorage.getItem('facToken');
 		};
 
 		// function to set token or clear token
@@ -76,9 +77,9 @@ angular.module('facultyservice', [])
 		// if there is no token, clear it from local storage
 		authTokenFactory.setToken = function (token) {
 			if (token)
-				$window.localStorage.setItem('codeslam-token', token);
+				$window.localStorage.setItem('facToken', token);
 			else
-				$window.localStorage.removeItem('codeslam-token');
+				$window.localStorage.removeItem('facToken');
 		};
 
 		return authTokenFactory;

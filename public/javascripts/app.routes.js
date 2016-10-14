@@ -43,6 +43,11 @@ app.config(function($routeProvider,$locationProvider){
 			controller: 'facultyloginController',
 			controllerAs: 'flc'
 		})
+		.when('/faculty/home',{
+			templateUrl: '/client/views/faculty_home.html',
+			controller: 'FacultyHomeController',
+			controllerAs: 'fhc'
+		})
 		.when('/error',{
 			templateUrl: '/client/views/error.html',
 			controller: 'errorController',

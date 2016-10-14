@@ -21,23 +21,27 @@ router.post('/login', function (req, res) {
         address = req.connection.remoteAddress;
     //make sure they are not null;
     if (!email || !password || !address || !validate.isEmail(email)) {
+        console.log('validation error');
         return res.redirect('/error');
     }
-    const faculties = db.get().collection('faculty');
+    /*************************************
+     MAKE SURE TO CHANGE THIS IN FINAL SUBMIT
+     *************************************/
+    //change to faculty in final case
+    const faculties = db.get().collection('users');
     const faculty = {
-        email: email,
-        password: password
+        email: email
     }
     try {
         faculties.findOne(faculty, function (err, user) {
             assert.equal(err, null);
-            assert.notEqual(doc, null);
+            //console.log(user);
+            assert.notEqual(user, null);
             bcrypt.compare(password, user.password, function (err, result) {
                 assert.equal(err, null);
                 if (!result) {
                     //Result is not there, password wrong
                     console.log('Error in password');
-                    //send 401 status code saying Unauthorized
                     return res.json({
                         success: false,
                         message: 'Something is wrong! Please try again.'
@@ -47,7 +51,6 @@ router.post('/login', function (req, res) {
                     //everything is fine,
                     //Give the token to the user.
                     var item = {
-                        _id: user._id,
                         email: user.email,
                         name: user.name,
                         ip: address
@@ -56,16 +59,35 @@ router.post('/login', function (req, res) {
                     var token = jwt.sign(item, secret, {
                         expiresIn: 3600
                     });
-                    //send the correct response to the user
-                    return res.json({
-                        success: true,
-                        token: token
+                    var mailOptions = {
+                        from: '"CodeslamAdmin" <admin@codeslam.com>', // sender address
+                        to: email, // list of receivers
+                        subject: 'Recent login', // Subject line
+                        html: 'You just now logged in with the IP address: ' + address + '<br />'  // html body
+                    };
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log('mailer error');
+                            return res.redirect('/error');
+                        }
+                        else {
+                            res.json({
+                                success: true,
+                                token: token
+                            });
+                        }
                     });
+                    //send the correct response to the user
+                    // return res.json({
+                    //     success: true,
+                    //     token: token
+                    // });
                 }
             });
         });
     }
     catch (err) {
+        console.log('routing error');
         return res.redirect('/error');
     }
 });
