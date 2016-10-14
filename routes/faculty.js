@@ -12,6 +12,8 @@ var validate = require('validator');
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://codeslamvitc%40gmail.com:admin@911@smtp.gmail.com');
 
+
+//here we get the login request on POST /faculty/login
 router.post('/login', function (req, res) {
     var email = xss(req.body.email),
         password = xss(req.body.password),
@@ -48,6 +50,7 @@ router.post('/login', function (req, res) {
                         _id: user._id,
                         email: user.email,
                         name: user.name,
+                        ip: address
                     };
                     //sign the token to the user
                     var token = jwt.sign(item, secret, {
