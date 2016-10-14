@@ -15,6 +15,7 @@ var transporter = nodemailer.createTransport('smtps://codeslamvitc%40gmail.com:a
 
 //here we get the login request on POST /faculty/login
 router.post('/login', function (req, res) {
+    console.log(req.headers['x-access-token']);
     var email = xss(req.body.email),
         password = xss(req.body.password),
         //so we get the ip address for any nasty actions
