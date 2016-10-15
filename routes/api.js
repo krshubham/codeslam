@@ -148,6 +148,7 @@ function Signup(req, res, next) {
 						//console.log('user inserted');
 						transporter.sendMail(mailOptions, function (error, info) {
 							if (error) {
+								console.log(error);
 								return res.redirect('/error')
 								//return console.log(error);
 							}
@@ -163,6 +164,7 @@ function Signup(req, res, next) {
 		});
 	}
 	catch (err) {
+		console.log(err);
 		console.log(err.message);
 		res.redirect('/error');
 	}
