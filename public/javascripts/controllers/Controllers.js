@@ -84,15 +84,24 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 		}
 	}
 	//function to check if the username is available
-	vm.checkUserName = function(){
+	vm.checkUserName = function (obj) {
 		var name = vm.person.username;
-		var toCheck = {
-			name: name
-		};
-		Auth.check(toCheck).then(function(data){
-			console.log(data);
-		});
-	}	
+		if (name && name.length >= 6 && name.length <= 15) {
+			var toCheck = {
+				username: name
+			};
+			Auth.check(toCheck).then(function (data) {
+				if (data.data.success) {
+					console.log('available');
+					vm.availableUser = true;
+				}
+				else {
+					console.log('not available');
+					vm.availableUser = false;
+				}
+			});
+		}
+	}
 
 
 
@@ -120,6 +129,9 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 						vm.message = data.message;
 						return false;
 					}
+				})
+				.error(function (data) {
+					alert('Some error Occured!');
 				});
 		}
 	};

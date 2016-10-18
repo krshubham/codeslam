@@ -61,10 +61,11 @@ angular.module('authservice', [])
 		authFactory.check = function (name) {
 			return $http.post('/api/check', name)
 				.success(function (data) {
-					return data;
+					return data.data;
 				})
 				.error(function (data) {
-					return data;
+					alert('Some Error Occured!');
+					return data.data;
 				});
 		};
 
