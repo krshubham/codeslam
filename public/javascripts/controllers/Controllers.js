@@ -85,9 +85,13 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 	}
 	//function to check if the username is available
 	vm.checkUserName = function(){
-		var username = this.person.username;
-		console.log(this.person.username);
-		
+		var name = vm.person.username;
+		var toCheck = {
+			name: name
+		};
+		Auth.check(toCheck).then(function(data){
+			console.log(data);
+		});
 	}	
 
 
@@ -105,7 +109,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 				.success(function (data) {
 					console.log(data);
 					if (data.success) {
-						Materialize.toast('Verification Email sent successfuly', 5000, 'rounded')
+						Materialize.toast('Verification Email sent successfuly', 5000)
 						//console.log('Loading done');
 						loading = false;
 						$location.path('/login');

@@ -199,6 +199,13 @@ function Signup(req, res, next) {
 		});
 }*/
 
+router.post('/check',function(req,res){
+	console.log(req.body);
+	
+});
+
+
+
 
 
 
