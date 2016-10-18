@@ -33,11 +33,11 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 		Auth.logout();
 		$location.path('/');
 	}
-	vm.loading = function(){
-		if(loading){
+	vm.loading = function () {
+		if (loading) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}
@@ -83,11 +83,20 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			vm.error = false;
 		}
 	}
+	//function to check if the username is available
+	vm.checkUserName = function(){
+		var username = this.person.username;
+		console.log(this.person.username);
+		
+	}	
+
+
+
+
 	vm.submitForm = function () {
 		if (vm.error)
 			return false;
 		else {
-			console.log('Loading');
 			loading = true;
 			//console.log(loading);
 			var user = vm.person;
