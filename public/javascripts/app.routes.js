@@ -67,36 +67,16 @@ app.config(function ($routeProvider, $locationProvider) {
 			controller: 'challengeCtrl',
 			controllerAs: 'challenge',
 			requireLogin: true,
-			resolve: {
-				access: ["Auth", function (Auth) {
-					console.log('here');
-					console.log(Auth.isLoggedIn());
-					return Auth.isLoggedIn();
-				}]
-			}
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
 	$locationProvider.html5Mode(true);
 })
-	// .run(["$rootScope", "$route","$window","Auth", "$location", function ($rootScope,$window,Auth, $location, $route) {
-	// 	$rootScope.$on("$locationChangeStart", function (event, current, previous, rejection) {
-	// 		if ($route.$$path.indexOf('/user/') !== -1) {
-	// 			if (!$location.isLoggedIn()) {
-	// 				event.preventDefault();
-	// 				alert('You are not loggedIn');
-	// 			}
-	// 		}
-	// 		else {
-	// 			console.log('unauthenticated route');
-	// 		}
-	// 	});
-	// }]);
-	.run(function ($rootScope, $location,Auth) {
-		// register listener to watch route changes
+	.run(function ($rootScope, $location,$window,Auth,$route) {
 		$rootScope.$on("$routeChangeStart", function (event, next, current) {
-			if (!Auth.isLoggedIn()) {
+			var url = $window.location.pathname;
+			if ((!Auth.isLoggedIn()) && (url.indexOf('/user/')!== -1)) {
 				$location.path('/login');
 			}
 		});
