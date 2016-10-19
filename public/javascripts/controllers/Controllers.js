@@ -203,5 +203,4 @@ app.controller('errorController', [function () {
 //protected route
 app.controller('challengeCtrl',['Auth','$route',function(Auth,$route){
 	var vm = this;
-	console.log($route);
 }]);
