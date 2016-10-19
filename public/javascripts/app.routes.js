@@ -51,8 +51,8 @@ app.config(function ($routeProvider, $locationProvider) {
 			controllerAs: 'flc',
 		})
 		.when('/faculty/home', {
-			templateUrl: '/client/views/faculty_home.html',
-			controller: 'FacultyHomeController',
+			templateUrl: '/client/views/faculty_view.html',
+			controller: 'facultyHomeCtrl',
 			controllerAs: 'fhc',
 			requireLogin: true,
 			role: 'faculty'
