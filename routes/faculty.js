@@ -65,24 +65,24 @@ router.post('/login', function (req, res) {
                         subject: 'Recent login', // Subject line
                         html: 'You just now logged in with the IP address: ' + address + '<br />'  // html body
                     };
-                    transporter.sendMail(mailOptions, function (error, info) {
-                        if (error) {
-                            console.log('mailer error');
-                            console.log(error);
-                            return res.redirect('/error');
-                        }
-                        else {
-                            res.json({
-                                success: true,
-                                token: token
-                            });
-                        }
-                    });
-                    //send the correct response to the user
-                    // return res.json({
-                    //     success: true,
-                    //     token: token
+                    // transporter.sendMail(mailOptions, function (error, info) {
+                    //     if (error) {
+                    //         console.log('mailer error');
+                    //         console.log(error);
+                    //         return res.redirect('/error');
+                    //     }
+                    //     else {
+                    //         res.json({
+                    //             success: true,
+                    //             token: token
+                    //         });
+                    //     }
                     // });
+                    //send the correct response to the user
+                    return res.json({
+                        success: true,
+                        token: token
+                    });
                 }
             });
         });

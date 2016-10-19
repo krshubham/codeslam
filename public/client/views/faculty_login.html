@@ -1,7 +1,7 @@
 <div ng-controller="facultyloginController as flc">
     <h1 style="text-align:center">Codeslam.Faculty.Login()</h1>
     <div align="center">
-        <form ng-submit="flc.login(flc.faculty)">
+        <form ng-submit="flc.login(flc.faculty)" autocomplete="ON">
             <div class="row" alig="left" >
                 <label for="email">Email</label>
                 <input type="email" class="validate" ng-model="flc.faculty.email" required>
