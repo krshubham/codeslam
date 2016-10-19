@@ -73,11 +73,11 @@ app.config(function ($routeProvider, $locationProvider) {
 		});
 	$locationProvider.html5Mode(true);
 })
-	.run(function ($rootScope, $location,$window,Auth,$route) {
+	.run(function ($rootScope, $location, $window, Auth, $route) {
 		$rootScope.$on("$routeChangeStart", function (event, next, current) {
 			var url = $window.location.pathname;
-			if ((!Auth.isLoggedIn()) && (url.indexOf('/user/')!== -1)) {
+			if ((!Auth.isLoggedIn()) && (url.indexOf('/user/') !== -1)) {
 				$location.path('/login');
 			}
 		});
-	})
+	});
