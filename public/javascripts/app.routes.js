@@ -5,6 +5,7 @@
 */
 var app = angular.module('routes', ['ngRoute']);
 
+
 app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
@@ -79,20 +80,24 @@ app.config(function ($routeProvider, $locationProvider) {
 		});
 	$locationProvider.html5Mode(true);
 })
-	.run(["$rootScope", "$route", "Auth", "$location", function ($rootScope, Auth, $location, $route) {
-		$rootScope.$on("$locationChangeStart", function (event, current, previous, rejection) {
-			console.log(rejection);
-
-			// if ($route.$$path.indexOf('/user/') !== -1) {
-			// 	if ($location.isLoggedIn()) {
-			// 		console.log('You have the access');
-			// 	}
-			// 	else {
-			// 		console.log("you dont have the access");
-			// 	}
-			// }
-			// else {
-			// 	console.log('unauthenticated route');
-			// }
+	// .run(["$rootScope", "$route","$window","Auth", "$location", function ($rootScope,$window,Auth, $location, $route) {
+	// 	$rootScope.$on("$locationChangeStart", function (event, current, previous, rejection) {
+	// 		if ($route.$$path.indexOf('/user/') !== -1) {
+	// 			if (!$location.isLoggedIn()) {
+	// 				event.preventDefault();
+	// 				alert('You are not loggedIn');
+	// 			}
+	// 		}
+	// 		else {
+	// 			console.log('unauthenticated route');
+	// 		}
+	// 	});
+	// }]);
+	.run(function ($rootScope, $location,Auth) {
+		// register listener to watch route changes
+		$rootScope.$on("$routeChangeStart", function (event, next, current) {
+			if (!Auth.isLoggedIn()) {
+				$location.path('/login');
+			}
 		});
-	}]);
+	})
