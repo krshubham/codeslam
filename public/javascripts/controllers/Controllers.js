@@ -21,6 +21,7 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 			if (user) {
 				vm.name = user.name.split(' ')[0];
 				vm.email = user.email;
+				vm.username = user.username;
 			}
 			return true;
 		}
@@ -180,7 +181,6 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 	if (Auth.isLoggedIn()) {
 		var user = Auth.getUser();
 		if (user) {
-			console.log(user);
 			vm.name = user.name.split(' ')[0];
 		}
 		else {
@@ -188,7 +188,6 @@ app.controller('createController', ['Auth', '$location', '$window', function (Au
 		}
 		vm.codeNow = function (num) {
 			console.log(num);
-
 		}
 	}
 	else {
@@ -201,3 +200,8 @@ app.controller('errorController', [function () {
 }]);
 
 
+//protected route
+app.controller('challengeCtrl',['Auth','$route',function(Auth,$route){
+	var vm = this;
+	console.log($route);
+}]);

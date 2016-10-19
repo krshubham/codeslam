@@ -71,6 +71,7 @@ router.post('/login', function (req, res) {
 							_id: user._id,
 							email: user.email,
 							name: user.name,
+							username: user.username
 						};
 						//sign the token to the user
 						var token = jwt.sign(item, secret, {
