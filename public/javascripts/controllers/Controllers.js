@@ -85,6 +85,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 	}
 	//function to check if the username is available
 	vm.checkUserName = function (obj) {
+		var label = document.getElementById('userNameLabel');
 		var name = vm.person.username;
 		if (name && name.length >= 6 && name.length <= 15) {
 			var toCheck = {
@@ -94,12 +95,17 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 				if (data.data.success) {
 					console.log('available');
 					vm.availableUser = true;
+					label.style.color = 'green';
 				}
 				else {
 					console.log('not available');
 					vm.availableUser = false;
+					label.style.color = 'red';
 				}
 			});
+		}
+		else{
+			label.style.color = 'rgba(0,0,0,0.87)';
 		}
 	}
 
