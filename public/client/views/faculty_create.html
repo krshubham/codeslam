@@ -1,3 +1,21 @@
 <div ng-controller="challengeCreateCtrl as cc">
-    
+    <h3 class="main-heading">Enter the Question for the assignment</h3>
+	<div class="container">
+		<div class="card hoverable">
+			<textarea name="question" id="cke" cols="30" rows="10"></textarea>
+		</div>
+        <h3 class="main-heading">Customize these options below:</h3>
+	</div>
 </div>
+<style>
+.main-heading{
+    text-align: center;
+}
+</style>
+<script>
+    CKEDITOR.editorConfig = function (config) {
+		config.extraPlugins = 'confighelper';
+	};
+	CKEDITOR.replace('cke');
+    
+</script>

@@ -68,6 +68,11 @@ app.config(function ($routeProvider, $locationProvider) {
 			controllerAs: 'challenge',
 			requireLogin: true,
 		})
+		.when('/faculty/create',{
+			templateUrl: '/client/views/faculty_create.html',
+			controller: 'challengeCreateCtrl',
+			controllerAs: 'ccc'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -81,3 +86,5 @@ app.config(function ($routeProvider, $locationProvider) {
 			}
 		});
 	});
+
+
