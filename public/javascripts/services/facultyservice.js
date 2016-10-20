@@ -84,4 +84,24 @@ angular.module('facultyservice', [])
 
 		return authTokenFactory;
 
+	})
+	.factory('facChallenge',function($http,facAuth,AuthToken){
+		var facChallengeFactory = {};
+
+		facChallengeFactory.create = function(html){
+			var token;
+			if(facAuth.isLoggedIn()){
+				token = AuthToken.getToken();
+			}
+			else{
+				token = null;
+			}
+			var data = {
+				token: token,
+				question: html
+			}
+			return $http.post('/faculty/create',data).then(function(data){
+				return data;
+			})
+		}
 	});
