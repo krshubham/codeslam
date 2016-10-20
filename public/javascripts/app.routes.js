@@ -71,7 +71,7 @@ app.config(function ($routeProvider, $locationProvider) {
 		.when('/faculty/create',{
 			templateUrl: '/client/views/faculty_create.html',
 			controller: 'challengeCreateCtrl',
-			controllerAs: 'ccc'
+			controllerAs: 'cc'
 		})
 		.otherwise({
 			redirectTo: '/'

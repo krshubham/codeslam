@@ -1,6 +1,6 @@
 <!-- Faculty view -->
 
-<div ng-controller="facultyHomeCtrl as fhc" ng-show="main.loggedIn()">
+<div ng-controller="facultyHomeCtrl as fhc" ng-show="main.loggedIn()" class="faculty_view">
 	<div class="row">
 		<div class="col s12 m4 hoverable">
 			<a href="/faculty/create">
@@ -54,5 +54,9 @@
 	.card {
 		padding-top: 2.5em;
 		padding-bottom: 2.5em;
+	}
+	.faculty_view{
+		margin-top: 2em;
+		margin-bottom: 5em;
 	}
 </style>
