@@ -25,11 +25,11 @@ router.post('/login', function (req, res) {
 	//preventing the xss vulnerable characters from entering the db.
 	var email = xss(req.body.email);
 	var password = xss(req.body.password);
-	if(!validate.isEmail(email)){
+	if (!validate.isEmail(email)) {
 		console.log('not email');
 		return res.json({
 			success: false,
-			message: 'Email not in correct format'	
+			message: 'Email not in correct format'
 		});
 	}
 	var person = {
@@ -71,6 +71,7 @@ router.post('/login', function (req, res) {
 							_id: user._id,
 							email: user.email,
 							name: user.name,
+							username: user.username
 						};
 						//sign the token to the user
 						var token = jwt.sign(item, secret, {
@@ -101,14 +102,15 @@ function Signup(req, res, next) {
 	users = db.get().collection('tempUsers');
 	var name = xss(req.body.name),
 		email = xss(req.body.email),
-		password = xss(req.body.password),
+		username = xss(req.body.username);
+	password = xss(req.body.password),
 		confirm_password = xss(req.body.cp);
-		if(!validate.isEmail(email)){
-			return res.json({
-				success: false,
-				message: 'Email not in correct format'
-			})
-		}
+	if (!validate.isEmail(email)) {
+		return res.json({
+			success: false,
+			message: 'Email not in correct format'
+		})
+	}
 	try {
 		//if js is not enabled, verify here.
 		assert.deepEqual(password, confirm_password);
@@ -139,6 +141,7 @@ function Signup(req, res, next) {
 				bcrypt.hash(password, saltRounds, function (err, hash) {
 					var user = {
 						name: name,
+						username: username,
 						email: email,
 						password: hash,
 						v_link: link
@@ -198,6 +201,31 @@ function Signup(req, res, next) {
 			 });	
 		});
 }*/
+
+router.post('/check', function (req, res) {
+	var uname = req.body.username;
+	console.log(uname);
+	var users = db.get().collection('users');
+	var user = {
+		username: uname
+	}
+	users.findOne(user, function (err, person) {
+		assert.equal(err, null);
+		console.log(person);
+		if (!person) {
+			res.json({
+				success: true
+			});
+		}
+		else {
+			res.json({
+				success: false
+			});
+		}
+	});
+});
+
+
 
 
 

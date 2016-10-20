@@ -21,6 +21,7 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 			if (user) {
 				vm.name = user.name.split(' ')[0];
 				vm.email = user.email;
+				vm.username = user.username;
 			}
 			return true;
 		}
@@ -33,11 +34,11 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 		Auth.logout();
 		$location.path('/');
 	}
-	vm.loading = function(){
-		if(loading){
+	vm.loading = function () {
+		if (loading) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}
@@ -83,11 +84,39 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 			vm.error = false;
 		}
 	}
+	//function to check if the username is available
+	vm.checkUserName = function (obj) {
+		var label = document.getElementById('userNameLabel');
+		var name = vm.person.username;
+		if (name && name.length >= 6 && name.length <= 15) {
+			var toCheck = {
+				username: name
+			};
+			Auth.check(toCheck).then(function (data) {
+				if (data.data.success) {
+					console.log('available');
+					vm.availableUser = true;
+					label.style.color = 'green';
+				}
+				else {
+					console.log('not available');
+					vm.availableUser = false;
+					label.style.color = 'red';
+				}
+			});
+		}
+		else {
+			label.style.color = 'rgba(0,0,0,0.87)';
+		}
+	}
+
+
+
+
 	vm.submitForm = function () {
 		if (vm.error)
 			return false;
 		else {
-			console.log('Loading');
 			loading = true;
 			//console.log(loading);
 			var user = vm.person;
@@ -96,7 +125,7 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 				.success(function (data) {
 					console.log(data);
 					if (data.success) {
-						Materialize.toast('Verification Email sent successfuly', 5000, 'rounded')
+						Materialize.toast('Verification Email sent successfuly', 5000)
 						//console.log('Loading done');
 						loading = false;
 						$location.path('/login');
@@ -107,6 +136,9 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 						vm.message = data.message;
 						return false;
 					}
+				})
+				.error(function (data) {
+					alert('Some error Occured!');
 				});
 		}
 	};
@@ -146,22 +178,9 @@ app.controller('aboutController', function () {
 //This is the controller that will control the upload of file and some other details from the user.
 app.controller('createController', ['Auth', '$location', '$window', function (Auth, $location, $window) {
 	var vm = this;
-	if (Auth.isLoggedIn()) {
-		var user = Auth.getUser();
-		if (user) {
-			console.log(user);
-			vm.name = user.name.split(' ')[0];
-		}
-		else {
-			$location.path('/login');
-		}
-		vm.codeNow = function (num) {
-			console.log(num);
-
-		}
-	}
-	else {
-		$location.path('/login');
+	var user = Auth.getUser();
+	if (user) {
+		vm.name = user.name.split(' ')[0];
 	}
 }]);
 
@@ -170,3 +189,7 @@ app.controller('errorController', [function () {
 }]);
 
 
+//protected route
+app.controller('challengeCtrl', ['Auth', '$route', function (Auth, $route) {
+	var vm = this;
+}]);

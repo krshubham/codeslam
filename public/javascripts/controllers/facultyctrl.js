@@ -16,3 +16,8 @@ app.controller('facultyloginController', ['facAuth', '$location', function (facA
 		});
 	};
 }]);
+
+app.controller('facultyHomeCtrl',['$location','facAuth',function($location,facAuth){
+	var vm = this;
+	
+}]);
