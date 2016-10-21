@@ -92,4 +92,27 @@ router.post('/login', function (req, res) {
         return res.redirect('/error');
     }
 });
+
+router.post('/create', function (req, res) {
+    var token = req.body.token || req.params.token || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, secret, function (err, decoded) {
+            if (err) {
+                res.redirect('/');
+            } else {
+                req.decoded = decoded;
+            }
+        });
+
+    } else {
+        // if there is no token
+        // return an error
+        return res.status(403).json({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+});
+
+
 module.exports = router;

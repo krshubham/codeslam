@@ -1,0 +1,43 @@
+<div ng-controller="challengeCreateCtrl as cc">
+	<h3 class="main-heading">Enter the Question for the assignment</h3>
+	<form ng-submit="cc.submitQuestion()">
+		<div class="container">
+			<div class="card hoverable">
+				<textarea name="question" id="cke" cols="30" rows="10"></textarea>
+			</div>
+			<h3 class="main-heading">Customize these options below:</h3>
+			<div class="row" id="first">
+				<div class="input-field col s12 m6">
+					<select multiple>
+                    <option value="" disabled selected>Choose the numbers</option>
+                    <option value="2137">2137 (Prof Janaki Meena)</option>
+                    <option value="2214">2214 (Prof. Tulasi Prasad Sariki)</option>
+                </select>
+					<label>Target Class numbers</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input id="first_name" type="text" class="validate active">
+					<label for="first_name">Duration(in mins)</label>
+				</div>
+			</div>
+			<div align="center">
+				<button type="submit" class="waves waves-green btn hoverable">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>
+<style>
+	.main-heading {
+		text-align: center;
+	}
+</style>
+<script>
+    CKEDITOR.editorConfig = function (config) {
+		config.extraPlugins = 'confighelper';
+	};
+	CKEDITOR.replace('cke');
+$(document).ready(function() {
+    $('select').material_select();
+  });
+            
+</script>

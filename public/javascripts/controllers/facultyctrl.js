@@ -17,7 +17,14 @@ app.controller('facultyloginController', ['facAuth', '$location', function (facA
 	};
 }]);
 
-app.controller('facultyHomeCtrl',['$location','facAuth',function($location,facAuth){
+app.controller('facultyHomeCtrl', ['$location', 'facAuth', function ($location, facAuth) {
 	var vm = this;
-	
+}]);
+
+app.controller('challengeCreateCtrl', ['$location', function ($location) {
+	var vm = this;
+	vm.submitQuestion = function(){
+		var data = CKEDITOR.instances.cke.getData();
+		console.log(data);
+	};
 }]);

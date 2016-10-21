@@ -51,8 +51,8 @@ app.config(function ($routeProvider, $locationProvider) {
 			controllerAs: 'flc',
 		})
 		.when('/faculty/home', {
-			templateUrl: '/client/views/faculty_home.html',
-			controller: 'FacultyHomeController',
+			templateUrl: '/client/views/faculty_view.html',
+			controller: 'facultyHomeCtrl',
 			controllerAs: 'fhc',
 			requireLogin: true,
 			role: 'faculty'
@@ -68,6 +68,11 @@ app.config(function ($routeProvider, $locationProvider) {
 			controllerAs: 'challenge',
 			requireLogin: true,
 		})
+		.when('/faculty/create',{
+			templateUrl: '/client/views/faculty_create.html',
+			controller: 'challengeCreateCtrl',
+			controllerAs: 'cc'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -81,3 +86,5 @@ app.config(function ($routeProvider, $locationProvider) {
 			}
 		});
 	});
+
+
