@@ -126,7 +126,6 @@ app.controller('signupController', ['Auth', '$location', '$window', function (Au
 					console.log(data);
 					if (data.success) {
 						Materialize.toast('Verification Email sent successfuly', 5000)
-						//console.log('Loading done');
 						loading = false;
 						$location.path('/login');
 					}
