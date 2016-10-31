@@ -25,6 +25,7 @@ app.controller('challengeCreateCtrl', ['$location', function ($location) {
 	var vm = this;
 	vm.submitQuestion = function(){
 		var data = CKEDITOR.instances.cke.getData();
-		console.log(data);
+		vm.question.data = data;
+		console.log(vm.question);
 	};
 }]);

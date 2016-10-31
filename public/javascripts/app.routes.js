@@ -68,20 +68,20 @@ app.config(function ($routeProvider, $locationProvider) {
 			controllerAs: 'challenge',
 			requireLogin: true,
 		})
-		.when('/faculty/create',{
+		.when('/faculty/create', {
 			templateUrl: '/client/views/faculty_create.html',
 			controller: 'challengeCreateCtrl',
-			controllerAs: 'cc'
+			controllerAs: 'cc',
+			requireLogin: true
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
 	$locationProvider.html5Mode(true);
 })
-	.run(function ($rootScope, $location, $window, Auth, $route) {
+	.run(function ($rootScope, $location, $window, Auth, $route, facAuth) {
 		$rootScope.$on("$routeChangeStart", function (event, next, current) {
-			var url = $window.location.pathname;
-			if ((!Auth.isLoggedIn()) && (url.indexOf('/user/') !== -1)) {
+			if ((!Auth.isLoggedIn() && next.$$route.requireLogin) || (!facAuth.isLoggedIn() && next.$$route.requireLogin)) {
 				$location.path('/login');
 			}
 		});

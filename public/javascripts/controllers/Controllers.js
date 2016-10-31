@@ -9,15 +9,15 @@ var app = angular.module('controllers', ['authservice', 'codeservice']);
 var title = '';
 var loading = false;
 
-app.controller('mainController', ['Auth', '$location', function (Auth, $location) {
+app.controller('mainController', ['Auth','facAuth','$location', function (Auth, facAuth,$location) {
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
 	vm.path = '/';
 	vm.loggedIn = function () {
-		if (Auth.isLoggedIn()) {
+		if (Auth.isLoggedIn() || facAuth.isLoggedIn()) {
 			vm.path = '/user/home';
-			var user = Auth.getUser();
+			var user = Auth.getUser() || facAuth.getUser();
 			if (user) {
 				vm.name = user.name.split(' ')[0];
 				vm.email = user.email;
@@ -32,6 +32,7 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 	}
 	vm.logout = function () {
 		Auth.logout();
+
 		$location.path('/');
 	}
 	vm.loading = function () {

@@ -8,6 +8,7 @@ var api = require('./routes/api');
 var compiler = require('./routes/compiler');
 var verify = require('./routes/verify');
 var faculty = require('./routes/faculty');
+var admin = require('./routes/admin');
 var app = express();
 //Never ever require any package or install it through npm without mentioning in package.json
 
@@ -25,6 +26,7 @@ app.use('/verify', verify);
 app.use('/faculty', faculty);
 app.use('/api', api);
 app.use('/code', compiler);
+app.use('/admin',admin);
 app.use('*', function (req, res, next) {
   res.sendFile(path.join(__dirname, 'public', 'client', 'index.html'));
 });
