@@ -27,6 +27,7 @@ router.post('/login', function (req, res) {
     /*************************************
      MAKE SURE TO CHANGE THIS IN FINAL SUBMIT
      *************************************/
+    //change to faculty in final case
     const faculties = db.get().collection('faculty');
     const faculty = {
         email: email
@@ -34,7 +35,7 @@ router.post('/login', function (req, res) {
     try {
         faculties.findOne(faculty, function (err, user) {
             assert.equal(err, null);
-            console.log(user);
+            assert.notEqual(user, null);
             bcrypt.compare(password, user.password, function (err, result) {
                 assert.equal(err, null);
                 if (!result) {
