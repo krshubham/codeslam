@@ -6,6 +6,16 @@ body{
 	font-family: 'Roboto', sans-serif;
 	overflow: auto;
 }
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
 div.jumbotron{
 	text-align: center;
 	background-color: transparent;

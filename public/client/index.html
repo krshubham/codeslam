@@ -28,6 +28,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
 	<!-- Angular Material-->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+	<!-- Typed Js file -->
+	<script src="/javascripts/includes/typed.min.js"></script>
 
 	<!--custom angular files-->
 	<script type="text/javascript" src="/javascripts/services/authservice.js"></script>
@@ -79,15 +81,24 @@
 	<div class="progress" ng-show="main.loading()">
 		<div class="indeterminate"></div>
 	</div>
-	<div ng-view ng-hide="main.loading()"></div>
+	<main ng-view ng-hide="main.loading()"></main>
 	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Footer Content</h5>
+					<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+				</div>
+			</div>
+		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				&copy; 2016 Codeslam
-				<a class="grey-text text-lighten-4 right" href="#">More Links</a>
+				© 2014 Copyright Text
+				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
 			</div>
 		</div>
 	</footer>
+
 	<script type="text/javascript">
  	(function($){
  		$(function(){
@@ -96,6 +107,14 @@
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+</script>
+	<script>
+  $(function(){
+      $(".element").typed({
+        strings: ["First sentence.", "Second sentence."],
+        typeSpeed: 0
+      });
+  });
 </script>
 </body>
 
