@@ -45,6 +45,7 @@ router.post('/login', function (req, res) {
 router.post('/create/faculty', function (req, res) {
     var faculty = db.get().collection('faculty');
     var token = xss(req.body.token);
+    var name = xss(req.body.name);
     if (token) {
         jwt.verify(token, secret, function (err, decoded) {
             if (err) {
