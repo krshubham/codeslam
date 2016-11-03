@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 chromedriver = '/home/ks/Downloads/chromedriver'
 
 driver = webdriver.Chrome(chromedriver)
-driver.get("http://localhost/signup")
+driver.get("http://localhost/admin")
 assert "Codeslam" in driver.title
 
 '''
@@ -16,20 +16,11 @@ unval = 'raghav.alagh'
 passval = 'koolis'
 confirmval = 'kooliss'
 
-name = driver.find_element_by_name("name")
+name = driver.find_element_by_name("uname")
 name.clear()
 
-email = driver.find_element_by_name("email")
+email = driver.find_element_by_name("pwd")
 email.clear()
-
-username = driver.find_element_by_name("username")
-username.clear()
-
-password = driver.find_element_by_name("password")
-password.clear()
-
-confirm = driver.find_element_by_name("confirm")
-confirm.clear()
 
 submit = driver.find_element_by_name("submit")
 
