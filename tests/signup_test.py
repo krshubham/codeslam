@@ -4,29 +4,42 @@ from selenium.webdriver.common.keys import Keys
 chromedriver = '/home/ks/Downloads/chromedriver'
 
 driver = webdriver.Chrome(chromedriver)
-driver.get("http://localhost/login")
+driver.get("http://localhost/signup")
 assert "Codeslam" in driver.title
 
 '''
 Below are the test cases for the web application. test cases are commented in exach line
 '''
-emails = ['wrong','k@s.com',"<script>alert('hello');</script>","kumarshubham347@gmail.com"]
-passwords = [' wrong','shubhi','wrong','shubhi']
-for i in range(0,len(emails)):
-    print i
-    email = driver.find_element_by_name("email")
-    email.clear()
-    email.send_keys(emails[i])
-    password = driver.find_element_by_name("password")
-    password.clear
-    password.send_keys(passwords[i])
-    driver.find_element_by_id("submit").click()
-    #logout = driver.find_element_by_id("logout").click()
-    try:
-        driver.implicitly_wait(10)
-        assert "wrong" not in driver.page_source
-    except AssertionError:
-        email.clear()
-        password.clear()
-        driver.implicitly_wait(10)
-#driver.close()
+nameval = 'Raghav Alagh'
+emailval = 'raghav.alagh2015@vit.ac.in'
+passwordval = 'shubhi'
+unval = 'raghu'
+passval = 'koolis'
+confirmval = 'kooliss'
+
+name = driver.find_element_by_name("name")
+name.clear()
+
+email = driver.find_element_by_name("email")
+email.clear()
+
+username = driver.find_element_by_name("username")
+username.clear()
+
+password = driver.find_element_by_name("password")
+password.clear()
+
+confirm = driver.find_element_by_name("confirm")
+confirm.clear()
+
+submit = driver.find_element_by_name("submit")
+
+name.send_keys(nameval)
+email.send_keys(emailval)
+password.send_keys(passwordval)
+username.send_keys(unval)
+password.send_keys(passval)
+confirm.send_keys(confirm)
+#submit.click()
+
+
