@@ -55,7 +55,8 @@ app.config(function ($routeProvider, $locationProvider) {
 			controller: 'facultyHomeCtrl',
 			controllerAs: 'fhc',
 			requireLogin: true,
-			role: 'faculty'
+			role: 'faculty',
+			faculty: true
 		})
 		.when('/error', {
 			templateUrl: '/client/views/error.html',
@@ -72,7 +73,8 @@ app.config(function ($routeProvider, $locationProvider) {
 			templateUrl: '/client/views/faculty_create.html',
 			controller: 'challengeCreateCtrl',
 			controllerAs: 'cc',
-			requireLogin: true
+			requireLogin: true,
+			faculty: true
 		})
 		.otherwise({
 			redirectTo: '/'
@@ -83,6 +85,9 @@ app.config(function ($routeProvider, $locationProvider) {
 		$rootScope.$on("$routeChangeStart", function (event, next, current) {
 			if ((!Auth.isLoggedIn() && next.$$route.requireLogin) || (!facAuth.isLoggedIn() && next.$$route.requireLogin)) {
 				$location.path('/login');
+			}
+			else if(!facAuth.isLoggedIn() && next.$$route.faculty){
+				$location.path('/faculty');
 			}
 		});
 	});

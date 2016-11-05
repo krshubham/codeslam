@@ -12,7 +12,7 @@ Below are the test cases for the web application. test cases are commented in ex
 '''
 emails = ['wrong','k@s.com',"<script>alert('hello');</script>","kumarshubham347@gmail.com"]
 passwords = [' wrong','shubhi','wrong','shubhi']
-for i in range(0,len(emails)):
+for i in range(0,len(emails)+1):
     print i
     email = driver.find_element_by_name("email")
     email.clear()
