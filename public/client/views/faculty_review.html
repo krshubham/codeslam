@@ -1,6 +1,7 @@
 <div ng-init="frc.fetchQuestions()" ng-controller="facReviewController as frc">
-    <div class="card" style="text-align:center;">
-        <h2>Here all the questions you have set will be displayed</h2>
+    <div ng-show="frc.nothing()" align="center">
+        <h2 style="text-align:center;">"Ooops! You don't have any questions !'"</h2>
+        <a href="/faculty/create" class="waves btn waves-btn">Click Here to make some!</a>
     </div>
     <div class="row" ng-repeat="question in frc.questions">
         <div class="col s12 m12">

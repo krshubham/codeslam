@@ -46,14 +46,24 @@ app.controller('challengeCreateCtrl', ['$location', 'facChallenge', function ($l
 
 app.controller('facReviewController', ['$location', 'facChallenge', function ($location, facChallenge) {
 	var vm = this;
+	var none = true;
 	vm.init = function () {
 		facChallenge.get().then(function (data) {
 			vm.questions = data.questions;
-			console.log(vm.questions);
+			if(vm.questions.length === 0){
+				none = true;
+			}
+			else{
+				none = false;
+			}
+			console.log(vm.questions.length);
 		}, function (err) {
 			console.log(err);
 		});
 	};
+	vm.nothing = function(){
+		return none;
+	}
 	
 	vm.fetchQuestions = function(){
 		vm.init();
@@ -61,12 +71,20 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 
 	vm.delete = function(obj){
 		var id = obj.question._id;
-		console.log(id);
+		//console.log(id);
 		facChallenge.remove(id).then(function(data){
-			console.log(data);
+			//console.log(data);
 			vm.init();
+			if(vm.questions.length === 0){
+				none = true;
+			}
+			else{
+				none = false;
+			}
+			//console.log(none);
+			vm.nothing();
 		},function(err){
-			console.log(err);
+			//console.log(err);
 		});
 	};
 }]);
