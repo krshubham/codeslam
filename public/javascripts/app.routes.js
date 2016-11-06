@@ -6,7 +6,7 @@
 var app = angular.module('routes', ['ngRoute']);
 
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/client/views/home.html',
@@ -67,37 +67,30 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'challengeCtrl',
             controllerAs: 'challenge',
             requireLogin: true,
-			role: 'user'
+            role: 'user'
         })
         .when('/faculty/create', {
             templateUrl: '/client/views/faculty_create.html',
             controller: 'challengeCreateCtrl',
             controllerAs: 'cc',
             requireLogin: true,
-			role: 'faculty'
+            role: 'faculty'
         })
         .otherwise({
             redirectTo: '/'
         });
     $locationProvider.html5Mode(true);
 })
-    .run(function($rootScope, $location, $window, Auth, $route, facAuth) {
-        $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    .run(function ($rootScope, $location, $window, Auth, $route, facAuth) {
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
             // if ((!Auth.isLoggedIn() && next.$$route.requireLogin) || (!facAuth.isLoggedIn() && next.$$route.requireLogin)) {
             // 	$location.path('/login');
             // }
             // else if(!facAuth.isLoggedIn() && next.$$route.faculty){
             // 	$location.path('/faculty');
             // }
-            if (next.$$route.requireLogin) {
-                if (next.$$route.role === 'faculty') {
-                    console.log(facAuth.isLoggedIn());
-                    console.log(Auth.isLoggedIn());
-                    console.log('faculty role accessed');
-                }
-                else {
-                    console.log('user');
-                }
+            if (next.$$route.requireLogin && (!Auth.isLoggedIn() || !facAuth.isLoggedIn())) {
+                $location.path('/login');
             }
         });
     });

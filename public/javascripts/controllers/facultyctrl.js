@@ -21,11 +21,13 @@ app.controller('facultyHomeCtrl', ['$location', 'facAuth', function ($location, 
 	var vm = this;
 }]);
 
-app.controller('challengeCreateCtrl', ['$location', function ($location) {
+app.controller('challengeCreateCtrl', ['$location','facChallenge', function ($location,facChallenge) {
 	var vm = this;
 	vm.submitQuestion = function(){
 		var data = CKEDITOR.instances.cke.getData();
 		vm.question.data = data;
-		console.log(vm.question);
+		//the select box is to be taken using [0] as the index
+		var question = vm.question;
+		facChallenge.create(question);
 	};
 }]);

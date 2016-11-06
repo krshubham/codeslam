@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('./db');
 const assert = require('assert');
 var faculties = null;
-var secret = 'f@csecret@@!%^';
+var secret = 'g@@k@911';
 var jwt = require('jsonwebtoken');
 var xss = require('xss');
 const bcrypt = require('bcrypt');
@@ -64,24 +64,24 @@ router.post('/login', function (req, res) {
                         subject: 'Recent login', // Subject line
                         html: 'You just now logged in with the IP address: ' + address + '<br />'  // html body
                     };
-                    // transporter.sendMail(mailOptions, function (error, info) {
-                    //     if (error) {
-                    //         console.log('mailer error');
-                    //         console.log(error);
-                    //         return res.redirect('/error');
-                    //     }
-                    //     else {
-                    //         res.json({
-                    //             success: true,
-                    //             token: token
-                    //         });
-                    //     }
-                    // });
-                    //send the correct response to the user
-                    return res.json({
-                        success: true,
-                        token: token
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log('mailer error');
+                            console.log(error);
+                            return res.redirect('/error');
+                        }
+                        else {
+                            res.json({
+                                success: true,
+                                token: token
+                            });
+                        }
                     });
+                    // //send the correct response to the user
+                    // return res.json({
+                    //     success: true,
+                    //     token: token
+                    // });
                 }
             });
         });
@@ -94,23 +94,25 @@ router.post('/login', function (req, res) {
 
 router.post('/create', function (req, res) {
     var token = req.body.token || req.params.token || req.headers['x-access-token'];
+    var person;
     if (token) {
-        jwt.verify(token, secret, function (err, decoded) {
-            if (err) {
-                res.redirect('/');
-            } else {
-                req.decoded = decoded;
-            }
-        });
-
-    } else {
+        try {
+            //using the synchronous version
+            person = jwt.verify(token, secret);
+        } catch (err) {
+            res.redirect('/error');   // err
+        }
+    }
+    else {
         // if there is no token
-        // return an error
+        // return an error; Forbidden you are my friend!
         return res.status(403).json({
             success: false,
             message: 'No token provided.'
         });
     }
+    console.log(person);
+    res.json(person);
 });
 
 
