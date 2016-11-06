@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice', 'codeservice']);
+var app = angular.module('controllers', ['authservice', 'codeservice','facultyservice']);
 
 //global variable for setting the title of the page
 var title = '';

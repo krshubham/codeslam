@@ -37,7 +37,9 @@ router.post('/login', function (req, res) {
     try {
         faculties.findOne(faculty, function (err, user) {
             assert.equal(err, null);
-            assert.notEqual(user, null);
+            if(!user){
+                return res.send('User does not exist');
+            }
             bcrypt.compare(password, user.password, function (err, result) {
                 assert.equal(err, null);
                 if (!result) {
