@@ -103,7 +103,7 @@ angular.module('facultyservice', [])
 				classnbr: html.classnbr[0]
 			}
 			return $http.post('/faculty/create',data).then(function(data){
-				return data;
+				return data.data;
 			});
 		}
 		return facChallengeFactory;

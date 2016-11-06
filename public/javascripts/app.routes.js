@@ -76,6 +76,13 @@ app.config(function ($routeProvider, $locationProvider) {
             requireLogin: true,
             role: 'faculty'
         })
+        .when('/faculty/review',{
+            templateUrl: '/client/views/faculty_review.html',
+            controller: 'facReviewController',
+            controllerAs: 'frc',
+            requireLogin: true,
+            role: 'faculty'
+        })
         .otherwise({
             redirectTo: '/'
         });

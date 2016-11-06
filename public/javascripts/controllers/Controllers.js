@@ -36,12 +36,7 @@ app.controller('mainController', ['Auth','facAuth','$location', function (Auth, 
 		$location.path('/');
 	}
 	vm.loading = function () {
-		if (loading) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return loading;
 	}
 }]);
 

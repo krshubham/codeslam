@@ -100,7 +100,7 @@ router.post('/create', function (req, res) {
             //using the synchronous version
             person = jwt.verify(token, secret);
         } catch (err) {
-            res.redirect('/error');   // err
+            return res.redirect('/error');   // err
         }
     }
     else {
@@ -111,8 +111,35 @@ router.post('/create', function (req, res) {
             message: 'No token provided.'
         });
     }
-    console.log(person);
-    res.json(person);
+    try {
+        var question = xss(req.body.question);
+        var time = req.body.time;
+        var classNumbers = req.body.classnbr;
+        var facultyEmail = person.email;
+        var facultyName = person.name;
+        var doc = {
+            time: time,
+            classnbrs: classNumbers,
+            question: question,
+            email: facultyEmail,
+            name: facultyName
+        };
+        const questions = db.get().collection('questions');
+        questions.insertOne(doc, function (err, done) {
+            assert.equal(err, null);
+            res.json({
+                success: true,
+                message: 'Question successfully created'
+            });
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.json({
+            success: false,
+            message: 'Some error occured while preparing the question'
+        });
+    }
 });
 
 
