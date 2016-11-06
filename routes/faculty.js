@@ -142,5 +142,37 @@ router.post('/create', function (req, res) {
     }
 });
 
-
+router.get('/view', function (req, res) {
+    const questions = db.get().collection('questions');
+    var token = req.body.token || req.params.token || req.headers['x-access-token'];
+    var person;
+    if (token) {
+        try {
+            //using the synchronous version
+            person = jwt.verify(token, secret);
+        } catch (err) {
+            return res.redirect('/error');   // err
+        }
+    }
+    else {
+        // if there is no token
+        // return an error; Forbidden you are my friend!
+        return res.status(403).json({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+    try {
+        questions.find({ email: person.email }).toArray(function (err, docs) {
+            assert.equal(err, null)
+            return res.json({
+                questions: docs
+            });
+        });
+    }
+    catch(err){
+        console.log(err);
+        res.redirect('/error');
+    }
+});
 module.exports = router;

@@ -21,29 +21,40 @@ app.controller('facultyHomeCtrl', ['$location', 'facAuth', function ($location, 
 	var vm = this;
 }]);
 
-app.controller('challengeCreateCtrl', ['$location','facChallenge', function ($location,facChallenge) {
+app.controller('challengeCreateCtrl', ['$location', 'facChallenge', function ($location, facChallenge) {
 	var vm = this;
-	vm.submitQuestion = function(){
+	vm.submitQuestion = function () {
 		loading = true;
 		var data = CKEDITOR.instances.cke.getData();
 		vm.question.data = data;
 		//the select box is to be taken using [0] as the index
 		var question = vm.question;
-		facChallenge.create(question).then(function(data){
-			if(data.success){
+		facChallenge.create(question).then(function (data) {
+			if (data.success) {
 				loading = false;
 				alert(data.message);
 			}
-			else{
+			else {
 				loading = false;
 				alert(data.message);
 			}
-		},function(err){
+		}, function (err) {
 			console.log(err);
 		})
 	};
 }]);
 
-app.controller('facReviewController',['$location','facChallenge',function($location,facChallenge){
+app.controller('facReviewController', ['$location', 'facChallenge', function ($location, facChallenge) {
 	var vm = this;
+	vm.init = function () {
+		facChallenge.get().then(function (data) {
+			vm.questions = data.questions;
+			console.log(vm.questions);
+		}, function (err) {
+			console.log(err);
+		});
+	};
+	vm.fetchQuestions = function(){
+		vm.init();
+	}
 }]);

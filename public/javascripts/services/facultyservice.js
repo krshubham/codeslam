@@ -106,5 +106,23 @@ angular.module('facultyservice', [])
 				return data.data;
 			});
 		}
+		facChallengeFactory.get = function(){
+			var token;
+			if(facAuth.isLoggedIn()){
+				token = AuthToken.getToken();
+			}
+			else{
+				token = null;
+				alert('Not a valid user session!');
+				return false;
+			}
+			return $http.get('/faculty/view',{
+				headers: {
+					'x-access-token': token   
+				}
+			}).then(function(data){
+				return data.data;
+			});
+		}
 		return facChallengeFactory;
 	});
