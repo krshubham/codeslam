@@ -4,13 +4,16 @@ var app = angular.module('facultyctrl', ['facultyservice']);
 app.controller('facultyloginController', ['facAuth', '$location', function (facAuth, $location) {
 	var vm = this;
 	vm.login = function (faculty) {
+		loading = true;
 		console.log(faculty);
 		facAuth.login(faculty).then(function (status) {
 			if (status.data.success) {
+				loading = false;
 				$location.path('/faculty/home');
 			}
 			else {
 				vm.error = true;
+				loading = false;
 				$location.path('/error');
 			}
 		});
