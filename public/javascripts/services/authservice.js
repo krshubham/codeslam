@@ -99,4 +99,27 @@ angular.module('authservice', [])
 
 		return authTokenFactory;
 
+	})
+	.factory('challengeFactory', function ($http, Auth, $location, AuthToken) {
+		var userChallengeFactory = {};
+		
+		userChallengeFactory.get = function () {
+			var token;
+			if (Auth.isLoggedIn()) {
+				token = AuthToken.getToken();
+			}
+			else {
+				token = null;
+				alert('Not a valid user session!');
+				return false;
+			}
+			return $http.get('/api/challenges', {
+				headers: {
+					'x-access-token': token
+				}
+			}).then(function (data) {
+				return data.data;
+			});
+		}
+		return userChallengeFactory;
 	});

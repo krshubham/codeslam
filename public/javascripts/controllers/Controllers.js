@@ -3,21 +3,21 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice', 'codeservice']);
+var app = angular.module('controllers', ['authservice', 'codeservice','facultyservice']);
 
 //global variable for setting the title of the page
 var title = '';
 var loading = false;
 
-app.controller('mainController', ['Auth', '$location', function (Auth, $location) {
+app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth, facAuth, $location) {
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
 	vm.path = '/';
 	vm.loggedIn = function () {
-		if (Auth.isLoggedIn()) {
+		if (Auth.isLoggedIn() || facAuth.isLoggedIn()) {
 			vm.path = '/user/home';
-			var user = Auth.getUser();
+			var user = Auth.getUser() || facAuth.getUser();
 			if (user) {
 				vm.name = user.name.split(' ')[0];
 				vm.email = user.email;
@@ -32,15 +32,11 @@ app.controller('mainController', ['Auth', '$location', function (Auth, $location
 	}
 	vm.logout = function () {
 		Auth.logout();
+
 		$location.path('/');
 	}
 	vm.loading = function () {
-		if (loading) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return loading;
 	}
 }]);
 
@@ -189,6 +185,20 @@ app.controller('errorController', [function () {
 
 
 //protected route
-app.controller('challengeCtrl', ['Auth', '$route', function (Auth, $route) {
+app.controller('challengeViewController', ['Auth', 'challengeFactory','$location', '$route', function (Auth,challengeFactory,$location, $route) {
 	var vm = this;
+	vm.init = function () {
+		challengeFactory.get().then(function (data) {
+			vm.questions = data.questions;
+			if (vm.questions.length === 0) {
+				none = true;
+			}
+			else {
+				none = false;
+			}
+			console.log(vm.questions.length);
+		}, function (err) {
+			console.log(err);
+		});
+	};
 }]);

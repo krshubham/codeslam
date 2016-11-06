@@ -15,7 +15,7 @@
 			<div class="input-field col s3"></div>
 			<div class="input-field col s6">
 				<i class="material-icons prefix">account_circle</i>
-				<input class="validate" required type="text" name="signup_name" ng-model="signup.person.name" />
+				<input class="validate" name="name" required type="text" name="signup_name" ng-model="signup.person.name" />
 				<label for="signup_name">Name</label>
 			</div>
 			<div class="input-field col s3"></div>
@@ -24,7 +24,7 @@
 			<div class="input-field col s3"></div>
 			<div class="input-field col s6">
 				<i class="material-icons prefix">email</i>
-				<input class="validate" ng-model="signup.person.email" required type="email" name="signup_email" />
+				<input class="validate" name="email" ng-model="signup.person.email" required type="email" name="signup_email" />
 				<label for="signup_email">Email</label>
 			</div>
 			<div class="input-field col s3"></div>
@@ -33,7 +33,7 @@
 			<div class="input-field col s3"></div>
 			<div class="input-field col s6">
 				<i class="material-icons prefix" id="userNameLabel">perm_identity</i>
-				<input class="validate" ng-model="signup.person.username" ng-keyup="signup.checkUserName(this)" required type="text" name="signup_username" />
+				<input class="validate" name="username" ng-model="signup.person.username" ng-keyup="signup.checkUserName(this)" required type="text" name="signup_username" />
 				<label for="signup_email">Username</label>
 			</div>
 			<div class="input-field col s3"></div>
@@ -42,7 +42,7 @@
 			<div class="input-field col s3"></div>
 			<div class="input-field col s6">
 				<i class="material-icons prefix">vpn_key</i>
-				<input class="validate" required type="password" name="signup_pwd" ng-model="signup.person.password" />
+				<input class="validate" name="password" required type="password" name="signup_pwd" ng-model="signup.person.password" />
 				<label for="signup_pwd">Password</label>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 			<div class="input-field col s3"></div>
 			<div class="input-field col s6">
 				<i class="material-icons prefix">vpn_key</i>
-				<input class="validate" ng-model="signup.person.cp" ng-keyup="signup.checkPassword()" required type="password" name="c_pwd"
+				<input class="validate" name="confirm" ng-model="signup.person.cp" ng-keyup="signup.checkPassword()" required type="password" name="c_pwd"
 				/>
 				<label for="c_pwd">Confirm Password</label>
 			</div>
@@ -58,7 +58,7 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s3"></div>
-			<div class="input-field col s6 center"><button type="submit" class="btn waves-effect waves-light">Sign Up<i class="material-icons right">send</i></button></div>
+			<div class="input-field col s6 center"><button type="submit" name="submit" class="btn waves-effect waves-light">Sign Up<i class="material-icons right">send</i></button></div>
 			<div class="input-field col s3"></div>
 		</div>
 	</form>

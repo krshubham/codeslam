@@ -1,0 +1,19 @@
+<div ng-init="frc.fetchQuestions()" ng-controller="facReviewController as frc">
+    <div ng-show="frc.nothing()" align="center">
+        <h2 style="text-align:center;">"Ooops! You don't have any questions !'"</h2>
+        <a href="/faculty/create" class="waves btn waves-btn">Click Here to make some!</a>
+    </div>
+    <div class="row" ng-repeat="question in frc.questions">
+        <div class="col s12 m12">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{question.name}}</span>
+                    <div>{{question.question}}</div>
+                </div>
+                <div class="card-action">
+                    <a ng-click="frc.delete(this)" class="{{question._id}}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

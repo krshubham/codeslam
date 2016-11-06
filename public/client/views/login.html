@@ -15,19 +15,19 @@
 		<div class="row">
 			<div class="input-field col s8 offset-s2">
 				<i class="material-icons prefix">account_circle</i>
-				<input id="icon_prefix" type="email" class="validate" ng-model="login.user.email">
+				<input id="icon_prefix" type="email" id="email" class="validate" name="email" ng-model="login.user.email">
 				<label for="icon_prefix">Email</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s8 offset-s2">
 				<i class="material-icons prefix">lock</i>
-				<input id="icon_telephone" type="password" class="validate" ng-model="login.user.password">
+				<input id="icon_telephone" type="password" id="password" name="password" class="validate" ng-model="login.user.password">
 				<label for="icon_telephone">Password</label>
 			</div>
 		</div>
 		<div align="center">
-			<button type="submit" class="btn waves-effect">Login</button>
+			<button type="submit" id="submit" class="btn waves-effect">Login</button>
 		</div>
 	</form>
 	<script>

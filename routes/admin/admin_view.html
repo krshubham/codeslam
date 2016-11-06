@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/admin_view.css">
+	<title>{{name}} | Admin</title>
+</head>
+
+<body>
+	<div class="jumbotron">
+		<h1>Welcome {{name}}</h1>
+		<lead>Super Admin Desktop</lead>
+	</div>
+	<div class="container">
+		<div class="col-md-12">
+			<h2>Make a new Faculty</h2>
+			<form action="/admin/create/faculty" method="POST">
+            <input type="hidden" value="{{token}}" name="token">
+				<div class="form-group">
+                    <label for="name" class="control-label">Faculty Email:</label>
+                    <input type="email" name="fac_name" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="name" class="control-label">Name: </label>
+					<input type="text" name="name" class="form-control">
+				</div>
+                <div class="form-group">
+                    <label for="password control-label">Faculty password: </label>
+                    <input type="passowrd" name="fac_pwd" class="form-control">
+                </div>
+                <div align="center">
+                    <button type="submit" class="btn btn-warning">Create</button>
+                </div>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

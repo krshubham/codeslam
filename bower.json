@@ -1,0 +1,28 @@
+{
+  "name": "codeslam",
+  "description": "online code running platform",
+  "main": "./bin/www",
+  "authors": [
+    "Kumar Shubham <kumar.shubham2015@vit.ac.in>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "online",
+    "code",
+    "runner",
+    "for",
+    "colleges"
+  ],
+  "homepage": "https://github.com/krshubham/codeslam",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1"
+  }
+}
