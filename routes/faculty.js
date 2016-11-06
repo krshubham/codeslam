@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('./db');
 const assert = require('assert');
 var faculties = null;
+var mongodb = require('mongodb');
 var secret = 'g@@k@911';
 var jwt = require('jsonwebtoken');
 var xss = require('xss');
@@ -10,6 +11,7 @@ const bcrypt = require('bcrypt');
 const rounds = 10;
 var validate = require('validator');
 var nodemailer = require('nodemailer');
+var striptags = require('striptags');
 var transporter = nodemailer.createTransport('smtps://codeslamvitc%40gmail.com:admin@911@smtp.gmail.com');
 
 
@@ -112,11 +114,12 @@ router.post('/create', function (req, res) {
         });
     }
     try {
-        var question = xss(req.body.question);
-        var time = req.body.time;
-        var classNumbers = req.body.classnbr;
-        var facultyEmail = person.email;
-        var facultyName = person.name;
+        var question = striptags(xss(req.body.question));
+        console.log(question);
+        var time = xss(req.body.time);
+        var classNumbers = xss(req.body.classnbr);
+        var facultyEmail = xss(person.email);
+        var facultyName = xss(person.name);
         var doc = {
             time: time,
             classnbrs: classNumbers,
@@ -170,9 +173,47 @@ router.get('/view', function (req, res) {
             });
         });
     }
+    catch (err) {
+        console.log(err);
+        res.redirect('/error');
+    }
+});
+
+router.delete('/delete/:id', function (req, res) {
+    const questions = db.get().collection('questions');
+    var token = req.body.token || req.params.token || req.headers['x-access-token'];
+    var person;
+    if (token) {
+        try {
+            //using the synchronous version
+            person = jwt.verify(token, secret);
+        } catch (err) {
+            return res.redirect('/error');   // err
+        }
+    }
+    else {
+        // if there is no token
+        // return an error; Forbidden you are my friend!
+        return res.status(403).json({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+    var id = xss(req.params.id);
+    try{
+        questions.deleteOne({_id: new mongodb.ObjectID(id)},function(err){
+            assert.equal(err,null);
+            console.log('done deletion of the question'+' '+id);
+            res.json({
+                success: true,
+                message: 'Question successfully deleted'
+            });
+        });
+    }
     catch(err){
         console.log(err);
         res.redirect('/error');
     }
 });
+
 module.exports = router;

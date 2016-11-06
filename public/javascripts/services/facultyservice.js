@@ -85,15 +85,15 @@ angular.module('facultyservice', [])
 		return authTokenFactory;
 
 	})
-	.factory('facChallenge',function($http,facAuth,AuthToken){
+	.factory('facChallenge', function ($http, facAuth,$location, AuthToken) {
 		var facChallengeFactory = {};
 
-		facChallengeFactory.create = function(html){
+		facChallengeFactory.create = function (html) {
 			var token;
-			if(facAuth.isLoggedIn()){
+			if (facAuth.isLoggedIn()) {
 				token = AuthToken.getToken();
 			}
-			else{
+			else {
 				token = null;
 			}
 			var data = {
@@ -102,26 +102,48 @@ angular.module('facultyservice', [])
 				time: html.time,
 				classnbr: html.classnbr[0]
 			}
-			return $http.post('/faculty/create',data).then(function(data){
+			return $http.post('/faculty/create', data).then(function (data) {
 				return data.data;
 			});
 		}
-		facChallengeFactory.get = function(){
+		facChallengeFactory.get = function () {
 			var token;
-			if(facAuth.isLoggedIn()){
+			if (facAuth.isLoggedIn()) {
 				token = AuthToken.getToken();
 			}
-			else{
+			else {
 				token = null;
 				alert('Not a valid user session!');
 				return false;
 			}
-			return $http.get('/faculty/view',{
+			return $http.get('/faculty/view', {
 				headers: {
-					'x-access-token': token   
+					'x-access-token': token
+				}
+			}).then(function (data) {
+				return data.data;
+			});
+		}
+
+		facChallengeFactory.remove = function (id) {
+			var token;
+			if (facAuth.isLoggedIn()) {
+				token = AuthToken.getToken();
+			}
+			else {
+				token = null;
+				alert('Not a valid user session!');
+				return false;
+			}
+			return $http.delete('/faculty/delete/' + id, {
+				headers: {
+					'x-access-token': token
 				}
 			}).then(function(data){
 				return data.data;
+			},function(err){
+				console.log(err);
+				$location.path('/error');
 			});
 		}
 		return facChallengeFactory;

@@ -54,7 +54,19 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 			console.log(err);
 		});
 	};
+	
 	vm.fetchQuestions = function(){
 		vm.init();
 	}
+
+	vm.delete = function(obj){
+		var id = obj.question._id;
+		console.log(id);
+		facChallenge.remove(id).then(function(data){
+			console.log(data);
+			vm.init();
+		},function(err){
+			console.log(err);
+		});
+	};
 }]);

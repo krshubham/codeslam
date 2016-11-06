@@ -7,12 +7,11 @@
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">{{question.name}}</span>
-                    <p>{{question.question}}</p>
+                    <div>{{question.question}}</div>
                 </div>
-                <!--<div class="card-action">
-                        <a href="#">This is a link</a>
-                        <a href="#">This is a link</a>
-                    </div>-->
+                <div class="card-action">
+                    <a ng-click="frc.delete(this)" class="{{question._id}}">Delete</a>
+                </div>
             </div>
         </div>
     </div>
