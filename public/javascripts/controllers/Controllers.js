@@ -9,7 +9,7 @@ var app = angular.module('controllers', ['authservice', 'codeservice']);
 var title = '';
 var loading = false;
 
-app.controller('mainController', ['Auth','facAuth','$location', function (Auth, facAuth,$location) {
+app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth, facAuth, $location) {
 	var vm = this;
 	title = 'Welcome';
 	vm.title = title;
@@ -185,6 +185,20 @@ app.controller('errorController', [function () {
 
 
 //protected route
-app.controller('challengeCtrl', ['Auth', '$route', function (Auth, $route) {
+app.controller('challengeViewController', ['Auth', 'challengeFactory','$location', '$route', function (Auth,challengeFactory,$location, $route) {
 	var vm = this;
+	vm.init = function () {
+		challengeFactory.get().then(function (data) {
+			vm.questions = data.questions;
+			if (vm.questions.length === 0) {
+				none = true;
+			}
+			else {
+				none = false;
+			}
+			console.log(vm.questions.length);
+		}, function (err) {
+			console.log(err);
+		});
+	};
 }]);

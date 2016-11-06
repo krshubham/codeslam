@@ -64,7 +64,7 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/user/challenges', {
             templateUrl: '/client/views/challenges.html',
-            controller: 'challengeCtrl',
+            controller: 'challengeViewController',
             controllerAs: 'challenge',
             requireLogin: true,
             role: 'user'
