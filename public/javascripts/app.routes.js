@@ -83,6 +83,13 @@ app.config(function ($routeProvider, $locationProvider) {
             requireLogin: true,
             role: 'faculty'
         })
+        .when('/code/:questionId',{
+            templateUrl: '/client/views/user_solve.html',
+            controller: 'challengeSolveController',
+            controllerAs: 'csc',
+            requireLogin: true,
+            role: 'user'
+        })
         .otherwise({
             redirectTo: '/'
         });
