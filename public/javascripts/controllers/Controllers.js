@@ -15,13 +15,23 @@ app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth
 	vm.title = title;
 	vm.path = '/';
 	vm.loggedIn = function () {
-		if (Auth.isLoggedIn() || facAuth.isLoggedIn()) {
+		if (Auth.isLoggedIn()){
 			vm.path = '/user/home';
-			var user = Auth.getUser() || facAuth.getUser();
+			var user = Auth.getUser() || facAuth.getFac();
 			if (user) {
 				vm.name = user.name.split(' ')[0];
 				vm.email = user.email;
 				vm.username = user.username;
+			}
+			return true;
+		}
+		else if(facAuth.isLoggedIn()){
+			vm.path = '/faculty/home';
+			var faculty = facAuth.getFac();
+			if (faculty) {
+				vm.name = faculty.name.split(' ')[0];
+				vm.email = faculty.email;
+				vm.username = faculty.username;
 			}
 			return true;
 		}
@@ -32,7 +42,7 @@ app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth
 	}
 	vm.logout = function () {
 		Auth.logout();
-
+		facAuth.logout();
 		$location.path('/');
 	}
 	vm.loading = function () {

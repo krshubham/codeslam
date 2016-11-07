@@ -97,14 +97,23 @@ app.config(function ($routeProvider, $locationProvider) {
 })
     .run(function ($rootScope, $location, $window, Auth, $route, facAuth) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            // if ((!Auth.isLoggedIn() && next.$$route.requireLogin) || (!facAuth.isLoggedIn() && next.$$route.requireLogin)) {
-            // 	$location.path('/login');
-            // }
-            // else if(!facAuth.isLoggedIn() && next.$$route.faculty){
-            // 	$location.path('/faculty');
-            // }
-            if (next.$$route.requireLogin && (!Auth.isLoggedIn() || !facAuth.isLoggedIn())) {
-                $location.path('/login');
+            if (next.$$route.requireLogin){
+                if(next.$$route.role === 'user' && facAuth.isLoggedIn()){
+                    console.log('faculty was loggedIn');
+                    facAuth.logout();
+                    console.log('logged the faculty out');
+                }
+                if(next.$$route.role === 'faculty' && Auth.isLoggedIn()){
+                    console.log('user login was detected');
+                    Auth.logout();
+                    console.log('normal user login deleted');
+                }
+                if(next.$$route.role === 'user' && !Auth.isLoggedIn()) {
+                    $location.path('/login');
+                }
+                else if(next.$$route.role === 'faculty' && !facAuth.isLoggedIn()){
+                    $location.path('/faculty');
+                }
             }
         });
     });

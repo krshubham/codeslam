@@ -4,9 +4,9 @@ angular.module('authservice', [])
 	// auth factory to login and get information
 	// inject $http for communicating with the API
 	// inject $q to return promise objects
-	// inject AuthToken to manage tokens
+	// inject userAuthToken to manage tokens
 	// ===================================================
-	.factory('Auth', function ($http, $q, AuthToken, $window) {
+	.factory('Auth', function ($http, $q, userAuthToken, $window) {
 
 		// create auth factory object
 		var authFactory = {};
@@ -19,7 +19,7 @@ angular.module('authservice', [])
 				.success(function (data) {
 					console.log(data);
 					if (data.token) {
-						AuthToken.setToken(data.token);
+						userAuthToken.setToken(data.token);
 					}
 					return data;
 				});
@@ -32,13 +32,13 @@ angular.module('authservice', [])
 		// log a user out by clearing the token
 		authFactory.logout = function () {
 			// clear the token
-			AuthToken.setToken();
+			userAuthToken.setToken();
 		};
 		var payload;
 		// check if a user is logged in
 		// checks if there is a local token
 		authFactory.isLoggedIn = function () {
-			var token = AuthToken.getToken();
+			var token = userAuthToken.getToken();
 			if (token) {
 				payload = token.split('.')[1];
 				payload = $window.atob(payload);
@@ -52,7 +52,7 @@ angular.module('authservice', [])
 
 		// get the logged in user
 		authFactory.getUser = function () {
-			if (AuthToken.getToken())
+			if (userAuthToken.getToken())
 				return payload;
 			else
 				return false;
@@ -78,7 +78,7 @@ angular.module('authservice', [])
 	// factory for handling tokens
 	// inject $window to store token client-side
 	// ===================================================
-	.factory('AuthToken', function ($window) {
+	.factory('userAuthToken', function ($window) {
 
 		var authTokenFactory = {};
 
@@ -100,13 +100,13 @@ angular.module('authservice', [])
 		return authTokenFactory;
 
 	})
-	.factory('challengeFactory', function ($http, Auth, $location, AuthToken) {
+	.factory('challengeFactory', function ($http, Auth, $location, userAuthToken) {
 		var userChallengeFactory = {};
 		
 		userChallengeFactory.get = function () {
 			var token;
 			if (Auth.isLoggedIn()) {
-				token = AuthToken.getToken();
+				token = userAuthToken.getToken();
 			}
 			else {
 				token = null;
