@@ -8,17 +8,11 @@
 			<h3 class="main-heading">Customize these options below:</h3>
 			<div class="row" id="first">
 				<div class="input-field col s12 m6">
-					<select multiple name="classnbr" ng-model="cc.question.classnbr">
-                    <option value="" disabled selected>Choose the numbers</option>
-               		<option value="2047">2047 (Prof. Sandhya P.)</option>
-                    <option value="2137">2137 (Prof Janaki Meena)</option>
-                    <option value="2214">2214 (Prof. Tulasi Prasad Sariki)</option>
-                </select>
-					<label>Target Class numbers</label>
-				</div>
-				<div class="input-field col s12 m6">
 					<input id="first_name" type="text" class="validate active" name="time" ng-model="cc.question.time">
 					<label for="first_name">Duration(in mins)</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input type="date" class="datepicker" ng-model="cc.question.date">
 				</div>
 			</div>
 			<div align="center">
@@ -40,5 +34,5 @@
 $(document).ready(function() {
     $('select').material_select();
   });
-            
+     $('.datepicker').pickadate();       
 </script>

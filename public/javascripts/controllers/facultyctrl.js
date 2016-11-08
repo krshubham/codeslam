@@ -30,6 +30,7 @@ app.controller('challengeCreateCtrl', ['$location', 'facChallenge', function ($l
 		loading = true;
 		var data = CKEDITOR.instances.cke.getData();
 		vm.question.data = data;
+		
 		//the select box is to be taken using [0] as the index
 		var question = vm.question;
 		facChallenge.create(question).then(function (data) {

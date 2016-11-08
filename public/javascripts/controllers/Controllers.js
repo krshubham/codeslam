@@ -195,11 +195,12 @@ app.controller('errorController', [function () {
 
 
 //protected route
-app.controller('challengeViewController', ['Auth', 'challengeFactory','$location', '$route', function (Auth,challengeFactory,$location, $route) {
+app.controller('challengeViewController', ['challengeFactory','$location', '$route', function (challengeFactory,$location, $route) {
 	var vm = this;
 	vm.init = function () {
 		challengeFactory.get().then(function (data) {
 			vm.questions = data.questions;
+			console.log(vm.questions[0]);
 			if (vm.questions.length === 0) {
 				none = true;
 			}
@@ -211,4 +212,11 @@ app.controller('challengeViewController', ['Auth', 'challengeFactory','$location
 			console.log(err);
 		});
 	};
+}]);
+
+app.controller('challengeSolveController',['$location','$window','$route',function($location,$window,$route){
+	var vm = this;
+	console.log($route);
+	//this is our uniqueId for the question
+	console.log($location.$$path.split('/')[2]);
 }]);

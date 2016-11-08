@@ -100,7 +100,6 @@ angular.module('facultyservice', [])
 				token: token,
 				question: html.data,
 				time: html.time,
-				classnbr: html.classnbr[0]
 			}
 			return $http.post('/faculty/create', data).then(function (data) {
 				return data.data;

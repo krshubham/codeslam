@@ -84,7 +84,7 @@ app.config(function ($routeProvider, $locationProvider) {
             role: 'faculty'
         })
         .when('/code/:questionId',{
-            templateUrl: '/client/views/user_solve.html',
+            templateUrl: '/client/views/solveChallenge.html',
             controller: 'challengeSolveController',
             controllerAs: 'csc',
             requireLogin: true,

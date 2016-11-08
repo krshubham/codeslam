@@ -37,7 +37,7 @@ router.post('/login', function (req, res) {
     try {
         faculties.findOne(faculty, function (err, user) {
             assert.equal(err, null);
-            if(!user){
+            if (!user) {
                 return res.send('User does not exist');
             }
             bcrypt.compare(password, user.password, function (err, result) {
@@ -68,24 +68,20 @@ router.post('/login', function (req, res) {
                         subject: 'Recent login', // Subject line
                         html: 'You just now logged in with the IP address: ' + address + '<br />'  // html body
                     };
+                    //send the correct response to the user
+                    res.json({
+                        success: true,
+                        token: token
+                    });
                     transporter.sendMail(mailOptions, function (error, info) {
                         if (error) {
                             console.log('mailer error');
                             console.log(error);
-                            return res.redirect('/error');
                         }
                         else {
-                            res.json({
-                                success: true,
-                                token: token
-                            });
+                            console.log('mail sent');
                         }
                     });
-                    // //send the correct response to the user
-                    // return res.json({
-                    //     success: true,
-                    //     token: token
-                    // });
                 }
             });
         });
@@ -116,15 +112,13 @@ router.post('/create', function (req, res) {
         });
     }
     try {
-        var question = striptags(xss(req.body.question));
+        var question = xss(req.body.question);
         console.log(question);
-        var time = xss(req.body.time);
-        var classNumbers = xss(req.body.classnbr);
+        var time = xss(req.body.date);
         var facultyEmail = xss(person.email);
         var facultyName = xss(person.name);
         var doc = {
             time: time,
-            classnbrs: classNumbers,
             question: question,
             email: facultyEmail,
             name: facultyName
@@ -202,17 +196,17 @@ router.delete('/delete/:id', function (req, res) {
         });
     }
     var id = xss(req.params.id);
-    try{
-        questions.deleteOne({_id: new mongodb.ObjectID(id)},function(err){
-            assert.equal(err,null);
-            console.log('done deletion of the question'+' '+id);
+    try {
+        questions.deleteOne({ _id: new mongodb.ObjectID(id) }, function (err) {
+            assert.equal(err, null);
+            console.log('done deletion of the question' + ' ' + id);
             res.json({
                 success: true,
                 message: 'Question successfully deleted'
             });
         });
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.redirect('/error');
     }
