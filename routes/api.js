@@ -259,7 +259,10 @@ router.get('/challenges', function (req, res) {
 	}
 });
 
-
+router.get('/challenge/:id',function(req,res){
+	
+	const questions = db.get().collection('questions');
+});
 
 router.post('/signup', Signup);
 module.exports = router;

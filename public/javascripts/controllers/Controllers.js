@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('controllers', ['authservice', 'codeservice','facultyservice']);
+var app = angular.module('controllers', ['authservice', 'codeservice', 'facultyservice']);
 
 //global variable for setting the title of the page
 var title = '';
@@ -15,7 +15,7 @@ app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth
 	vm.title = title;
 	vm.path = '/';
 	vm.loggedIn = function () {
-		if (Auth.isLoggedIn()){
+		if (Auth.isLoggedIn()) {
 			vm.path = '/user/home';
 			var user = Auth.getUser() || facAuth.getFac();
 			if (user) {
@@ -25,7 +25,7 @@ app.controller('mainController', ['Auth', 'facAuth', '$location', function (Auth
 			}
 			return true;
 		}
-		else if(facAuth.isLoggedIn()){
+		else if (facAuth.isLoggedIn()) {
 			vm.path = '/faculty/home';
 			var faculty = facAuth.getFac();
 			if (faculty) {
@@ -195,7 +195,7 @@ app.controller('errorController', [function () {
 
 
 //protected route
-app.controller('challengeViewController', ['challengeFactory','$location', '$route', function (challengeFactory,$location, $route) {
+app.controller('challengeViewController', ['challengeFactory', '$location', '$route', function (challengeFactory, $location, $route) {
 	var vm = this;
 	vm.init = function () {
 		challengeFactory.get().then(function (data) {
@@ -212,11 +212,25 @@ app.controller('challengeViewController', ['challengeFactory','$location', '$rou
 			console.log(err);
 		});
 	};
+	vm.solve = function (obj) {
+		var id = obj.question._id;
+		console.log(id);
+		$location.path('/code/' + id);
+	}
 }]);
 
-app.controller('challengeSolveController',['$location','$window','$route',function($location,$window,$route){
+app.controller('challengeSolveController', ['$location', 'getChallenge', '$window', '$route', function ($location, getChallenge,$window, $route) {
 	var vm = this;
-	console.log($route);
+	//console.log($route);
 	//this is our uniqueId for the question
-	console.log($location.$$path.split('/')[2]);
+	//console.log($location.$$path.split('/')[2]);
+	vm.init = function () {
+		var id = $location.$$path.split('/')[2];
+		console.log(id);
+		getChallenge.get(id).then(function(data){
+			console.log(data);
+		},function(err){
+			console.log(err);
+		});
+	}
 }]);

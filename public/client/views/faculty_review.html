@@ -8,7 +8,7 @@
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">{{question.name}}</span>
-                    <div>{{question.question}}</div>
+                    <div ng-bind-html="question.question | unsafe"></div>
                 </div>
                 <div class="card-action">
                     <a ng-click="frc.delete(this)" class="{{question._id}}">Delete</a>

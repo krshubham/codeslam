@@ -7,6 +7,7 @@
  	'authservice',
  	'codeservice',
 	'facultyservice',
+	'challengeSolveService',
 	'controllers',
 	'facultyctrl',
 	'routes'
