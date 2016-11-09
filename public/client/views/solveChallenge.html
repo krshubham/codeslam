@@ -1,9 +1,38 @@
+<!-- all the styling for the text editor goes in here -->
+<style>
+    #editor {
+        position: relative;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2vh;
+    }
+</style>
+<!-- The main HTML for the content -->
 <div ng-init="csc.init()" ng-controller="challengeSolveController as csc">
     <div class="row">
-        <div class="col s12 m6 l6">
-            <div class="card">
-                
+        <div class="col s12 m6 l6 card">
+            <h2>Problem Statement: </h2>
+            <div style="padding: 5px;" data-ng-bind-html=" csc.question | unsafe"></div>
+            <h2>Test Cases:</h2>
+            <div>
             </div>
+        </div>
+        <div class="col s12 m6 l6">
+            <div id="editor">//This is cool</div>
+        </div>
+    </div>
+    <div class="row">
+        <div align="center" class="col s12">
+            <button type="submit" class="btn btn-waves">Submit</button>
         </div>
     </div>
 </div>
+<!-- Javascripts for the ace editor -->
+<script>
+    //element to edit
+    var editor = ace.edit('editor');
+    (function(){
+        document.getElementById('editor').style.height = String(Number(screen.availHeight) - 230) + 'px';
+    })();
+</script>

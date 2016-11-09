@@ -3,6 +3,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var assert = require('assert');
 var xss = require('xss');
+var mongodb = require('mongodb');
 var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
 var db = require('./db');
@@ -174,34 +175,6 @@ function Signup(req, res, next) {
 }
 
 
-/*function CppWithoutInputs(req,res,next){
-	var code = req.body.code,
-		lang = req.body.lang;
-		console.log(lang) ;
-		//console.log(code);
-		var path = './temp/';
-		var filename = cuid.slug();
-		console.log(filename);
-		console.log('The language used was: '+ lang +' and the code is: '+code);
-		fs.writeFile(path + filename + '.cpp',code,function(err){
-			assert.equal(err,null);
-			//console.log('file made with the name '+ filename);
-			var command = 'g++ '+ path + filename + '.cpp -o ' + path + filename;
-			console.log(command);
-			exec(command,function(err,stdout,stderr){
-				console.log(stderr);
-				console.log(err);
-				//assert.equal(err,null);
-				//assert.equal(stderr,null);
-				exec(path+filename,function(a,b,c){
-					//console.log(a);
-					res.send(b);
-					//console.log(c);
-				});
-			 });	
-		});
-}*/
-
 router.post('/check', function (req, res) {
 	var uname = req.body.username;
 	console.log(uname);
@@ -259,9 +232,16 @@ router.get('/challenges', function (req, res) {
 	}
 });
 
-router.get('/challenge/:id',function(req,res){
-	
+router.get('/challenge/:id',function(req,res){	
+	var id = req.params.id;
 	const questions = db.get().collection('questions');
+	questions.findOne({_id : new mongodb.ObjectID(id) },function(err,doc){
+		assert.equal(err,null);
+		console.log(doc);
+		res.json({
+			question: doc
+		});
+	});
 });
 
 router.post('/signup', Signup);

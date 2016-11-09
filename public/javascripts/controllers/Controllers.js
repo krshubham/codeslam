@@ -221,14 +221,14 @@ app.controller('challengeViewController', ['challengeFactory', '$location', '$ro
 
 app.controller('challengeSolveController', ['$location', 'getChallenge', '$window', '$route', function ($location, getChallenge,$window, $route) {
 	var vm = this;
-	//console.log($route);
-	//this is our uniqueId for the question
-	//console.log($location.$$path.split('/')[2]);
 	vm.init = function () {
 		var id = $location.$$path.split('/')[2];
 		console.log(id);
 		getChallenge.get(id).then(function(data){
-			console.log(data);
+			vm.question = data.question.question;
+			console.log(vm.question);
+			vm.questionId = data.question._id;
+			vm.facultyName = data.question.name;
 		},function(err){
 			console.log(err);
 		});

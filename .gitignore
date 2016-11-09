@@ -1,4 +1,4 @@
 node_modules
-temp/*.py
+temp/*
 .vscode
 bower_components

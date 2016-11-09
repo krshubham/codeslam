@@ -30,13 +30,14 @@ app.controller('challengeCreateCtrl', ['$location', 'facChallenge', function ($l
 		loading = true;
 		var data = CKEDITOR.instances.cke.getData();
 		vm.question.data = data;
-		
+
 		//the select box is to be taken using [0] as the index
 		var question = vm.question;
 		facChallenge.create(question).then(function (data) {
 			if (data.success) {
 				loading = false;
-				alert(data.message);
+				//alert(data.message);
+				$location.path('/faculty/review')
 			}
 			else {
 				loading = false;
@@ -54,10 +55,10 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 	vm.init = function () {
 		facChallenge.get().then(function (data) {
 			vm.questions = data.questions;
-			if(vm.questions.length === 0){
+			if (vm.questions.length === 0) {
 				none = true;
 			}
-			else{
+			else {
 				none = false;
 			}
 			console.log(vm.questions.length);
@@ -65,29 +66,29 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 			console.log(err);
 		});
 	};
-	vm.nothing = function(){
+	vm.nothing = function () {
 		return none;
 	}
-	
-	vm.fetchQuestions = function(){
+
+	vm.fetchQuestions = function () {
 		vm.init();
 	}
 
-	vm.delete = function(obj){
+	vm.delete = function (obj) {
 		var id = obj.question._id;
 		//console.log(id);
-		facChallenge.remove(id).then(function(data){
+		facChallenge.remove(id).then(function (data) {
 			//console.log(data);
 			vm.init();
-			if(vm.questions.length === 0){
+			if (vm.questions.length === 0) {
 				none = true;
 			}
-			else{
+			else {
 				none = false;
 			}
 			//console.log(none);
 			vm.nothing();
-		},function(err){
+		}, function (err) {
 			//console.log(err);
 		});
 	};

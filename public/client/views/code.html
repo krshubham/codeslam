@@ -64,8 +64,8 @@
         <select id="ace-mode" style="margin-left:4.5vw;margin-right:10px;width:100px;" class="z-depth-1" ng-model="codeCtrl.lang">
         <option value="">Language</option>
         <option value="c_cpp">C/C++</option>
-        <option value="Java">Java</option>
-        <option value="Python">Python</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
     </select>
 
         </select>
@@ -139,8 +139,11 @@
         var  size = document.getElementById('font_size').value ;
         document.getElementById('editor').style.fontSize=size+'px';
     }
+    ace.require('/ace/ext/language_tools');
+    ace.require('ace/mode/c_cpp').Mode;
+    ace.require('ace/mode/python').Mode;
     var editor = ace.edit("editor");
-    var theme='ace/theme/tomorrow';/*sets the default theme for the code editor as monokau*/
+    var theme='ace/theme/terminal';/*sets the default theme for the code editor as monokau*/
     var mode='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
     editor.getSession().setMode(mode);
     editor.setTheme(theme);
@@ -158,8 +161,7 @@
         enableLiveAutocompletion: true
     });  
     $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
+        $('.modal-trigger').leanModal();
 });    
 </script>
 <style type="text/css">
