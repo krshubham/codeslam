@@ -197,18 +197,22 @@ app.controller('errorController', [function () {
 //protected route
 app.controller('challengeViewController', ['challengeFactory', '$location', '$route', function (challengeFactory, $location, $route) {
 	var vm = this;
+	loading = true;
 	vm.init = function () {
 		challengeFactory.get().then(function (data) {
 			vm.questions = data.questions;
 			console.log(vm.questions[0]);
 			if (vm.questions.length === 0) {
 				none = true;
+				loading = false;
 			}
 			else {
+				loading = false;
 				none = false;
 			}
 			console.log(vm.questions.length);
 		}, function (err) {
+			loading = false;
 			console.log(err);
 		});
 	};

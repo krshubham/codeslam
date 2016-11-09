@@ -115,6 +115,11 @@ app.config(function ($routeProvider, $locationProvider) {
                     $location.path('/faculty');
                 }
             }
+            loading = true;
+    });
+        $rootScope.$on("$routeChangeSuccess",function(event,next,current){
+            console.log('done');
+            loading = false;
         });
     });
 
