@@ -243,7 +243,7 @@ app.controller('challengeSolveController', ['$location', 'getChallenge', '$windo
 		loading = true;
 		var code = editor.getValue();
 		console.log(code);
-		if(code === '//write your code here'){
+		if(!code){
 			$window.alert('Not even a single line of code written');
 			return false;
 		}		
