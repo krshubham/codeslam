@@ -223,18 +223,43 @@ app.controller('challengeViewController', ['challengeFactory', '$location', '$ro
 	}
 }]);
 
-app.controller('challengeSolveController', ['$location', 'getChallenge', '$window', '$route', function ($location, getChallenge,$window, $route) {
+app.controller('challengeSolveController', ['$location', 'getChallenge', '$window', '$route', function ($location, getChallenge, $window, $route) {
 	var vm = this;
+	var id = $location.$$path.split('/')[2];
 	vm.init = function () {
-		var id = $location.$$path.split('/')[2];
 		console.log(id);
-		getChallenge.get(id).then(function(data){
+		getChallenge.get(id).then(function (data) {
+			console.log(data);
 			vm.question = data.question.question;
 			console.log(vm.question);
 			vm.questionId = data.question._id;
 			vm.facultyName = data.question.name;
-		},function(err){
+		}, function (err) {
 			console.log(err);
+		});
+	}
+
+	vm.submit = function () {
+		var code = editor.getValue();
+		console.log(code);
+		if(code === '//write your code here'){
+			$window.alert('Not even a single line of code written');
+			return false;
+		}		
+		var lang = vm.language;
+		if(lang === 'c' || lang === 'cpp'){
+			lang = 'c_cpp';
+		}
+		console.log(lang);
+		var values = {
+			code: code,
+			lang: lang
+		};
+		getChallenge.submit(id,values).then(function(data){
+			console.log('here');
+			console.log(data);
+		},function(data){
+			console.log(data);
 		});
 	}
 }]);

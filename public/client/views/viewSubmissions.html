@@ -1,0 +1,19 @@
+<div ng-init="submissionCtrl.init()" ng-controller="submissionsController as submissionCtrl">
+    <div class="container">
+        <div class="card" style="padding: 10px;" ng-repeat="submission in submissionCtrl.submissions">
+            <h4>Question: </h4>
+            <span><strong data-ng-bind-html="question.question | unsafe"></strong></span>
+            <br>
+            <span><strong>Student Name: </strong></span>
+            <span>{{submission.name}}</span><br>
+            <strong>Language Used: </strong><span>{{submission.language}}</span>
+            <br>
+            <strong>Code: </strong>
+            <div class="card blue lighten-4" style="padding: 10px;">
+                <p>
+                    {{submission.code}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -232,17 +232,61 @@ router.get('/challenges', function (req, res) {
 	}
 });
 
-router.get('/challenge/:id',function(req,res){	
+router.get('/challenge/:id', function (req, res) {
 	var id = req.params.id;
 	const questions = db.get().collection('questions');
-	questions.findOne({_id : new mongodb.ObjectID(id) },function(err,doc){
-		assert.equal(err,null);
+	questions.findOne({ _id: new mongodb.ObjectID(id) }, function (err, doc) {
+		assert.equal(err, null);
 		console.log(doc);
 		res.json({
 			question: doc
 		});
 	});
 });
+
+router.post('/submit/:id', function (req, res) {
+	console.log('here');
+	var id = req.params.id;
+	const questions = db.get().collection('questions');
+	console.log(req.body);
+	var data = req.body.data;
+	var token = req.body.token || req.params.token || req.headers['x-access-token'];
+	var person;
+	if (token) {
+		try {
+			//using the synchronous version
+			person = jwt.verify(token, secret);
+		} catch (err) {
+			return res.redirect('/error');   // err
+		}
+	}
+	else {
+		// if there is no token
+		// return an error; Forbidden you are my friend!
+		return res.status(403).json({
+			success: false,
+			message: 'No token provided.'
+		});
+	}
+	console.log(person);
+	console.log('\n');
+	var solver = {
+		email: person.email,
+		name: person.name,
+		username: person.username,
+		code: req.body.code,
+		language: req.body.lang
+	};
+	console.log(solver);
+	questions.findOne({_id: new mongodb.ObjectID(id)},function(err,doc){
+		doc.submissions.push(solver);
+		console.log(doc);
+		questions.save(doc,{w: 1},function(err){
+			assert.equal(err,null);
+		});
+	});
+});
+
 
 router.post('/signup', Signup);
 module.exports = router;

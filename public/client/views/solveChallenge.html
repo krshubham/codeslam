@@ -11,60 +11,89 @@
 <!-- The main HTML for the content -->
 <div ng-init="csc.init()" ng-controller="challengeSolveController as csc">
     <div class="row">
-        <div class="col s12 m6 l6 card">
-            <h2>Problem Statement: </h2>
-            <div style="padding: 5px;" data-ng-bind-html=" csc.question | unsafe"><div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-    </div></div>
-            <h2>Test Cases:</h2>
-            <div>
+        <div class="col s12 m6 l6 card" style="padding-bottom: 3em;">
+            <div class="row">
+                <div class="input-field col s12 m4 l4">
+                    <select id="ace-theme">
+                    <option disabled selected><strong>Theme</strong></option>
+                    <optgroup label="Bright">
+                        <option value="chrome">Chrome</option>
+                        <option value="clouds">Clouds</option>
+                        <option value="crimson_editor">Crimson editor</option>
+                        <option value="dawn">Dawn</option>
+                        <option value="dreamweaver">Dreamweaver</option>
+                        <option value="eclipse">Eclipse</option>
+                        <option value="github">Github</option>
+                        <option value="solarized_light">Solarized light</option>
+                        <option value="textmate">Textmate</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="xcode">Xcode</option>
+                    </optgroup>
+                    <optgroup label="Dark">
+                        <option value="clouds_midnight">Clouds midnight</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="idle_fingers">Idle fingers</option>
+                        <option value="kr_theme">Kr_theme</option>
+                        <option value="merbivore">Merbivore</option>
+                        <option value="merbivore_soft">Merbivore soft</option>
+                        <option value="mono_industrial">Mono industrial</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="pastel_on_dark">Pastel on dark</option>
+                        <option value="solarized_dark">Solarized dark</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="tomorrow_night">Tomorrow night</option>
+                        <option value="tomorrow_night_blue">Tomorrow night blue</option>
+                        <option value="tomorrow_night_bright">Tomorrow night bright</option>
+                        <option value="tomorrow_night_eighties">Tomorrow night eighties</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="vibrant_ink">Vibrant ink</option>
+                    </optgroup>
+                </select>
+                    <label>Select Theme</label>
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <select id="ace-mode" ng-model="csc.language">
+                    <option value="" disabled selected>Language</option>
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                </select>
+                    <label>Select Language</label>
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <form action="#">
+                        <label for="Size">Font size: </label><br>
+                        <p class="range-field">
+                            <input type="range" id="font-size" min="12" max="64" onchange="changeFontSize()" />
+                        </p>
+                    </form>
+                </div>
             </div>
+            <h2>Problem Statement: </h2>
+            <div style="padding: 5px;" data-ng-bind-html=" csc.question | unsafe">
+                Loading....
+            </div>
+            <span style="font-size: 2em;">
+                    <strong>
+                        Some more details: 
+                    </strong>
+                </span>
+            <br> Faculty:
+            <div class="chip">
+                {{csc.facultyName}}
+            </div>
+            <br>
+            Time alloted:
+            <div class="chip">10 minutes</div>
         </div>
         <div class="col s12 m6 l6">
-            <div id="editor">//This is cool</div>
+            <div id="editor">//write your code here</div>
         </div>
     </div>
     <div class="row">
         <div align="center" class="col s12">
-            <button type="submit" class="btn btn-waves">Submit</button>
+            <button type="button" class="btn btn-waves" ng-click="csc.submit()">Submit</button>
         </div>
     </div>
 </div>
@@ -75,4 +104,32 @@
     (function(){
         document.getElementById('editor').style.height = String(Number(screen.availHeight) - 230) + 'px';
     })();
+    $(document).ready(function() {
+         $('select').material_select();
+    });
+    function changeFontSize(){
+        var size = document.getElementById('font-size').value;
+        document.getElementById('editor').style.fontSize= size+'px';
+    }
+    ace.require('/ace/ext/language_tools');
+    ace.require('ace/mode/c_cpp').Mode;
+    ace.require('ace/mode/python').Mode;
+    var theme ='ace/theme/terminal';/*sets the default theme for the code editor as monokau*/
+    var mode ='ace/mode/c_cpp';/*sets the default langauge for the code editor as C/C++*/
+    editor.getSession().setMode(mode);
+    editor.setTheme(theme);
+
+    $('#ace-mode').on('change',function(){
+      editor.getSession().setMode('ace/mode/' +$(this).val().toLowerCase());
+  });
+    $('#ace-theme').on('change',function(){
+      editor.setTheme('ace/theme/' +$(this).val().toLowerCase());
+  });
+
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });  
+    $('.chips').material_chip();
 </script>

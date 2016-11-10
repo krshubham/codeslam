@@ -85,7 +85,7 @@ angular.module('facultyservice', [])
 		return authTokenFactory;
 
 	})
-	.factory('facChallenge', function ($http, facAuth,$location, AuthToken) {
+	.factory('facChallenge', function ($http, facAuth, $location, AuthToken) {
 		var facChallengeFactory = {};
 
 		facChallengeFactory.create = function (html) {
@@ -138,12 +138,34 @@ angular.module('facultyservice', [])
 				headers: {
 					'x-access-token': token
 				}
-			}).then(function(data){
+			}).then(function (data) {
 				return data.data;
-			},function(err){
+			}, function (err) {
 				console.log(err);
 				$location.path('/error');
 			});
 		}
 		return facChallengeFactory;
+	})
+	.factory('challSubmissions', function ($http, facAuth, $location, AuthToken) {
+		var challSubmissionsFactory = {};
+		challSubmissionsFactory.get = function () {
+			var token;
+			if (facAuth.isLoggedIn()) {
+				token = AuthToken.getToken();
+			}
+			else {
+				token = null;
+				alert('Not a valid user session!');
+				return false;
+			}
+			return $http.get('/faculty/submissions', {
+				headers: {
+					'x-access-token': token
+				}
+			}).then(function (data) {
+				return data.data.questions;
+			});
+		};
+		return challSubmissionsFactory;
 	});

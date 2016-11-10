@@ -90,6 +90,13 @@ app.config(function ($routeProvider, $locationProvider) {
             requireLogin: true,
             role: 'user'
         })
+        .when('/faculty/submissions',{
+            templateUrl: '/client/views/viewSubmissions.html',
+            controller: 'submissionsController',
+            controllerAs: 'submissionCtrl',
+            requireLogin: true,
+            role: 'faculty'
+        })
         .otherwise({
             redirectTo: '/'
         });

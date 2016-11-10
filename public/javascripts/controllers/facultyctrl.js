@@ -93,3 +93,23 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 		});
 	};
 }]);
+
+app.controller('submissionsController', ['$location', 'challSubmissions', function ($location, challSubmissions) {
+	var vm = this;
+	var arr = [];
+	vm.init = function () {
+		challSubmissions.get().then(function (data) {
+			console.log(data);
+			data.forEach(function(question){
+				question.submissions.forEach(function(value){
+					console.log(value);
+					arr.push(value);
+				});
+			});
+			console.log(arr);
+			vm.submissions = arr;
+		},function(err){
+			console.log(err);
+		});
+	}
+}]);
