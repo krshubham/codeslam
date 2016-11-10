@@ -283,6 +283,10 @@ router.post('/submit/:id', function (req, res) {
 		console.log(doc);
 		questions.save(doc,{w: 1},function(err){
 			assert.equal(err,null);
+			res.json({
+				success: true,
+				message: 'Question submitted successfully'
+			});
 		});
 	});
 });
