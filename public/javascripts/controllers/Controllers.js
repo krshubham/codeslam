@@ -240,6 +240,7 @@ app.controller('challengeSolveController', ['$location', 'getChallenge', '$windo
 	}
 
 	vm.submit = function () {
+		loading = true;
 		var code = editor.getValue();
 		console.log(code);
 		if(code === '//write your code here'){
@@ -256,8 +257,10 @@ app.controller('challengeSolveController', ['$location', 'getChallenge', '$windo
 			lang: lang
 		};
 		getChallenge.submit(id,values).then(function(data){
+			loading = false;
 			console.log('here');
 			console.log(data);
+			$location.path('/user/home');
 		},function(data){
 			console.log(data);
 		});
