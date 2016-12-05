@@ -1,10 +1,14 @@
-# codeslam
-Online Code runner and test platform project
-
+# Codeslam
+An online IDE for managing and organising coding contests in colleges!
 ___
 
-#### The website is running live on:
+### Technology Used:
+Front End: HTML,CSS, Js, Angular.Js
+Back End: Node with express
+Database: MongoDB
 
-[Codeslam | Heroku](http://codeslam.herokuapp.com)
+### Idea for the developement of this project:
 
-*Note:* The app is still in beta. And is currently static on heroku.
+I always had the passion to spread the knowledge of programming accross masses. Whenever I would find any new things, I just told my friends about it. Now, in order to spread a coding culture accross my college, I just decided to build something that is fun for the college students as well as acts as a challenge for me. So the result was this cool material website: [here](http://35.154.38.81)
+
+Use the following details to authenticate:
