@@ -10,10 +10,36 @@
             <br>
             <strong>Code: </strong>
             <div class="card blue lighten-4" style="padding: 10px;">
-                <pre>
-                    {{submission.code}}
-                </pre>
+                <pre>{{submission.code}}</pre>
+            </div>
+            <div class="row right">
+                <button type="button" class="waves-btn btn" ng-click="submissionCtrl.runCode(this)">Run this code</button>
             </div>
         </div>
     </div>
 </div>
+<div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red modal-trigger" href="#modal1" >
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="text-align:center;">Output</h4>
+            <pre id="code-view-fac">{{submissionCtrl.out}}</pre>
+        </div>
+        <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+        </div>
+    </div>
+<style>
+    div.card{
+        margin-bottom: 4em;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+});    
+</script>

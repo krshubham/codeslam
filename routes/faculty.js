@@ -157,7 +157,7 @@ router.get('/view', function (req, res) {
     else {
         // if there is no token
         // return an error; Forbidden you are my friend!
-        return res.status(403).json({
+        return res.json({
             success: false,
             message: 'No token provided.'
         });

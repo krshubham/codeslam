@@ -36,10 +36,10 @@ angular.module('facultyservice', [])
 		authFactory.isLoggedIn = function () {
 			var token = AuthToken.getToken();
 			if (token) {
-				payload = token.split('.')[1];
-				payload = $window.atob(payload);
-				payload = JSON.parse(payload);
-				return payload.exp > Date.now() / 1000;
+				// payload = token.split('.')[1];
+				// payload = $window.atob(payload);
+				// payload = JSON.parse(payload);
+				return true;
 			}
 			else {
 				return false;
@@ -153,12 +153,14 @@ angular.module('facultyservice', [])
 			var token;
 			if (facAuth.isLoggedIn()) {
 				token = AuthToken.getToken();
+				console.log(token);
 			}
 			else {
 				token = null;
 				alert('Not a valid user session!');
 				return false;
 			}
+			console.log(token);
 			return $http.get('/faculty/submissions', {
 				headers: {
 					'x-access-token': token

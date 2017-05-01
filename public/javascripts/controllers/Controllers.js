@@ -241,14 +241,15 @@ app.controller('challengeSolveController', ['$location', 'getChallenge', '$windo
 
 	vm.submit = function () {
 		loading = true;
-		var code = editor.getValue();
+		var code = editor.getValue().trim();
 		console.log(code);
 		if(!code){
 			$window.alert('Not even a single line of code written');
+			window.location.reload();
 			return false;
 		}		
 		var lang = vm.language;
-		if(lang === 'c' || lang === 'cpp'){
+		if(lang === 'c_cpp'){
 			lang = 'c_cpp';
 		}
 		console.log(lang);

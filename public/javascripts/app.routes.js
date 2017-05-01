@@ -103,6 +103,7 @@ app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 })
     .run(function ($rootScope, $location, $window, Auth, $route, facAuth) {
+        console.log(facAuth.isLoggedIn());
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             if (next.$$route.requireLogin){
                 if(next.$$route.role === 'user' && facAuth.isLoggedIn()){

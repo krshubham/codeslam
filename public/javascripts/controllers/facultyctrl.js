@@ -94,9 +94,10 @@ app.controller('facReviewController', ['$location', 'facChallenge', function ($l
 	};
 }]);
 
-app.controller('submissionsController', ['$location', 'challSubmissions', function ($location, challSubmissions) {
+app.controller('submissionsController', ['$location', 'challSubmissions', 'Code','$scope', function ($location, challSubmissions, Code, $scope) {
 	var vm = this;
 	var arr = [];
+	vm.out = 'Hello';
 	vm.init = function () {
 		challSubmissions.get().then(function (data) {
 			console.log(data);
@@ -112,4 +113,30 @@ app.controller('submissionsController', ['$location', 'challSubmissions', functi
 			console.log(err);
 		});
 	}
+
+	vm.runCode = function (obj) {
+		console.log(obj);
+		let submission = obj.submission;
+		let code = submission.code;
+		let lang = submission.language;
+		if (lang === undefined || lang === '') {
+			alert('Choose correct programming language');
+			return false;
+		}
+		else {
+			var data = {
+				code: code,
+				lang: lang
+			};
+			Code.send(data).then(function (data) {
+				console.log(data);
+				if(data.data.error){
+					Materialize.toast('Error in execution of code',2000);
+					return false;
+				}
+				$('#modal1').openModal();
+				$('#code-view-fac').html(data.data.output);
+			});
+		}
+	};
 }]);
