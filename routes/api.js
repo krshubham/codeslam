@@ -8,7 +8,7 @@ var mongo = require('mongodb').MongoClient;
 var validate = require('validator');
 var db = require('./db');
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 const saltRounds = 10;
 var cuid = require('cuid');
 var secret = 'g@@k@911';
@@ -139,6 +139,7 @@ function Signup(req, res, next) {
 					html: '<a href="http://13.126.190.58:5778/verify/' + link + '">Click Here</a>' // html body
 				};
 				//console.log(mailOptions.html);
+				console.log('baskjfbawekj');
 				bcrypt.hash(password, saltRounds, function (err, hash) {
 					var user = {
 						name: name,
@@ -146,7 +147,7 @@ function Signup(req, res, next) {
 						email: email,
 						password: hash,
 						v_link: link
-					};
+					};	
 					users.insertOne(user, function (err, done) {
 						assert.equal(err, null);
 						//console.log('user inserted');

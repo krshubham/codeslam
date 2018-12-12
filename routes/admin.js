@@ -6,7 +6,7 @@ var xss = require('xss');
 var mustache = require('mustache');
 var jwt = require('jsonwebtoken');
 const secret = 'coolcool@#';
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 const saltRounds = 10;
 var db = require('./db');
 

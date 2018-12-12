@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "agenda": "^0.9.0",
-    "bcrypt": "^0.8.7",
+    "appdynamics": "^4.5.9",
+    "bcryptjs": "^2.4.3",
     "body-parser": "~1.13.2",
     "compilex": "^0.7.3",
     "cookie-parser": "~1.3.5",
